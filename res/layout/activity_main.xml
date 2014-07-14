@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RadioGroup
+        android:id="@+id/rg_navigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/actionbar_bg_dark"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp" >
+
+        <RadioButton
+            android:id="@+id/rb_today_todo"
+            style="@style/navigation_bottom_radio"
+            android:drawableTop="@drawable/ic_today_todo"
+            android:text="@string/today_todo" />
+
+        <RadioButton
+            android:id="@+id/rb_todo_manage"
+            style="@style/navigation_bottom_radio"
+            android:drawableTop="@drawable/ic_todo_list"
+            android:text="@string/todo_manage" />
+
+        <RadioButton
+            android:id="@+id/rb_signin_history"
+            style="@style/navigation_bottom_radio"
+            android:drawableTop="@drawable/ic_sign_history"
+            android:text="@string/signin_history" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rg_navigate"
+        android:layout_alignParentTop="true" >
+    </FrameLayout>
+
+</RelativeLayout>

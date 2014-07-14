@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" >
+
+        <ImageView
+            android:id="@+id/overflow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="-16dp"
+            android:background="@drawable/selectable_background_cardbank"
+            android:contentDescription="@string/overflow"
+            android:padding="2dip"
+            android:src="@drawable/ic_menu_moreoverflow_normal_holo_light" />
+
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_toLeftOf="@id/overflow"
+            android:layout_toRightOf="@id/stripe"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:fontFamily="sans-serif-thin"
+                android:text="12:00"
+                android:textColor="@color/card_title_text"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="24dip"
+                android:layout_marginRight="16dip"
+                android:fontFamily="sans-serif-light"
+                android:text="开会"
+                android:textColor="@color/card_text"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/stripe"
+            android:layout_width="@dimen/stripe_width"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/contentLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@@id/contentLayout"
+            android:background="@color/card_text"
+            android:baselineAlignBottom="true"
+            android:contentDescription="@string/color_stripe"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+
+</LinearLayout>

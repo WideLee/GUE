@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rl_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/banner_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/actionbar_bg_dark" >
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/actionbar_text_color"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/banner_add"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_theme_dark_selector"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_banner_add" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_banner"
+        android:background="@color/card_list_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp" >
+
+            <Button
+                android:id="@+id/btn_pre_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/ic_left" />
+
+            <Button
+                android:id="@+id/btn_next_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_right" />
+
+            <TextView
+                android:id="@+id/tv_month_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/card_text"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_month_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/card_text" />
+
+        <org.xstuido.gue.adapter.CalendarViewPager
+            android:id="@+id/calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_below="@id/rl_banner" >
+        </org.xstuido.gue.adapter.CalendarViewPager>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">早起教练</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="today_todo">今日日程</string>
+    <string name="todo_manage">日程管理</string>
+    <string name="signin_history">签到记录</string>
+    <string name="year_fmt">%1$d年%2$d月</string>
+    <string name="date_fmt">%1$d月%2$d日</string>
+    <string name="time_fmt">%1$s:%2$s</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="one">一</string>
+    <string name="two">二</string>
+    <string name="three">三</string>
+    <string name="four">四</string>
+    <string name="five">五</string>
+    <string name="six">六</string>
+    <string name="seven">七</string>
+    <string name="eight">八</string>
+    <string name="nine">九</string>
+    <string name="ten">十</string>
+    <string name="eleven">十一</string>
+    <string name="twelve">十二</string>
+    <string name="month">月</string>
+    <string name="_monday">一</string>
+    <string name="_tuesday">二</string>
+    <string name="_wednesday">三</string>
+    <string name="_thursday">四</string>
+    <string name="_friday">五</string>
+    <string name="_saturday">六</string>
+    <string name="_sunday">日</string>
+    <string name="uva">紫外线</string>
+    <string name="nothing">\?</string>
+    <string name="weekday_name">星期</string>
+    <string name="colon">：</string>
+    <string name="semi">；</string>
+	<string name="action_more">更多</string>
+	<string name="loading">正在加载...</string>
+	
+	
+	<string name="title_activity_main">CardsUI</string>
+    <string name="title">Title</string>
+    <string name="desc">Description</string>
+	<string name="overflow">Menu Overflow</string>
+	<string name="color_stripe">Color Stripe</string>
+	<string name="getup_time">起床时间</string>
+	
+</resources>

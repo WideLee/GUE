@@ -38,8 +38,7 @@
         android:id="@+id/lv_cards"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_banner"
-        android:background="@color/card_list_bg" >
+        android:layout_below="@+id/rl_banner" >
     </org.xstuido.gue.cards.views.CardUI>
 
 </RelativeLayout>

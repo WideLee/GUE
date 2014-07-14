@@ -56,7 +56,8 @@ public class CalendarViewPager extends ViewPager4SameItem {
 	@Override
 	public View createView() {
 
-		LinearLayout layout = (LinearLayout) inflateView(R.layout.lvi_hi_month, null);
+		LinearLayout layout = (LinearLayout) inflateView(R.layout.lvi_hi_month,
+				null);
 
 		for (int i = 0; i < WEEK_NUM_OF_MONTH; i++) {
 			LinearLayout inner = new LinearLayout(getContext());
@@ -75,7 +76,7 @@ public class CalendarViewPager extends ViewPager4SameItem {
 
 				LinearLayout.LayoutParams tv_params = new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.MATCH_PARENT, Tool.dip2px(25));
-				tv_params.setMargins(0, Tool.dip2px(4), 0, 0);
+				tv_params.setMargins(0, Tool.dip2px(2), 0, Tool.dip2px(2));
 				item.addView(tv, tv_params);
 
 				View dot = new View(getContext());
@@ -87,11 +88,13 @@ public class CalendarViewPager extends ViewPager4SameItem {
 				item.addView(dot, img_params);
 
 				LinearLayout.LayoutParams inner_params = new LinearLayout.LayoutParams(
-						Tool.getScreenW() / 8, LinearLayout.LayoutParams.WRAP_CONTENT);
+						Tool.getScreenW() / 8,
+						LinearLayout.LayoutParams.WRAP_CONTENT);
 				inner.addView(item, inner_params);
 			}
 			LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+					LinearLayout.LayoutParams.WRAP_CONTENT,
+					LinearLayout.LayoutParams.WRAP_CONTENT);
 			layout.addView(inner, layout_params);
 
 			View view = new View(getContext());
@@ -112,7 +115,8 @@ public class CalendarViewPager extends ViewPager4SameItem {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void configView(View view, int position) {
-		List<List<LinearLayout>> monthDays = (List<List<LinearLayout>>) view.getTag();
+		List<List<LinearLayout>> monthDays = (List<List<LinearLayout>>) view
+				.getTag();
 
 		LinearLayout outer = (LinearLayout) view;
 		if (monthDays == null) {
@@ -140,13 +144,16 @@ public class CalendarViewPager extends ViewPager4SameItem {
 				TextView tv = ((TextView) item.getChildAt(0));
 
 				tv.setTag(cal.clone());
-				if (cal.get(Calendar.MONTH) == getCalendar(position, false).get(Calendar.MONTH)) {
+				if (cal.get(Calendar.MONTH) == getCalendar(position, false)
+						.get(Calendar.MONTH)) {
 					tv.setTextColor(getResources().getColor(R.color.black));
 				} else {
-					tv.setTextColor(getResources().getColor(R.color.card_text));
+					tv.setTextColor(getResources().getColor(
+							R.color.card_light_text));
 				}
 				tv.setText(Integer.toString(cal.get(Calendar.DAY_OF_MONTH)));
-				item.getChildAt(1).setVisibility(View.VISIBLE);
+
+				item.getChildAt(1).setVisibility(View.GONE);
 
 				LinearLayout.LayoutParams tv_params = (LinearLayout.LayoutParams) tv
 						.getLayoutParams();
@@ -189,10 +196,12 @@ public class CalendarViewPager extends ViewPager4SameItem {
 	}
 
 	public boolean isFirstMonth() {
-		return Tool.getCurCalendar().get(Calendar.MONTH) - getCurDate().get(Calendar.MONTH) == mMonthCount / 2;
+		return Tool.getCurCalendar().get(Calendar.MONTH)
+				- getCurDate().get(Calendar.MONTH) == mMonthCount / 2;
 	}
 
 	public boolean isLastMonth() {
-		return getCurDate().get(Calendar.MONTH) - Tool.getCurCalendar().get(Calendar.MONTH) == mMonthCount / 2;
+		return getCurDate().get(Calendar.MONTH)
+				- Tool.getCurCalendar().get(Calendar.MONTH) == mMonthCount / 2;
 	}
 }

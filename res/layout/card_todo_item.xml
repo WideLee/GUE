@@ -1,26 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="16dp" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp" >
+        android:orientation="horizontal" >
 
         <ImageView
             android:id="@+id/overflow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="32dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="-16dp"
             android:background="@drawable/selectable_background_cardbank"
             android:contentDescription="@string/overflow"
-            android:padding="2dip"
             android:src="@drawable/ic_menu_moreoverflow_normal_holo_light" />
 
         <LinearLayout
@@ -38,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
+                android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-thin"
                 android:text="12:00"
                 android:textColor="@color/card_title_text"
@@ -48,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="24dip"
                 android:layout_marginRight="16dip"
                 android:fontFamily="sans-serif-light"
@@ -62,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_alignBottom="@id/contentLayout"
             android:layout_alignParentLeft="true"
-            android:layout_alignTop="@@id/contentLayout"
+            android:layout_alignTop="@id/contentLayout"
             android:background="@color/card_text"
             android:baselineAlignBottom="true"
             android:contentDescription="@string/color_stripe"

@@ -2,8 +2,11 @@ package org.xstuido.gue.cards;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.cards.objects.RecyclableCard;
+import org.xstuido.gue.fragment.TodayToDoFragment;
 import org.xstuido.gue.util.Weather;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,9 +15,11 @@ import android.widget.TextView;
 public class WeatherCard extends RecyclableCard {
 
 	private Weather mWeather;
+	private Handler mHandler;
 
-	public WeatherCard(Weather weather, Boolean hasOverflow) {
+	public WeatherCard(Weather weather, Handler handler, Boolean hasOverflow) {
 		this.hasOverflow = hasOverflow;
+		this.mHandler = handler;
 		this.mWeather = weather;
 	}
 
@@ -61,5 +66,14 @@ public class WeatherCard extends RecyclableCard {
 		} else {
 			overflowImageView.setVisibility(View.GONE);
 		}
+	}
+
+	@Override
+	public void OnSwipeCard() {
+		Message msg = new Message();
+		msg.what = TodayToDoFragment.MESSAGE_SWIPE_WEATHER_CARD_DONE;
+		mHandler.sendMessage(msg);
+
+		super.OnSwipeCard();
 	}
 }

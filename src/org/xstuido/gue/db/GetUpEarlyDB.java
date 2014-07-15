@@ -24,13 +24,13 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	private static final String COLUMN_IS_SIGN_IN = "is_sign_in";
 	private static final String COLUMN_IS_DONE = "is_done";
 	private static final String COLUMN_EVENT_TIME = "event_time";
-	private static final String COLUMN_EVENT_CONTENT = "evente_content";
+	private static final String COLUMN_EVENT_CONTENT = "event_content";
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	private static final String EVENT_SQL_CREATE = "create table " + EVENT_TABLE + " ( "
 			+ COLUMN_KEY_EID + " integer primary key autoincrement, " + COLUMN_IS_SIGN_IN
-			+ " integer, " + COLUMN_IS_DONE + " integr, " + COLUMN_EVENT_TIME + " text, "
+			+ " integer, " + COLUMN_IS_DONE + " integer, " + COLUMN_EVENT_TIME + " text, "
 			+ COLUMN_EVENT_CONTENT + " text);";
 
 	public GetUpEarlyDB(Context context) {
@@ -39,11 +39,15 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		System.out.println("create database");
 		db.execSQL(EVENT_SQL_CREATE);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// 升级数据库
+		db.execSQL("DROP TABLE IF EXISTS event");
+		onCreate(db);
 	}
 
 	public long insert(Event entity) {
@@ -61,7 +65,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	}
 
 	// 删除数据操作
-	public int deleteEventById(Integer id) {
+	public int deleteEventById(Long id) {
 		SQLiteDatabase db = getWritableDatabase();
 		String whereClause = COLUMN_KEY_EID + " = ?";
 		String[] whereArgs = { id.toString() };
@@ -88,7 +92,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	}
 
 	// 查询数据操作
-	public Event getEventById(Integer id) throws ParseException {
+	public Event getEventById(Long id) throws ParseException {
 		Event event = null;
 		SQLiteDatabase db = getReadableDatabase();
 		String selection = COLUMN_KEY_EID + " = ?";
@@ -168,6 +172,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 				list.add(event);
 			}
 		}
+
 		c.close();
 		db.close();
 

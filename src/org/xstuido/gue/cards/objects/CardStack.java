@@ -431,4 +431,8 @@ public class CardStack extends AbstractCard {
 		return mPosition;
 	}
 
+	public int getCount() {
+		return cards.size();
+	}
+
 }

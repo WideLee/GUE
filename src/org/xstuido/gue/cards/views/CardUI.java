@@ -36,8 +36,7 @@ public class CardUI extends FrameLayout {
     protected int renderedCardsStacks = 0;
     protected int mScrollY;
     /**
-     * *****************************
-     * Fields
+     * ***************************** Fields
      * <p/>
      * ******************************
      */
@@ -68,327 +67,330 @@ public class CardUI extends FrameLayout {
      * Constructor
      */
     public CardUI(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        //read the number of columns from the attributes
-        mColumnNumber = attrs.getAttributeIntValue(null, "columnCount", 1);
-        initData(context);
+	super(context, attrs, defStyle);
+	// read the number of columns from the attributes
+	mColumnNumber = attrs.getAttributeIntValue(null, "columnCount", 1);
+	initData(context);
     }
 
     /**
      * Constructor
      */
     public CardUI(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        //read the number of columns from the attributes
-        mColumnNumber = attrs.getAttributeIntValue(null, "columnCount", 1);
-        initData(context);
+	super(context, attrs);
+	// read the number of columns from the attributes
+	mColumnNumber = attrs.getAttributeIntValue(null, "columnCount", 1);
+	initData(context);
     }
 
     /**
      * Constructor
      */
     public CardUI(Context context) {
-        super(context);
-        initData(context);
+	super(context);
+	initData(context);
     }
 
     private void initData(Context context) {
-        mContext = context;
-        LayoutInflater inflater = LayoutInflater.from(context);
-        mStacks = new ArrayList<AbstractCard>();
-        //inflate a different layout, depending on the number of columns
-        if (mColumnNumber == 1) {
-            inflater.inflate(R.layout.cards_view, this);
-            // init observable scrollview
-            mListView = (QuickReturnListView) findViewById(R.id.listView);
-        } else {
-            //initialize the mulitcolumn view
-            inflater.inflate(R.layout.cards_view_multicolumn, this);
-            mTableLayout = (TableLayout) findViewById(R.id.tableLayout);
-        }
-        // mListView.setCallbacks(this);
+	mContext = context;
+	LayoutInflater inflater = LayoutInflater.from(context);
+	mStacks = new ArrayList<AbstractCard>();
+	// inflate a different layout, depending on the number of columns
+	if (mColumnNumber == 1) {
+	    inflater.inflate(R.layout.cards_view, this);
+	    // init observable scrollview
+	    mListView = (QuickReturnListView) findViewById(R.id.listView);
+	} else {
+	    // initialize the mulitcolumn view
+	    inflater.inflate(R.layout.cards_view_multicolumn, this);
+	    mTableLayout = (TableLayout) findViewById(R.id.tableLayout);
+	}
+	// mListView.setCallbacks(this);
 
-        mHeader = inflater.inflate(R.layout.header, null);
-        mQuickReturnView = (ViewGroup) findViewById(R.id.sticky);
-        mPlaceholderView = mHeader.findViewById(R.id.placeholder);
+	mHeader = inflater.inflate(R.layout.header, null);
+	mQuickReturnView = (ViewGroup) findViewById(R.id.sticky);
+	mPlaceholderView = mHeader.findViewById(R.id.placeholder);
 
     }
 
     public void setSwipeable(boolean b) {
-        mSwipeable = b;
+	mSwipeable = b;
     }
 
     public void setHeader(View header) {
 
-        mPlaceholderView.setVisibility(View.VISIBLE);
+	mPlaceholderView.setVisibility(View.VISIBLE);
 
-        mListView.getViewTreeObserver().addOnGlobalLayoutListener(
-                new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
+	mListView.getViewTreeObserver().addOnGlobalLayoutListener(
+		new ViewTreeObserver.OnGlobalLayoutListener() {
+		    @Override
+		    public void onGlobalLayout() {
 
-                        mQuickReturnHeight = mQuickReturnView.getHeight();
-                        mListView.computeScrollY();
-                        mCachedVerticalScrollRange = mListView.getListHeight();
+			mQuickReturnHeight = mQuickReturnView.getHeight();
+			mListView.computeScrollY();
+			mCachedVerticalScrollRange = mListView.getListHeight();
 
-                    }
-                });
+		    }
+		});
 
-        mListView.setOnScrollListener(new OnScrollListener() {
-            @SuppressLint("NewApi")
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
+	mListView.setOnScrollListener(new OnScrollListener() {
+	    @SuppressLint("NewApi")
+	    @Override
+	    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+		    int totalItemCount) {
 
-                mScrollY = 0;
-                int translationY = 0;
+		mScrollY = 0;
+		int translationY = 0;
 
-                if (mListView.scrollYIsComputed()) {
-                    mScrollY = mListView.getComputedScrollY();
-                }
+		if (mListView.scrollYIsComputed()) {
+		    mScrollY = mListView.getComputedScrollY();
+		}
 
-                int rawY = mPlaceholderView.getTop()
-                        - Math.min(
-                        mCachedVerticalScrollRange
-                                - mListView.getHeight(), mScrollY);
+		int rawY = mPlaceholderView.getTop()
+			- Math.min(mCachedVerticalScrollRange - mListView.getHeight(), mScrollY);
 
-                switch (mState) {
-                    case STATE_OFFSCREEN:
-                        if (rawY <= mMinRawY) {
-                            mMinRawY = rawY;
-                        } else {
-                            mState = STATE_RETURNING;
-                        }
-                        translationY = rawY;
-                        break;
+		switch (mState) {
+		case STATE_OFFSCREEN:
+		    if (rawY <= mMinRawY) {
+			mMinRawY = rawY;
+		    } else {
+			mState = STATE_RETURNING;
+		    }
+		    translationY = rawY;
+		    break;
 
-                    case STATE_ONSCREEN:
-                        if (rawY < -mQuickReturnHeight) {
-                            mState = STATE_OFFSCREEN;
-                            mMinRawY = rawY;
-                        }
-                        translationY = rawY;
-                        break;
+		case STATE_ONSCREEN:
+		    if (rawY < -mQuickReturnHeight) {
+			mState = STATE_OFFSCREEN;
+			mMinRawY = rawY;
+		    }
+		    translationY = rawY;
+		    break;
 
-                    case STATE_RETURNING:
-                        translationY = (rawY - mMinRawY) - mQuickReturnHeight;
-                        if (translationY > 0) {
-                            translationY = 0;
-                            mMinRawY = rawY - mQuickReturnHeight;
-                        }
+		case STATE_RETURNING:
+		    translationY = (rawY - mMinRawY) - mQuickReturnHeight;
+		    if (translationY > 0) {
+			translationY = 0;
+			mMinRawY = rawY - mQuickReturnHeight;
+		    }
 
-                        if (rawY > 0) {
-                            mState = STATE_ONSCREEN;
-                            translationY = rawY;
-                        }
+		    if (rawY > 0) {
+			mState = STATE_ONSCREEN;
+			translationY = rawY;
+		    }
 
-                        if (translationY < -mQuickReturnHeight) {
-                            mState = STATE_OFFSCREEN;
-                            mMinRawY = rawY;
-                        }
-                        break;
-                }
+		    if (translationY < -mQuickReturnHeight) {
+			mState = STATE_OFFSCREEN;
+			mMinRawY = rawY;
+		    }
+		    break;
+		}
 
-                /** this can be used if the build is below honeycomb **/
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
-                    TranslateAnimation anim = new TranslateAnimation(0, 0,
-                            translationY, translationY);
-                    anim.setFillAfter(true);
-                    anim.setDuration(0);
-                    mQuickReturnView.startAnimation(anim);
-                } else {
-                    mQuickReturnView.setTranslationY(translationY);
-                }
+		/** this can be used if the build is below honeycomb **/
+		if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
+		    TranslateAnimation anim = new TranslateAnimation(0, 0, translationY,
+			    translationY);
+		    anim.setFillAfter(true);
+		    anim.setDuration(0);
+		    mQuickReturnView.startAnimation(anim);
+		} else {
+		    mQuickReturnView.setTranslationY(translationY);
+		}
 
-            }
+	    }
 
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-        });
+	    @Override
+	    public void onScrollStateChanged(AbsListView view, int scrollState) {
+	    }
+	});
 
-        if (header != null) {
-            try {
-                mQuickReturnView.removeAllViews();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            mQuickReturnView.addView(header);
-        }
+	if (header != null) {
+	    try {
+		mQuickReturnView.removeAllViews();
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	    mQuickReturnView.addView(header);
+	}
 
     }
 
     public void scrollToCard(int pos) {
-        // int y = 0;
-        try {
-            // y = getY(pos);
+	// int y = 0;
+	try {
+	    // y = getY(pos);
 
-            mListView.smoothScrollToPosition(pos);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	    mListView.smoothScrollToPosition(pos);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
     }
 
     public void scrollToY(int y) {
 
-        try {
+	try {
 
-            mListView.scrollTo(0, y);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	    mListView.scrollTo(0, y);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
     }
 
     public QuickReturnListView getScrollView() {
-        return mListView;
+	return mListView;
     }
 
     public int getLastCardStackPosition() {
 
-        return mStacks.size() - 1;
+	return mStacks.size() - 1;
     }
 
     public void addSeparateCards(Card[] cards) {
 
-        addSeparateCards(cards, false);
+	addSeparateCards(cards, false);
 
     }
 
     public void addSeparateCards(Card[] cards, boolean refresh) {
 
-        for (int i = 0; i < cards.length; i++) {
-            CardStack stack = new CardStack();
-            stack.add(cards[i]);
-            mStacks.add(stack);
-        }
+	for (int i = 0; i < cards.length; i++) {
+	    CardStack stack = new CardStack();
+	    stack.add(cards[i]);
+	    mStacks.add(stack);
+	}
 
-        if (refresh)
-            refresh();
+	if (refresh)
+	    refresh();
     }
 
     public void addCard(Card card) {
 
-        addCard(card, false);
+	addCard(card, false);
 
     }
 
     public void addCard(Card card, boolean refresh) {
 
-        CardStack stack = new CardStack();
-        stack.add(card);
-        mStacks.add(stack);
-        if (refresh)
-            refresh();
+	CardStack stack = new CardStack();
+	stack.add(card);
+	mStacks.add(stack);
+	if (refresh)
+	    refresh();
 
     }
 
     public void addCardToLastStack(Card card) {
-        addCardToLastStack(card, false);
+	addCardToLastStack(card, false);
 
     }
 
     public void addCardToLastStack(Card card, boolean refresh) {
-        if (mStacks.isEmpty()) {
-            addCard(card, refresh);
-            return;
-        }
-        int lastItemPos = mStacks.size() - 1;
-        CardStack cardStack = (CardStack) mStacks.get(lastItemPos);
-        cardStack.add(card);
-        mStacks.set(lastItemPos, cardStack);
-        if (refresh)
-            refresh();
+	if (mStacks.isEmpty()) {
+	    addCard(card, refresh);
+	    return;
+	}
+	int lastItemPos = mStacks.size() - 1;
+	CardStack cardStack = (CardStack) mStacks.get(lastItemPos);
+	cardStack.add(card);
+	mStacks.set(lastItemPos, cardStack);
+	if (refresh)
+	    refresh();
 
     }
 
     public void addStack(CardStack stack) {
-        addStack(stack, false);
+	addStack(stack, false);
 
     }
 
     public void addStack(CardStack stack, boolean refresh) {
-        mStacks.add(stack);
-        if (refresh)
-            refresh();
+	mStacks.add(stack);
+	if (refresh)
+	    refresh();
 
     }
 
-    //suppress this error message to be able to use spaces in higher api levels
+    // suppress this error message to be able to use spaces in higher api levels
     @SuppressLint("NewApi")
     public void refresh() {
 
-        if (mAdapter == null) {
-            mAdapter = new StackAdapter(mContext, mStacks, mSwipeable);
-            if (mListView != null) {
-                mListView.setAdapter(mAdapter);
-            } else if (mTableLayout != null) {
-                TableRow tr = null;
-                for (int i = 0; i < mAdapter.getCount(); i += mColumnNumber) {
-                    //add a new table row with the current context
-                    tr = (TableRow) new TableRow(mTableLayout.getContext());
-                    tr.setOrientation(TableRow.HORIZONTAL);
-                    tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                            TableRow.LayoutParams.WRAP_CONTENT));
-                    //add as many cards as the number of columns indicates per row
-                    for (int j = 0; j < mColumnNumber; j++) {
-                        if (i + j < mAdapter.getCount()) {
-                            View card = mAdapter.getView(i + j, null, tr);
-                            if (card.getLayoutParams() != null) {
-                                card.setLayoutParams(new TableRow.LayoutParams(card.getLayoutParams().width, card.getLayoutParams().height, 1f));
-                            } else {
-                                card.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
-                            }
-                            tr.addView(card);
-                        }
-                    }
-                    mTableLayout.addView(tr);
-                }
-                if (tr != null) {
-                    //fill the empty space with spacers
-                    for (int j = mAdapter.getCount() % mColumnNumber; j > 0; j--) {
-                        View space = null;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                            space = new Space(tr.getContext());
-                        } else {
-                            space = new View(tr.getContext());
-                        }
-                        space.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
-                        tr.addView(space);
-                    }
-                }
+	if (mAdapter == null) {
+	    mAdapter = new StackAdapter(mContext, mStacks, mSwipeable);
+	    if (mListView != null) {
+		mListView.setAdapter(mAdapter);
+	    } else if (mTableLayout != null) {
+		TableRow tr = null;
+		for (int i = 0; i < mAdapter.getCount(); i += mColumnNumber) {
+		    // add a new table row with the current context
+		    tr = (TableRow) new TableRow(mTableLayout.getContext());
+		    tr.setOrientation(TableRow.HORIZONTAL);
+		    tr.setLayoutParams(new TableRow.LayoutParams(
+			    TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+		    // add as many cards as the number of columns indicates per
+		    // row
+		    for (int j = 0; j < mColumnNumber; j++) {
+			if (i + j < mAdapter.getCount()) {
+			    View card = mAdapter.getView(i + j, null, tr);
+			    if (card.getLayoutParams() != null) {
+				card.setLayoutParams(new TableRow.LayoutParams(card
+					.getLayoutParams().width, card.getLayoutParams().height, 1f));
+			    } else {
+				card.setLayoutParams(new TableRow.LayoutParams(
+					TableRow.LayoutParams.MATCH_PARENT,
+					TableRow.LayoutParams.WRAP_CONTENT, 1f));
+			    }
+			    tr.addView(card);
+			}
+		    }
+		    mTableLayout.addView(tr);
+		}
+		if (tr != null) {
+		    // fill the empty space with spacers
+		    for (int j = mAdapter.getCount() % mColumnNumber; j > 0; j--) {
+			View space = null;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			    space = new Space(tr.getContext());
+			} else {
+			    space = new View(tr.getContext());
+			}
+			space.setLayoutParams(new TableRow.LayoutParams(
+				TableRow.LayoutParams.MATCH_PARENT,
+				TableRow.LayoutParams.WRAP_CONTENT, 1f));
+			tr.addView(space);
+		    }
+		}
 
-            }
-        } else {
-            mAdapter.setSwipeable(mSwipeable); // in case swipeable changed;
-            mAdapter.setItems(mStacks);
+	    }
+	} else {
+	    mAdapter.setSwipeable(mSwipeable); // in case swipeable changed;
+	    mAdapter.setItems(mStacks);
 
-        }
+	}
 
     }
 
     public void clearCards() {
-        mStacks = new ArrayList<AbstractCard>();
-        renderedCardsStacks = 0;
-        refresh();
+	mStacks = new ArrayList<AbstractCard>();
+	renderedCardsStacks = 0;
+	refresh();
     }
 
     public void setCurrentStackTitle(String title) {
-        CardStack cardStack = (CardStack) mStacks
-                .get(getLastCardStackPosition());
-        cardStack.setTitle(title);
+	CardStack cardStack = (CardStack) mStacks.get(getLastCardStackPosition());
+	cardStack.setTitle(title);
 
     }
 
     public OnRenderedListener getOnRenderedListener() {
-        return onRenderedListener;
+	return onRenderedListener;
     }
 
     public void setOnRenderedListener(OnRenderedListener onRenderedListener) {
-        this.onRenderedListener = onRenderedListener;
+	this.onRenderedListener = onRenderedListener;
     }
 
     public interface OnRenderedListener {
-        public void onRendered();
+	public void onRendered();
     }
 
 }

@@ -46,6 +46,6 @@
     <string name="desc">Description</string>
 	<string name="overflow">Menu Overflow</string>
 	<string name="color_stripe">Color Stripe</string>
-	<string name="getup_time">起床时间</string>
+	<string name="getup_time">起床时间: </string>
 	
 </resources>

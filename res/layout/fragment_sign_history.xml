@@ -49,14 +49,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/iv_logo"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/iv_logo"
+        android:layout_marginRight="6dp"
         android:clickable="true"
         android:text="编辑个性签名"
-        android:textColor="@color/black"
+        android:textColor="@color/card_text"
         android:textSize="15sp" />
 
     <View
+        android:id="@+id/divider"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/iv_logo"
@@ -68,10 +70,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/iv_logo"
+        android:layout_below="@id/divider"
         android:layout_centerVertical="true"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="15dp" >
+        android:divider="@null" >
     </ListView>
 
 </RelativeLayout>

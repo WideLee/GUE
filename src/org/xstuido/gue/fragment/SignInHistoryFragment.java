@@ -22,55 +22,55 @@ import android.widget.TextView;
 
 public class SignInHistoryFragment extends Fragment {
 
-    private TextView mSignTextView;
-    private ListView mHistoryListView;
-    private GetUpEarlyDB mDB;
+	private TextView mSignTextView;
+	private ListView mHistoryListView;
+	private GetUpEarlyDB mDB;
 
-    private boolean isInit;
+	private boolean isInit;
 
-    private OnClickListener mSignClickListener = new OnClickListener() {
+	private OnClickListener mSignClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			Tool.showToast("Click");
+		}
+	};
+
+	public SignInHistoryFragment() {
+		mDB = new GetUpEarlyDB(BaseApplication.getContext());
+		isInit = false;
+	}
 
 	@Override
-	public void onClick(View v) {
-	    Tool.showToast("Click");
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View main = inflater.inflate(R.layout.fragment_sign_history, null);
+		mSignTextView = (TextView) main.findViewById(R.id.tv_significant);
+		mHistoryListView = (ListView) main.findViewById(R.id.lv_history);
+
+		if (!isInit) {
+			initView();
+		}
+
+		List<Event> data = new ArrayList<Event>();
+		try {
+			data = mDB.getALLEvent(1);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		SignHistoryAdapter adapter = new SignHistoryAdapter(BaseApplication.getContext());
+		adapter.setData(data);
+		mHistoryListView.setAdapter(adapter);
+
+		return main;
 	}
-    };
 
-    public SignInHistoryFragment() {
-	mDB = new GetUpEarlyDB(BaseApplication.getContext());
-	isInit = false;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	View main = inflater.inflate(R.layout.fragment_sign_history, null);
-	mSignTextView = (TextView) main.findViewById(R.id.tv_significant);
-	mHistoryListView = (ListView) main.findViewById(R.id.lv_history);
-
-	if (!isInit) {
-	    initView();
+	private void initView() {
+		mSignTextView.setOnClickListener(mSignClickListener);
 	}
 
-	List<Event> data = new ArrayList<Event>();
-	try {
-	    data = mDB.getALLEvent(1);
-	} catch (ParseException e) {
-	    e.printStackTrace();
+	@Override
+	public void onResume() {
+		super.onResume();
 	}
-	SignHistoryAdapter adapter = new SignHistoryAdapter(BaseApplication.getContext());
-	adapter.setData(data);
-	mHistoryListView.setAdapter(adapter);
-
-	return main;
-    }
-
-    private void initView() {
-	mSignTextView.setOnClickListener(mSignClickListener);
-    }
-
-    @Override
-    public void onResume() {
-	super.onResume();
-    }
 
 }

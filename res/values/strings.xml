@@ -47,5 +47,7 @@
 	<string name="overflow">Menu Overflow</string>
 	<string name="color_stripe">Color Stripe</string>
 	<string name="getup_time">起床时间: </string>
+	<string name="congratulation">恭喜你</string>
+	<string name="nothing_todo">没有安排任何活动 ^_^)y</string>
 	
 </resources>

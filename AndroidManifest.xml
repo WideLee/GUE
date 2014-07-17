@@ -11,10 +11,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-feature
-        android:name="android.hardware.touchscreen.multitouch"
-        android:required="false" />
-
     <application
         android:name="org.xstuido.gue.activity.BaseApplication"
         android:allowBackup="true"
@@ -23,7 +19,8 @@
         android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
             android:name="org.xstuido.gue.activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

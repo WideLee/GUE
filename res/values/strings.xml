@@ -37,17 +37,19 @@
     <string name="weekday_name">星期</string>
     <string name="colon">：</string>
     <string name="semi">；</string>
-	<string name="action_more">更多</string>
-	<string name="loading">正在加载...</string>
-	
-	
-	<string name="title_activity_main">CardsUI</string>
+    <string name="action_more">更多</string>
+    <string name="loading">正在加载...</string>
+    <string name="title_activity_main">CardsUI</string>
     <string name="title">Title</string>
     <string name="desc">Description</string>
-	<string name="overflow">Menu Overflow</string>
-	<string name="color_stripe">Color Stripe</string>
-	<string name="getup_time">起床时间: </string>
-	<string name="congratulation">恭喜你</string>
-	<string name="nothing_todo">没有安排任何活动 ^_^)y</string>
-	
+    <string name="overflow">Menu Overflow</string>
+    <string name="color_stripe">Color Stripe</string>
+    <string name="getup_time">起床时间: </string>
+    <string name="congratulation">恭喜你</string>
+    <string name="nothing_todo">没有安排任何活动 ^_^)y</string>
+    <string name="signin">签到</string>
+    <string name="signin_done">已签到</string>
+    <string name="today_not_signin">点击下面圆圈签到</string>
+    <string name="today_already_signin">愉快的一天开始了 O(∩_∩)O </string>
+
 </resources>

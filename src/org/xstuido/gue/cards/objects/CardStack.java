@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -102,8 +103,8 @@ public class CardStack extends AbstractCard {
 		for (int i = 0; i < cardsArraySize; i++) {
 			card = cards.get(i);
 			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-					RelativeLayout.LayoutParams.MATCH_PARENT,
-					RelativeLayout.LayoutParams.WRAP_CONTENT);
+					LayoutParams.MATCH_PARENT,
+					LayoutParams.WRAP_CONTENT);
 
 			int topPx = 0;
 
@@ -213,6 +214,7 @@ public class CardStack extends AbstractCard {
 		return cards.get(i);
 	}
 
+	@Override
 	public String getTitle() {
 		return title;
 	}
@@ -375,8 +377,8 @@ public class CardStack extends AbstractCard {
 			private void handleFirstCard(View newFirstCard) {
 				newFirstCard.setBackgroundResource(R.drawable.card_background);
 				RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-						RelativeLayout.LayoutParams.MATCH_PARENT,
-						RelativeLayout.LayoutParams.WRAP_CONTENT);
+						LayoutParams.MATCH_PARENT,
+						LayoutParams.WRAP_CONTENT);
 
 				int top = 0;
 				int bottom = 0;

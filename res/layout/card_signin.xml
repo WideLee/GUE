@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingBottom="16dp" >
 
@@ -16,6 +17,8 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
@@ -27,29 +30,21 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="4dp"
         android:background="@color/stroke" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/selectable_background_cardbank"
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selectable_bg_signin"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:padding="4dp" >
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/bg_circle"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:text="@string/signin"
-            android:textColor="@android:color/white"
-            android:textSize="36sp" >
-        </TextView>
-    </LinearLayout>
+        android:text="@string/signin"
+        android:textColor="@android:color/white"
+        android:textSize="36sp" >
+    </TextView>
 
 </LinearLayout>

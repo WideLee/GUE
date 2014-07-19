@@ -4,8 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 import org.xstuido.gue.util.Event;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -119,8 +120,8 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	 * @return
 	 * @throws ParseException
 	 */
-	public List<Event> getEventByDate(Date date, int choose) throws ParseException {
-		List<Event> list = new ArrayList<Event>();
+	public ArrayList<Event> getEventByDate(Date date, int choose) throws ParseException {
+		ArrayList<Event> list = new ArrayList<Event>();
 		SQLiteDatabase db = getReadableDatabase();
 		SimpleDateFormat format_begin = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
 		SimpleDateFormat format_end = new SimpleDateFormat("yyyy-MM-dd 23:59:59");
@@ -156,8 +157,8 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	 * @return
 	 * @throws ParseException
 	 */
-	public List<Event> getALLEvent(int choose) throws ParseException {
-		List<Event> list = new ArrayList<Event>();
+	public ArrayList<Event> getALLEvent(int choose) throws ParseException {
+		ArrayList<Event> list = new ArrayList<Event>();
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor c = db.query(EVENT_TABLE, null, null, null, null, null, COLUMN_EVENT_TIME);
 

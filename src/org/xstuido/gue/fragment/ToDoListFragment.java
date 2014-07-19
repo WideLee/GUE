@@ -1,12 +1,18 @@
 package org.xstuido.gue.fragment;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.activity.BaseApplication;
 import org.xstuido.gue.adapter.CalendarViewPager;
 import org.xstuido.gue.adapter.ViewPager4SameItem.OnPageSelectedListener;
+import org.xstuido.gue.cards.NothingToDoCard;
+import org.xstuido.gue.cards.ToDoItemCard;
+import org.xstuido.gue.cards.views.CardUI;
 import org.xstuido.gue.db.GetUpEarlyDB;
+import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.Tool;
 
 import android.os.Bundle;
@@ -16,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -33,6 +40,7 @@ public class ToDoListFragment extends Fragment {
 	private OnPageSelectedListener mOnPageSelectedListener;
 	private GetUpEarlyDB mDB;
 	private ListView mTodoListView;
+	private CardUI mCardView;
 
 	private boolean isInit = false;
 
@@ -49,6 +57,23 @@ public class ToDoListFragment extends Fragment {
 		mMonthNameTextView = (TextView) main.findViewById(R.id.tv_month_name);
 		monthTitleLayout = (LinearLayout) main.findViewById(R.id.ll_month_title);
 		mCalendarViewPager = (CalendarViewPager) main.findViewById(R.id.calendar);
+		mCardView = (CardUI) main.findViewById(R.id.lv_cards_list);
+		mCardView.setSwipeable(false);
+
+		try {
+			ArrayList<Event> events = mDB.getALLEvent(0);
+			if (events.size() == 0) {
+				mCardView.addCard(new NothingToDoCard());
+			}
+			for (Event event : events) {
+				ToDoItemCard card = new ToDoItemCard(event, true);
+				mCardView.addCard(card);
+			}
+			mCardView.refresh();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
 		if (!isInit) {
 			initView();
 		}
@@ -70,7 +95,7 @@ public class ToDoListFragment extends Fragment {
 			tv.setTextSize(16);
 			tv.setText(Tool.getWeekDayName(j));
 			LinearLayout.LayoutParams inner_params = new LinearLayout.LayoutParams(
-					Tool.getScreenW() / 8, LinearLayout.LayoutParams.WRAP_CONTENT);
+					Tool.getScreenW() / 8, LayoutParams.WRAP_CONTENT);
 			monthTitleLayout.addView(tv, inner_params);
 		}
 

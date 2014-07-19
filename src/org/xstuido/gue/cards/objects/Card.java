@@ -7,6 +7,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -83,7 +84,7 @@ public abstract class Card extends AbstractCard {
 		// ((TextView) view.findViewById(R.id.title)).setText(this.title);
 
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		int bottom = Tool.dip2px(12);
 		lp.setMargins(0, 0, 0, bottom);
 
@@ -107,7 +108,7 @@ public abstract class Card extends AbstractCard {
 		// ((TextView) view.findViewById(R.id.title)).setText(this.title);
 
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		int bottom = Tool.dip2px(12);
 		lp.setMargins(0, 0, 0, bottom);
 
@@ -131,7 +132,7 @@ public abstract class Card extends AbstractCard {
 		// ((TextView) view.findViewById(R.id.title)).setText(this.title);
 
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		int bottom = Tool.dip2px(12);
 		lp.setMargins(0, 0, 0, bottom);
 

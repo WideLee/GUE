@@ -1,9 +1,6 @@
 package org.xstuido.gue.activity;
 
 import org.xstuido.gue.R;
-import org.xstuido.gue.R.id;
-import org.xstuido.gue.R.layout;
-import org.xstuido.gue.cards.views.CardUI;
 import org.xstuido.gue.fragment.SignInHistoryFragment;
 import org.xstuido.gue.fragment.ToDoListFragment;
 import org.xstuido.gue.fragment.TodayToDoFragment;

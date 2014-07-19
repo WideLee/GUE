@@ -20,6 +20,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -321,10 +322,10 @@ public class CardUI extends FrameLayout {
 				TableRow tr = null;
 				for (int i = 0; i < mAdapter.getCount(); i += mColumnNumber) {
 					// add a new table row with the current context
-					tr = (TableRow) new TableRow(mTableLayout.getContext());
-					tr.setOrientation(TableRow.HORIZONTAL);
+					tr = new TableRow(mTableLayout.getContext());
+					tr.setOrientation(LinearLayout.HORIZONTAL);
 					tr.setLayoutParams(new TableRow.LayoutParams(
-							TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+							android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 					// add as many cards as the number of columns indicates per
 					// row
 					for (int j = 0; j < mColumnNumber; j++) {
@@ -335,8 +336,8 @@ public class CardUI extends FrameLayout {
 										.getLayoutParams().width, card.getLayoutParams().height, 1f));
 							} else {
 								card.setLayoutParams(new TableRow.LayoutParams(
-										TableRow.LayoutParams.MATCH_PARENT,
-										TableRow.LayoutParams.WRAP_CONTENT, 1f));
+										android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+										android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
 							}
 							tr.addView(card);
 						}
@@ -353,8 +354,8 @@ public class CardUI extends FrameLayout {
 							space = new View(tr.getContext());
 						}
 						space.setLayoutParams(new TableRow.LayoutParams(
-								TableRow.LayoutParams.MATCH_PARENT,
-								TableRow.LayoutParams.WRAP_CONTENT, 1f));
+								android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+								android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
 						tr.addView(space);
 					}
 				}

@@ -11,8 +11,7 @@ public class NothingToDoCard extends RecyclableCard {
 		this.hasOverflow = false;
 		this.isClickable = false;
 	}
-	
-	
+
 	@Override
 	protected void applyTo(View convertView) {
 

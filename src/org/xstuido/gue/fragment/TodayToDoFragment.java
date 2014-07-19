@@ -8,6 +8,7 @@ import java.util.List;
 import org.xstuido.gue.R;
 import org.xstuido.gue.activity.BaseApplication;
 import org.xstuido.gue.cards.NothingToDoCard;
+import org.xstuido.gue.cards.SignInCard;
 import org.xstuido.gue.cards.ToDoCard;
 import org.xstuido.gue.cards.WeatherCard;
 import org.xstuido.gue.cards.objects.CardStack;
@@ -19,12 +20,14 @@ import org.xstuido.gue.util.LocationUtil;
 import org.xstuido.gue.util.Weather;
 import org.xstuido.gue.util.WeatherUtil;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 public class TodayToDoFragment extends Fragment {
@@ -36,12 +39,14 @@ public class TodayToDoFragment extends Fragment {
 	private CardUI mCardView;
 	private CardStack mWeatherStack;
 	private CardStack mTodoStack;
+	private CardStack mSignInStack;
 
 	private GetUpEarlyDB mDB;
 	private WeatherUtil mWeatherUtil;
 	private boolean isInit = false;
 
 	private HiThread mGetWeather = new HiThread() {
+		@Override
 		public void run() {
 			if (mWeatherUtil != null) {
 				mWeatherUtil.initWeatherList();
@@ -52,6 +57,7 @@ public class TodayToDoFragment extends Fragment {
 		}
 	};
 
+	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -100,6 +106,7 @@ public class TodayToDoFragment extends Fragment {
 		mWeatherStack.setTitle("今天天气");
 		mTodoStack = new CardStack();
 		mTodoStack.setTitle("要做的事");
+		mSignInStack = new CardStack();
 	}
 
 	@Override
@@ -107,18 +114,18 @@ public class TodayToDoFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		System.out.println("On Insert Event");
-		mDB.insert(new Event(1, 0, System.currentTimeMillis(), new Date().toString()));
-		mDB.insert(new Event(1, 0, System.currentTimeMillis(), new Date().toString()));
 		mDB.insert(new Event(0, 0, System.currentTimeMillis(), new Date().toString()));
 		mDB.insert(new Event(0, 0, System.currentTimeMillis(), new Date().toString()));
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View main = inflater.inflate(R.layout.fragment_today_todo, null);
 		mCardView = (CardUI) main.findViewById(R.id.lv_cards);
 		mCardView.setSwipeable(true);
+		mCardView.addStack(mSignInStack);
 		mCardView.addStack(mWeatherStack);
 		mCardView.addStack(mTodoStack);
 
@@ -128,6 +135,21 @@ public class TodayToDoFragment extends Fragment {
 		isInit = true;
 
 		try {
+			ArrayList<Event> signEvents = mDB.getEventByDate(new Date(), 1);
+			if (signEvents.size() == 0) {
+				SignInCard card = new SignInCard(false);
+				card.setSignClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						System.out.println("Click");
+					}
+				});
+				mSignInStack.setTitle("今日签到");
+				mSignInStack.removeAllCards();
+				mSignInStack.add(card);
+				mCardView.refresh();
+			}
+
 			ArrayList<Event> toDoEvents = getToDoEvent();
 			if (toDoEvents.size() == 0) {
 				mCardView.addCard(new NothingToDoCard());
@@ -137,22 +159,12 @@ public class TodayToDoFragment extends Fragment {
 				mCardView.addCard(card);
 			}
 			mCardView.refresh();
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		return main;
-	}
-
-	private ArrayList<Event> getToDoEvent() throws ParseException {
-		ArrayList<Event> result = new ArrayList<Event>();
-		List<Event> events = mDB.getEventByDate(new Date(), 0);
-		for (Event event : events) {
-			if (event.isDone() == 0) {
-				result.add(event);
-			}
-		}
-		return result;
 	}
 
 	private void initView() {
@@ -168,5 +180,16 @@ public class TodayToDoFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+	}
+
+	private ArrayList<Event> getToDoEvent() throws ParseException {
+		ArrayList<Event> result = new ArrayList<Event>();
+		List<Event> events = mDB.getEventByDate(new Date(), 0);
+		for (Event event : events) {
+			if (event.isDone() == 0) {
+				result.add(event);
+			}
+		}
+		return result;
 	}
 }

@@ -41,7 +41,7 @@ public abstract class ViewPager4SameItem extends RelativeLayout {
 		mViewPager = new ViewPager(getContext());
 		mViewPager.setAdapter(new HiAdapter());
 		mViewPager.setOffscreenPageLimit(1);
-		addView(mViewPager, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		addView(mViewPager, new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
 		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageSelected(int arg0) {

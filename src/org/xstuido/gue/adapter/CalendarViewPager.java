@@ -73,7 +73,7 @@ public class CalendarViewPager extends ViewPager4SameItem {
 				tv.setOnClickListener(mClickListener);
 				tv.setClickable(true);
 				LinearLayout.LayoutParams tv_params = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.MATCH_PARENT, Tool.dip2px(25));
+						android.view.ViewGroup.LayoutParams.MATCH_PARENT, Tool.dip2px(25));
 				tv_params.setMargins(0, Tool.dip2px(2), 0, Tool.dip2px(2));
 				item.addView(tv, tv_params);
 
@@ -86,17 +86,17 @@ public class CalendarViewPager extends ViewPager4SameItem {
 				item.addView(dot, img_params);
 
 				LinearLayout.LayoutParams inner_params = new LinearLayout.LayoutParams(
-						Tool.getScreenW() / 8, LinearLayout.LayoutParams.WRAP_CONTENT);
+						Tool.getScreenW() / 8, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
 				inner.addView(item, inner_params);
 			}
 			LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+					android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
 			layout.addView(inner, layout_params);
 
 			View view = new View(getContext());
 			view.setBackgroundColor(getResources().getColor(R.color.card_text));
 			LinearLayout.LayoutParams line_params = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.MATCH_PARENT, 1);
+					android.view.ViewGroup.LayoutParams.MATCH_PARENT, 1);
 			line_params.setMargins(0, Tool.dip2px(2), 0, Tool.dip2px(2));
 			layout.addView(view, line_params);
 		}
@@ -180,6 +180,7 @@ public class CalendarViewPager extends ViewPager4SameItem {
 		return getCalendar(getViewPage().getCurrentItem(), false);
 	}
 
+	@Override
 	public int getCurrentItem() {
 		return getViewPage().getCurrentItem();
 	}

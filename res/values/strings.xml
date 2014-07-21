@@ -51,5 +51,6 @@
     <string name="signin_done">已签到</string>
     <string name="today_not_signin">点击下面圆圈签到</string>
     <string name="today_already_signin">愉快的一天开始了 O(∩_∩)O </string>
-
+	<string name="ok">确认</string>
+	<string name="location_manager">位置管理</string>
 </resources>

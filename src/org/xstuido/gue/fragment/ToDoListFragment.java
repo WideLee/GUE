@@ -15,6 +15,7 @@ import org.xstuido.gue.db.GetUpEarlyDB;
 import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.Tool;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -25,9 +26,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ToDoListFragment extends Fragment {
 
@@ -39,7 +38,6 @@ public class ToDoListFragment extends Fragment {
 
 	private OnPageSelectedListener mOnPageSelectedListener;
 	private GetUpEarlyDB mDB;
-	private ListView mTodoListView;
 	private CardUI mCardView;
 
 	private boolean isInit = false;
@@ -49,6 +47,7 @@ public class ToDoListFragment extends Fragment {
 		isInit = false;
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View main = inflater.inflate(R.layout.fragment_todo_list, null);
@@ -140,7 +139,6 @@ public class ToDoListFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Calendar cal = (Calendar) v.getTag();
-				Toast.makeText(BaseApplication.getContext(), "Click", Toast.LENGTH_SHORT).show();
 				updateToDoList(cal);
 			}
 		});
@@ -148,7 +146,21 @@ public class ToDoListFragment extends Fragment {
 	}
 
 	private void updateToDoList(Calendar cal) {
-
+		mCardView.clearCards();
+		try {
+			ArrayList<Event> events = mDB.getEventByDate(cal.getTime(), 0);
+			System.out.println(events);
+			if (events.size() == 0) {
+				mCardView.addCard(new NothingToDoCard());
+			}
+			for (Event event : events) {
+				ToDoItemCard card = new ToDoItemCard(event, true);
+				mCardView.addCard(card);
+			}
+			mCardView.refresh();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

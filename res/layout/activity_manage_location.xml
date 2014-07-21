@@ -10,20 +10,37 @@
         android:layout_centerHorizontal="true"
         android:background="@color/actionbar_bg_dark" >
 
-        
-        
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:drawableLeft="@drawable/ic_launcher"
+            android:drawableLeft="@drawable/ic_banner_logo"
             android:gravity="center"
             android:text="@string/location_manager"
             android:textColor="@color/actionbar_text_color"
             android:textSize="18sp" />
 
+        <ImageView
+            android:id="@+id/iv_banner_add"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_banner_add" />
+
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_banner_add"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_banner_refresh" />
     </RelativeLayout>
 
 </RelativeLayout>

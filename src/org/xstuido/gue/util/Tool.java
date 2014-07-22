@@ -316,7 +316,7 @@ public class Tool {
 		(float) (center_X + r * Math.cos(sweepAngle * Math.PI / 180)), // 终点角度在圆上对应的横坐标
 		(float) (center_Y + r * Math.sin(sweepAngle * Math.PI / 180))); // 终点点角度在圆上对应的纵坐标
 	path.close();
-	// 设置一个正方形，内切圆
+	// 设置一个正方形,内切圆
 	RectF rectF = new RectF(center_X - r, center_Y - r, center_X + r,
 		center_Y + r);
 	// 下面是获得弧形剪裁区的方法

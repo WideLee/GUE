@@ -16,7 +16,7 @@ import org.xstuido.gue.cards.views.CardUI;
 import org.xstuido.gue.db.GetUpEarlyDB;
 import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.HiThread;
-import org.xstuido.gue.util.weather.LocationUtil;
+import org.xstuido.gue.util.weather.LocationDAO;
 import org.xstuido.gue.util.weather.Weather;
 import org.xstuido.gue.util.weather.WeatherUtil;
 
@@ -66,9 +66,9 @@ public class TodayToDoFragment extends Fragment {
 			case MESSAGE_GET_WEATHER_DONE:
 				// ArrayList<Weather> result = mWeatherUtil.getWeatherList();
 				mWeatherStack.removeAllCards();
-//				for (Weather weather : result) {
-//					mWeatherStack.add(new WeatherCard(weather, mHandler, true));
-//				}
+				// for (Weather weather : result) {
+				// mWeatherStack.add(new WeatherCard(weather, mHandler, true));
+				// }
 				mCardView.refresh();
 				break;
 			case MESSAGE_SWIPE_TODO_CARD_DONE:
@@ -171,7 +171,7 @@ public class TodayToDoFragment extends Fragment {
 	private void initView() {
 		mGetWeather.start();
 
-		for (String city : LocationUtil.getCityList()) {
+		for (String city : LocationDAO.getCityList()) {
 			WeatherCard card = new WeatherCard(new Weather(city), mHandler, true);
 			mWeatherStack.add(card);
 		}

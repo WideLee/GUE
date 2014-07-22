@@ -10,8 +10,6 @@
         android:layout_centerHorizontal="true"
         android:background="@color/actionbar_bg_dark" >
 
-        
-        
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
@@ -24,6 +22,22 @@
             android:textColor="@color/actionbar_text_color"
             android:textSize="18sp" />
 
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_banner_add" />
+
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@android:drawable/stat_notify_sync" />
     </RelativeLayout>
 
 </RelativeLayout>

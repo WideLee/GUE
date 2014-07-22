@@ -2,9 +2,9 @@ package org.xstuido.gue.util;
 
 import java.util.ArrayList;
 
-public class LocationUtil {
+public class LocationDAO {
 
-    public LocationUtil() {
+    public LocationDAO() {
 	// TODO Auto-generated constructor stub
     }
 

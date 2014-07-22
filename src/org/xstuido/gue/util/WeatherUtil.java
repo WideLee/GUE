@@ -31,7 +31,7 @@ public class WeatherUtil {
 
     public void initWeatherList() {
 	mWeatherList.clear();
-	ArrayList<String> cityList = LocationUtil.getCityList();
+	ArrayList<String> cityList = LocationDAO.getCityList();
 	for (String city : cityList) {
 	    Weather weather = requestWeather(city);
 	    try {

@@ -53,4 +53,6 @@
     <string name="today_already_signin">愉快的一天开始了 O(∩_∩)O </string>
 	<string name="ok">确认</string>
 	<string name="location_manager">位置管理</string>
+	<string name="time_axis">时间轴</string>
+	<string name="weather_detail">天气详情</string>
 </resources>

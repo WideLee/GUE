@@ -18,51 +18,48 @@ import android.widget.TextView;
 @SuppressLint("SimpleDateFormat")
 public class ToDoCard extends RecyclableCard {
 
-    private Event mEvent;
-    private Handler mHandler;
+	private Event mEvent;
+	private Handler mHandler;
 
-    public ToDoCard(Event event, Handler handler, Boolean hasOverflow) {
-	this.hasOverflow = hasOverflow;
-	this.mHandler = handler;
-	this.mEvent = event;
-    }
-
-    @Override
-    protected int getCardLayoutId() {
-	return R.layout.card_todo_item;
-    }
-
-    @Override
-    protected void applyTo(View convertView) {
-	TextView timeTextView = (TextView) convertView
-		.findViewById(R.id.tv_time);
-	TextView desTextView = (TextView) convertView
-		.findViewById(R.id.description);
-
-	Date date = new Date(mEvent.getTime());
-	SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-
-	String time = dateFormat.format(date);
-	timeTextView.setText(time);
-	desTextView.setText(mEvent.getContent());
-
-	ImageView overflowImageView = ((ImageView) convertView
-		.findViewById(R.id.overflow));
-	if (hasOverflow == true) {
-	    overflowImageView.setVisibility(View.VISIBLE);
-	} else {
-	    overflowImageView.setVisibility(View.GONE);
+	public ToDoCard(Event event, Handler handler, Boolean hasOverflow) {
+		this.hasOverflow = hasOverflow;
+		this.mHandler = handler;
+		this.mEvent = event;
 	}
-    }
 
-    @Override
-    public void OnSwipeCard() {
-	Message msg = new Message();
-	msg.what = TodayToDoFragment.MESSAGE_SWIPE_TODO_CARD_DONE;
-	msg.obj = mEvent.getId();
-	mHandler.sendMessage(msg);
+	@Override
+	protected int getCardLayoutId() {
+		return R.layout.card_todo_item;
+	}
 
-	super.OnSwipeCard();
-    }
+	@Override
+	protected void applyTo(View convertView) {
+		TextView timeTextView = (TextView) convertView.findViewById(R.id.tv_time);
+		TextView desTextView = (TextView) convertView.findViewById(R.id.description);
+
+		Date date = new Date(mEvent.getTime());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+		String time = dateFormat.format(date);
+		timeTextView.setText(time);
+		desTextView.setText(mEvent.getContent());
+
+		ImageView overflowImageView = ((ImageView) convertView.findViewById(R.id.overflow));
+		if (hasOverflow == true) {
+			overflowImageView.setVisibility(View.VISIBLE);
+		} else {
+			overflowImageView.setVisibility(View.GONE);
+		}
+	}
+
+	@Override
+	public void OnSwipeCard() {
+		Message msg = new Message();
+		msg.what = TodayToDoFragment.MESSAGE_SWIPE_TODO_CARD_DONE;
+		msg.obj = mEvent.getId();
+		mHandler.sendMessage(msg);
+
+		super.OnSwipeCard();
+	}
 
 }

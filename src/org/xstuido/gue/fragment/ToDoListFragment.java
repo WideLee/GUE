@@ -30,150 +30,142 @@ import android.widget.TextView;
 
 public class ToDoListFragment extends Fragment {
 
-    private Button mPreButton;
-    private Button mNextButton;
-    private TextView mMonthNameTextView;
-    private LinearLayout monthTitleLayout;
-    private CalendarViewPager mCalendarViewPager;
+	private Button mPreButton;
+	private Button mNextButton;
+	private TextView mMonthNameTextView;
+	private LinearLayout monthTitleLayout;
+	private CalendarViewPager mCalendarViewPager;
 
-    private OnPageSelectedListener mOnPageSelectedListener;
-    private GetUpEarlyDB mDB;
-    private CardUI mCardView;
+	private OnPageSelectedListener mOnPageSelectedListener;
+	private GetUpEarlyDB mDB;
+	private CardUI mCardView;
 
-    private boolean isInit = false;
+	private boolean isInit = false;
 
-    public ToDoListFragment() {
-	mDB = new GetUpEarlyDB(BaseApplication.getContext());
-	isInit = false;
-    }
-
-    @SuppressLint("InflateParams")
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	    Bundle savedInstanceState) {
-	View main = inflater.inflate(R.layout.fragment_todo_list, null);
-	mPreButton = (Button) main.findViewById(R.id.btn_pre_month);
-	mNextButton = (Button) main.findViewById(R.id.btn_next_month);
-	mMonthNameTextView = (TextView) main.findViewById(R.id.tv_month_name);
-	monthTitleLayout = (LinearLayout) main
-		.findViewById(R.id.ll_month_title);
-	mCalendarViewPager = (CalendarViewPager) main
-		.findViewById(R.id.calendar);
-	mCardView = (CardUI) main.findViewById(R.id.lv_cards_list);
-	mCardView.setSwipeable(false);
-
-	try {
-	    ArrayList<Event> events = mDB.getALLEvent(0);
-	    if (events.size() == 0) {
-		mCardView.addCard(new NothingToDoCard());
-	    }
-	    for (Event event : events) {
-		ToDoItemCard card = new ToDoItemCard(event, true);
-		mCardView.addCard(card);
-	    }
-	    mCardView.refresh();
-	} catch (ParseException e) {
-	    e.printStackTrace();
+	public ToDoListFragment() {
+		mDB = new GetUpEarlyDB(BaseApplication.getContext());
+		isInit = false;
 	}
 
-	if (!isInit) {
-	    initView();
-	}
+	@SuppressLint("InflateParams")
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View main = inflater.inflate(R.layout.fragment_todo_list, null);
+		mPreButton = (Button) main.findViewById(R.id.btn_pre_month);
+		mNextButton = (Button) main.findViewById(R.id.btn_next_month);
+		mMonthNameTextView = (TextView) main.findViewById(R.id.tv_month_name);
+		monthTitleLayout = (LinearLayout) main.findViewById(R.id.ll_month_title);
+		mCalendarViewPager = (CalendarViewPager) main.findViewById(R.id.calendar);
+		mCardView = (CardUI) main.findViewById(R.id.lv_cards_list);
+		mCardView.setSwipeable(false);
 
-	isInit = true;
-	return main;
-    }
-
-    private void initView() {
-	mPreButton.setVisibility(View.VISIBLE);
-	mNextButton.setVisibility(View.VISIBLE);
-	mMonthNameTextView.setText(Tool.getYearMonth(mCalendarViewPager
-		.getCurDate()));
-	monthTitleLayout.removeAllViews();
-	for (int j = 0; j < CalendarViewPager.DAY_NUM_OF_WEEK; j++) {
-	    TextView tv = new TextView(getActivity());
-	    tv.setTextSize(20);
-	    tv.setGravity(Gravity.CENTER);
-	    tv.setTextColor(getActivity().getResources().getColor(
-		    R.color.card_text));
-	    tv.setTextSize(16);
-	    tv.setText(Tool.getWeekDayName(j));
-	    LinearLayout.LayoutParams inner_params = new LinearLayout.LayoutParams(
-		    Tool.getScreenW() / 8, LayoutParams.WRAP_CONTENT);
-	    monthTitleLayout.addView(tv, inner_params);
-	}
-
-	mPreButton.setOnClickListener(new OnClickListener() {
-
-	    @Override
-	    public void onClick(View v) {
-		mCalendarViewPager.setCurrentItem(mCalendarViewPager
-			.getCurrentItem() - 1);
-	    }
-	});
-
-	mNextButton.setOnClickListener(new OnClickListener() {
-
-	    @Override
-	    public void onClick(View v) {
-		mCalendarViewPager.setCurrentItem(mCalendarViewPager
-			.getCurrentItem() + 1);
-	    }
-	});
-
-	mOnPageSelectedListener = new OnPageSelectedListener() {
-
-	    @Override
-	    public void onPageSelected(int position) {
-		mMonthNameTextView.setText(Tool.getYearMonth(mCalendarViewPager
-			.getCurDate()));
-		if (mCalendarViewPager.isFirstMonth()) {
-		    mPreButton.setVisibility(View.INVISIBLE);
-		} else {
-		    mPreButton.setVisibility(View.VISIBLE);
+		try {
+			ArrayList<Event> events = mDB.getALLEvent(0);
+			if (events.size() == 0) {
+				mCardView.addCard(new NothingToDoCard());
+			}
+			for (Event event : events) {
+				ToDoItemCard card = new ToDoItemCard(event, true);
+				mCardView.addCard(card);
+			}
+			mCardView.refresh();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 
-		if (mCalendarViewPager.isLastMonth()) {
-		    mNextButton.setVisibility(View.INVISIBLE);
-		} else {
-		    mNextButton.setVisibility(View.VISIBLE);
+		if (!isInit) {
+			initView();
 		}
 
-	    }
-	};
-	mCalendarViewPager.setOnPageSelectedListener(mOnPageSelectedListener);
-	mCalendarViewPager.setOnDateClickListener(new OnClickListener() {
-
-	    @Override
-	    public void onClick(View v) {
-		Calendar cal = (Calendar) v.getTag();
-		updateToDoList(cal);
-	    }
-	});
-
-    }
-
-    private void updateToDoList(Calendar cal) {
-	mCardView.clearCards();
-	try {
-	    ArrayList<Event> events = mDB.getEventByDate(cal.getTime(), 0);
-	    System.out.println(events);
-	    if (events.size() == 0) {
-		mCardView.addCard(new NothingToDoCard());
-	    }
-	    for (Event event : events) {
-		ToDoItemCard card = new ToDoItemCard(event, true);
-		mCardView.addCard(card);
-	    }
-	    mCardView.refresh();
-	} catch (ParseException e) {
-	    e.printStackTrace();
+		isInit = true;
+		return main;
 	}
-    }
 
-    @Override
-    public void onResume() {
-	initView();
-	super.onResume();
-    }
+	private void initView() {
+		mPreButton.setVisibility(View.VISIBLE);
+		mNextButton.setVisibility(View.VISIBLE);
+		mMonthNameTextView.setText(Tool.getYearMonth(mCalendarViewPager.getCurDate()));
+		monthTitleLayout.removeAllViews();
+		for (int j = 0; j < CalendarViewPager.DAY_NUM_OF_WEEK; j++) {
+			TextView tv = new TextView(getActivity());
+			tv.setTextSize(20);
+			tv.setGravity(Gravity.CENTER);
+			tv.setTextColor(getActivity().getResources().getColor(R.color.card_text));
+			tv.setTextSize(16);
+			tv.setText(Tool.getWeekDayName(j));
+			LinearLayout.LayoutParams inner_params = new LinearLayout.LayoutParams(
+					Tool.getScreenW() / 8, LayoutParams.WRAP_CONTENT);
+			monthTitleLayout.addView(tv, inner_params);
+		}
+
+		mPreButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mCalendarViewPager.setCurrentItem(mCalendarViewPager.getCurrentItem() - 1);
+			}
+		});
+
+		mNextButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mCalendarViewPager.setCurrentItem(mCalendarViewPager.getCurrentItem() + 1);
+			}
+		});
+
+		mOnPageSelectedListener = new OnPageSelectedListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				mMonthNameTextView.setText(Tool.getYearMonth(mCalendarViewPager.getCurDate()));
+				if (mCalendarViewPager.isFirstMonth()) {
+					mPreButton.setVisibility(View.INVISIBLE);
+				} else {
+					mPreButton.setVisibility(View.VISIBLE);
+				}
+
+				if (mCalendarViewPager.isLastMonth()) {
+					mNextButton.setVisibility(View.INVISIBLE);
+				} else {
+					mNextButton.setVisibility(View.VISIBLE);
+				}
+
+			}
+		};
+		mCalendarViewPager.setOnPageSelectedListener(mOnPageSelectedListener);
+		mCalendarViewPager.setOnDateClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Calendar cal = (Calendar) v.getTag();
+				updateToDoList(cal);
+			}
+		});
+
+	}
+
+	private void updateToDoList(Calendar cal) {
+		mCardView.clearCards();
+		try {
+			ArrayList<Event> events = mDB.getEventByDate(cal.getTime(), 0);
+			System.out.println(events);
+			if (events.size() == 0) {
+				mCardView.addCard(new NothingToDoCard());
+			}
+			for (Event event : events) {
+				ToDoItemCard card = new ToDoItemCard(event, true);
+				mCardView.addCard(card);
+			}
+			mCardView.refresh();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onResume() {
+		initView();
+		super.onResume();
+	}
 }

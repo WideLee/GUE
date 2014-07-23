@@ -51,9 +51,14 @@
     <string name="signin_done">已签到</string>
     <string name="today_not_signin">点击下面圆圈签到</string>
     <string name="today_already_signin">愉快的一天开始了 O(∩_∩)O </string>
-	<string name="ok">确认</string>
-	<string name="location_manager">位置管理</string>
-	<string name="time_axis">时间轴</string>
-	<string name="weather_detail">天气详情</string>
-	<string name="weather_fail">天气获取失败</string>
+    <string name="ok">确认</string>
+    <string name="location_manager">位置管理</string>
+    <string name="time_axis">时间轴</string>
+    <string name="weather_detail">天气详情</string>
+    <string name="weather_fail">天气获取失败</string>
+    <string name="sdcard_unmount">SD卡不可用</string>
+    <string name="unknow_error">出现未知错误</string>
+    <string name="share_text">我的时间轴~\\(^o^)/~分享自早起教练</string>
+    <string name="share_title">请选择</string>
+
 </resources>

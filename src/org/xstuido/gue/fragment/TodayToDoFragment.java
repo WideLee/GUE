@@ -14,11 +14,11 @@ import org.xstuido.gue.cards.WeatherCard;
 import org.xstuido.gue.cards.objects.CardStack;
 import org.xstuido.gue.cards.views.CardUI;
 import org.xstuido.gue.db.GetUpEarlyDB;
+import org.xstuido.gue.db.LocationDAO;
 import org.xstuido.gue.util.Constant;
 import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.HiThread;
 import org.xstuido.gue.util.Tool;
-import org.xstuido.gue.util.weather.LocationDAO;
 import org.xstuido.gue.util.weather.Weather;
 import org.xstuido.gue.util.weather.WeatherUtil;
 

@@ -23,7 +23,7 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/banner_more"
+            android:id="@+id/btn_share"
             android:layout_width="@dimen/banner_height"
             android:layout_height="@dimen/banner_height"
             android:layout_alignParentRight="true"

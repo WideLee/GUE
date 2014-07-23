@@ -19,44 +19,46 @@ import android.widget.ListView;
 
 public class SignInHistoryFragment extends Fragment {
 
-	private ListView mHistoryListView;
-	private GetUpEarlyDB mDB;
+    private ListView mHistoryListView;
+    private GetUpEarlyDB mDB;
 
-	private boolean isInit;
+    private boolean isInit;
 
-	public SignInHistoryFragment() {
-		mDB = new GetUpEarlyDB(BaseApplication.getContext());
-		isInit = false;
+    public SignInHistoryFragment() {
+	mDB = new GetUpEarlyDB(BaseApplication.getContext());
+	isInit = false;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	    Bundle savedInstanceState) {
+	View main = inflater.inflate(R.layout.fragment_sign_history, null);
+	mHistoryListView = (ListView) main.findViewById(R.id.lv_history);
+
+	if (!isInit) {
+	    initView();
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View main = inflater.inflate(R.layout.fragment_sign_history, null);
-		mHistoryListView = (ListView) main.findViewById(R.id.lv_history);
-
-		if (!isInit) {
-			initView();
-		}
-
-		List<Event> data = new ArrayList<Event>();
-		try {
-			data = mDB.getALLEvent(1);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		SignHistoryAdapter adapter = new SignHistoryAdapter(BaseApplication.getContext());
-		adapter.setData(data);
-		mHistoryListView.setAdapter(adapter);
-
-		return main;
+	List<Event> data = new ArrayList<Event>();
+	try {
+	    data = mDB.getALLEvent(1);
+	} catch (ParseException e) {
+	    e.printStackTrace();
 	}
+	SignHistoryAdapter adapter = new SignHistoryAdapter(
+		BaseApplication.getContext());
+	adapter.setData(data);
+	mHistoryListView.setAdapter(adapter);
 
-	private void initView() {
-	}
+	return main;
+    }
 
-	@Override
-	public void onResume() {
-		super.onResume();
-	}
+    private void initView() {
+    }
+
+    @Override
+    public void onResume() {
+	super.onResume();
+    }
 
 }

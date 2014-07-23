@@ -4,6 +4,7 @@ import org.xstuido.gue.R;
 import org.xstuido.gue.cards.objects.RecyclableCard;
 import org.xstuido.gue.fragment.TodayToDoFragment;
 import org.xstuido.gue.util.weather.Weather;
+import org.xstuido.gue.util.weather.WeatherUtil;
 
 import android.os.Handler;
 import android.os.Message;
@@ -14,13 +15,13 @@ import android.widget.TextView;
 
 public class WeatherCard extends RecyclableCard {
 
-	private Weather mWeather;
+	private int mIndex;
 	private Handler mHandler;
 
-	public WeatherCard(Weather weather, Handler handler, Boolean hasOverflow) {
+	public WeatherCard(int index, Handler handler, Boolean hasOverflow) {
 		this.hasOverflow = hasOverflow;
 		this.mHandler = handler;
-		this.mWeather = weather;
+		this.mIndex = index;
 	}
 
 	@Override
@@ -30,6 +31,8 @@ public class WeatherCard extends RecyclableCard {
 
 	@Override
 	protected void applyTo(View convertView) {
+		Weather mWeather = WeatherUtil.getInstance().getWeatherList().get(mIndex);
+
 		TextView cityNameTextView = ((TextView) convertView.findViewById(R.id.tv_city_name));
 		cityNameTextView.setText(mWeather.getCityName());
 		TextView temperatureTextView = ((TextView) convertView.findViewById(R.id.tv_temperature));
@@ -72,6 +75,7 @@ public class WeatherCard extends RecyclableCard {
 	public void OnSwipeCard() {
 		Message msg = new Message();
 		msg.what = TodayToDoFragment.MESSAGE_SWIPE_WEATHER_CARD_DONE;
+		msg.obj = mIndex;
 		mHandler.sendMessage(msg);
 
 		super.OnSwipeCard();

@@ -55,4 +55,5 @@
 	<string name="location_manager">位置管理</string>
 	<string name="time_axis">时间轴</string>
 	<string name="weather_detail">天气详情</string>
+	<string name="weather_fail">天气获取失败</string>
 </resources>

@@ -16,6 +16,7 @@ import org.xstuido.gue.cards.views.CardUI;
 import org.xstuido.gue.db.GetUpEarlyDB;
 import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.HiThread;
+import org.xstuido.gue.util.Tool;
 import org.xstuido.gue.util.weather.LocationDAO;
 import org.xstuido.gue.util.weather.Weather;
 import org.xstuido.gue.util.weather.WeatherUtil;
@@ -43,17 +44,37 @@ public class TodayToDoFragment extends Fragment {
 	private CardStack mSignInStack;
 
 	private GetUpEarlyDB mDB;
-	private WeatherUtil mWeatherUtil;
 	private boolean isInit = false;
 
 	private HiThread mGetWeather = new HiThread() {
 		@Override
 		public void run() {
-			if (mWeatherUtil != null) {
-				mWeatherUtil.initWeatherList();
-				Message msg = new Message();
-				msg.what = MESSAGE_GET_WEATHER_DONE;
-				mHandler.sendMessage(msg);
+			WeatherUtil weatherUtil = WeatherUtil.getInstance();
+
+			ArrayList<Weather> cityList = weatherUtil.getWeatherList();
+			for (int i = 0; i < cityList.size(); i++) {
+				String city = cityList.get(i).getCityName();
+				Weather weather = weatherUtil.requestWeather(city);
+				// System.out.println(weather);
+				if (weather != null) {
+					weatherUtil.updateWeather(i, weather);
+
+					Message msg = new Message();
+					msg.what = TodayToDoFragment.MESSAGE_GET_WEATHER_DONE;
+					msg.obj = i;
+					mHandler.sendMessage(msg);
+				} else {
+					Message msg = new Message();
+					msg.what = TodayToDoFragment.MESSAGE_GET_WEATHER_FAIL;
+					msg.obj = i;
+					mHandler.sendMessage(msg);
+				}
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	};
@@ -64,12 +85,10 @@ public class TodayToDoFragment extends Fragment {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case MESSAGE_GET_WEATHER_DONE:
-				// ArrayList<Weather> result = mWeatherUtil.getWeatherList();
-				mWeatherStack.removeAllCards();
-				// for (Weather weather : result) {
-				// mWeatherStack.add(new WeatherCard(weather, mHandler, true));
-				// }
 				mCardView.refresh();
+				break;
+			case MESSAGE_GET_WEATHER_FAIL:
+				Tool.showToast(Tool.getString(R.string.weather_fail));
 				break;
 			case MESSAGE_SWIPE_TODO_CARD_DONE:
 				long id = (Long) msg.obj;
@@ -87,8 +106,9 @@ public class TodayToDoFragment extends Fragment {
 					e.printStackTrace();
 				}
 			case MESSAGE_SWIPE_WEATHER_CARD_DONE:
+
 				int count = mWeatherStack.getCount();
-				System.out.println(count);
+				// System.out.println(count);
 				if (count == 0) {
 					mWeatherStack.setTitle("");
 					mCardView.refresh();
@@ -100,7 +120,6 @@ public class TodayToDoFragment extends Fragment {
 	};
 
 	public TodayToDoFragment() {
-		mWeatherUtil = new WeatherUtil(mHandler);
 		mDB = new GetUpEarlyDB(BaseApplication.getContext());
 		isInit = false;
 		mWeatherStack = new CardStack();
@@ -164,18 +183,22 @@ public class TodayToDoFragment extends Fragment {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
 		return main;
 	}
 
 	private void initView() {
-		mGetWeather.start();
 
-		for (String city : LocationDAO.getCityList()) {
-			WeatherCard card = new WeatherCard(new Weather(city), mHandler, true);
+		WeatherUtil weatherUtil = WeatherUtil.getInstance();
+		ArrayList<String> cityList = LocationDAO.getCityList();
+		weatherUtil.removeAllWeather();
+		for (int i = 0; i < cityList.size(); i++) {
+			String city = cityList.get(i);
+			weatherUtil.addWeather(new Weather(city));
+			WeatherCard card = new WeatherCard(i, mHandler, true);
 			mWeatherStack.add(card);
 		}
 		mCardView.refresh();
+		mGetWeather.start();
 	}
 
 	@Override

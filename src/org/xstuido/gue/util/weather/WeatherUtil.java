@@ -15,46 +15,54 @@ import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
-import org.xstuido.gue.fragment.TodayToDoFragment;
-
-import android.os.Handler;
-import android.os.Message;
 
 public class WeatherUtil {
 
 	public static final String HOST_URL = "http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName";
 
-	private HttpResponse mHttpResponse;
-	private HttpClient mHttpClient;
-	private Handler mHandler;
+	private ArrayList<Weather> mWeatherList;
 
-	public WeatherUtil(Handler handler) {
-		mHttpClient = new DefaultHttpClient();
-		mHandler = handler;
+	private static WeatherUtil instance;
+
+	private WeatherUtil() {
+		mWeatherList = new ArrayList<Weather>();
 	}
 
-	public void initWeatherList() {
-		ArrayList<String> cityList = LocationDAO.getCityList();
-		for (String city : cityList) {
-			Weather weather = requestWeather(city);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (weather != null) {
-				Message msg = new Message();
-				msg.what = TodayToDoFragment.MESSAGE_GET_WEATHER_DONE;
-				mHandler.sendMessage(msg);
-			} else {
-				Message msg = new Message();
-				msg.what = TodayToDoFragment.MESSAGE_GET_WEATHER_FAIL;
-				mHandler.sendMessage(msg);
-			}
+	public static synchronized WeatherUtil getInstance() {
+		if (instance == null) {
+			instance = new WeatherUtil();
 		}
+		return instance;
 	}
 
-	private Weather requestWeather(String city) {
+	public ArrayList<Weather> getWeatherList() {
+		return mWeatherList;
+	}
+
+	public void setWeatherList(ArrayList<Weather> mWeatherList) {
+		this.mWeatherList = mWeatherList;
+	}
+
+	public Weather removeWeather(int index) {
+		return mWeatherList.remove(index);
+	}
+
+	public void addWeather(Weather weather) {
+		this.mWeatherList.add(weather);
+	}
+
+	public Weather updateWeather(int index, Weather weather) {
+		return mWeatherList.set(index, weather);
+	}
+
+	public void removeAllWeather() {
+		mWeatherList.clear();
+	}
+
+	public Weather requestWeather(String city) {
+		HttpResponse mHttpResponse;
+		HttpClient mHttpClient;
+		mHttpClient = new DefaultHttpClient();
 		Weather weather = null;
 
 		HttpGet httpGet = new HttpGet(HOST_URL + "?theCityName=" + city);
@@ -67,6 +75,7 @@ public class WeatherUtil {
 				data = analyzeXML(resultData);
 				if (data.size() >= 1) {
 					weather = new Weather();
+					// System.out.println(data);
 					weather.initWeather(data);
 				}
 			}
@@ -81,7 +90,7 @@ public class WeatherUtil {
 		return weather;
 	}
 
-	private ArrayList<String> analyzeXML(String resultData) {
+	public ArrayList<String> analyzeXML(String resultData) {
 		ArrayList<String> result = new ArrayList<String>();
 		String item = new String();
 		try {
@@ -116,5 +125,4 @@ public class WeatherUtil {
 		}
 		return result;
 	}
-
 }

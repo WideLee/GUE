@@ -92,19 +92,19 @@
             android:layout_marginTop="4dp"
             android:background="@color/card_text" />
 
-        <org.xstuido.gue.adapter.CalendarViewPager
+        <org.xstuido.gue.view.adapter.CalendarViewPager
             android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="220dp" >
-        </org.xstuido.gue.adapter.CalendarViewPager>
+        </org.xstuido.gue.view.adapter.CalendarViewPager>
     </LinearLayout>
 
-    <org.xstuido.gue.cards.views.CardUI
+    <org.xstuido.gue.view.cards.views.CardUI
         android:id="@+id/lv_cards_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/ll_calendar"
         android:paddingTop="12dp" >
-    </org.xstuido.gue.cards.views.CardUI>
+    </org.xstuido.gue.view.cards.views.CardUI>
 
 </RelativeLayout>

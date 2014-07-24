@@ -43,4 +43,11 @@
             android:src="@drawable/ic_banner_refresh" />
     </RelativeLayout>
 
+    <org.xstuido.gue.cards.views.CardUI
+        android:id="@+id/lv_weathers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_banner" >
+    </org.xstuido.gue.cards.views.CardUI>
+
 </RelativeLayout>

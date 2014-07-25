@@ -7,144 +7,137 @@ import org.xstuido.gue.R;
 import org.xstuido.gue.util.Tool;
 
 public class Weather {
-    private String mCityName;
-    private String mDate;
-    private String mTemperature;
-    private String mWeatherDrawable;
-    private String mUva;
-    private String mOverView;
-    private String mUpdateTime;
-    private String mErrorContent;
+	private String mCityName;
+	private String mDate;
+	private String mTemperature;
+	private String mWeatherDrawable;
+	private String mUva;
+	private String mOverView;
+	private String mUpdateTime;
+	private String mErrorContent;
 
-    private boolean mIsInit;
+	private boolean mIsInit;
 
-    public Weather() {
-	mCityName = Tool.getString(R.string.nothing);
-	mTemperature = Tool.getString(R.string.nothing);
-	mWeatherDrawable = "32.gif";
-	mOverView = Tool.getString(R.string.nothing);
-	mUva = Tool.getString(R.string.nothing);
-	mUpdateTime = Tool.getString(R.string.nothing);
+	public Weather() {
+		mCityName = Tool.getString(R.string.nothing);
+		mTemperature = Tool.getString(R.string.nothing);
+		mWeatherDrawable = "32.gif";
+		mOverView = Tool.getString(R.string.nothing);
+		mUva = Tool.getString(R.string.nothing);
+		mUpdateTime = Tool.getString(R.string.nothing);
 
-	Calendar calendar = Calendar.getInstance();
-	mDate = Tool.getMonthDate(calendar) + " "
-		+ Tool.getString(R.string.weekday_name)
-		+ Tool.getWeekDayName(calendar.get(Calendar.DAY_OF_WEEK) - 1);
-	mIsInit = false;
+		Calendar calendar = Calendar.getInstance();
+		mDate = Tool.getMonthDate(calendar) + " " + Tool.getString(R.string.weekday_name)
+				+ Tool.getWeekDayName(calendar.get(Calendar.DAY_OF_WEEK) - 1);
+		mIsInit = false;
 
-	mErrorContent = new String();
-    }
-
-    public Weather(String city) {
-	mCityName = city;
-	mTemperature = Tool.getString(R.string.nothing);
-	mWeatherDrawable = "32.gif";
-	mOverView = Tool.getString(R.string.nothing);
-	mUva = Tool.getString(R.string.nothing);
-	mUpdateTime = Tool.getString(R.string.nothing);
-
-	Calendar calendar = Calendar.getInstance();
-	mDate = Tool.getMonthDate(calendar) + " "
-		+ Tool.getString(R.string.weekday_name)
-		+ Tool.getWeekDayName(calendar.get(Calendar.DAY_OF_WEEK) - 1);
-	mErrorContent = new String();
-	mIsInit = false;
-    }
-
-    public void initWeather(ArrayList<String> data) {
-	mCityName = data.get(1);
-	if (!mCityName.equals("")) {
-	    mTemperature = data.get(10).split(Tool.getString(R.string.colon))[2]
-		    .split(Tool.getString(R.string.semi))[0].replaceAll("\\D",
-		    "")
-		    + "бу";
-
-	    mWeatherDrawable = data.get(8);
-	    mOverView = data.get(6).split(" ")[1];
-	    mUva = Tool.getString(R.string.uva)
-		    + data.get(10).split(Tool.getString(R.string.colon))[6];
-	    mUpdateTime = data.get(4);
-
-	    Calendar calendar = Calendar.getInstance();
-	    mDate = Tool.getMonthDate(calendar)
-		    + " "
-		    + Tool.getString(R.string.weekday_name)
-		    + Tool.getWeekDayName(calendar.get(Calendar.DAY_OF_WEEK) - 1);
-	    mIsInit = true;
-	} else {
-	    mErrorContent = data.get(0);
+		mErrorContent = new String();
 	}
-    }
 
-    public String getCityName() {
-	return mCityName;
-    }
+	public Weather(String city) {
+		mCityName = city;
+		mTemperature = Tool.getString(R.string.nothing);
+		mWeatherDrawable = "32.gif";
+		mOverView = Tool.getString(R.string.nothing);
+		mUva = Tool.getString(R.string.nothing);
+		mUpdateTime = Tool.getString(R.string.nothing);
 
-    public void setCityName(String mCityName) {
-	this.mCityName = mCityName;
-    }
+		Calendar calendar = Calendar.getInstance();
+		mDate = Tool.getMonthDate(calendar) + " " + Tool.getString(R.string.weekday_name)
+				+ Tool.getWeekDayName(calendar.get(Calendar.DAY_OF_WEEK) - 1);
+		mErrorContent = new String();
+		mIsInit = false;
+	}
 
-    public String getDate() {
-	return mDate;
-    }
+	public void initWeather(ArrayList<String> data) {
+		mCityName = data.get(1);
+		if (!mCityName.equals("")) {
+			mTemperature = data.get(10).split(Tool.getString(R.string.colon))[2].split(Tool
+					.getString(R.string.semi))[0].replaceAll("\\D", "") + "бу";
 
-    public void setDate(String mDate) {
+			mWeatherDrawable = data.get(8);
+			mOverView = data.get(6).split(" ")[1];
+			mUva = Tool.getString(R.string.uva)
+					+ data.get(10).split(Tool.getString(R.string.colon))[6];
+			mUpdateTime = data.get(4);
 
-	this.mDate = mDate;
-    }
+			Calendar calendar = Calendar.getInstance();
+			mDate = Tool.getMonthDate(calendar) + " " + Tool.getString(R.string.weekday_name)
+					+ Tool.getWeekDayName(calendar.get(Calendar.DAY_OF_WEEK) - 1);
+			mIsInit = true;
+		} else {
+			mErrorContent = data.get(0);
+		}
+	}
 
-    public String getTemperature() {
-	return mTemperature;
-    }
+	public String getCityName() {
+		return mCityName;
+	}
 
-    public void setTemperature(String mTemperature) {
-	this.mTemperature = mTemperature;
-    }
+	public void setCityName(String mCityName) {
+		this.mCityName = mCityName;
+	}
 
-    public String getWeatherDrawable() {
-	return mWeatherDrawable;
-    }
+	public String getDate() {
+		return mDate;
+	}
 
-    public void setWeatherDrawable(String mWeatherDrawable) {
-	this.mWeatherDrawable = mWeatherDrawable;
-    }
+	public void setDate(String mDate) {
 
-    public String getUva() {
-	return mUva;
-    }
+		this.mDate = mDate;
+	}
 
-    public void setUva(String mUva) {
-	this.mUva = mUva;
-    }
+	public String getTemperature() {
+		return mTemperature;
+	}
 
-    public String getOverView() {
-	return mOverView;
-    }
+	public void setTemperature(String mTemperature) {
+		this.mTemperature = mTemperature;
+	}
 
-    public void setOverView(String mOverView) {
-	this.mOverView = mOverView;
-    }
+	public String getWeatherDrawable() {
+		return mWeatherDrawable;
+	}
 
-    public String getUpdateTime() {
-	return mUpdateTime;
-    }
+	public void setWeatherDrawable(String mWeatherDrawable) {
+		this.mWeatherDrawable = mWeatherDrawable;
+	}
 
-    public void setUpdateTime(String mUpdateTime) {
-	this.mUpdateTime = mUpdateTime;
-    }
+	public String getUva() {
+		return mUva;
+	}
 
-    public boolean isInit() {
-	return mIsInit;
-    }
+	public void setUva(String mUva) {
+		this.mUva = mUva;
+	}
 
-    public String getErrorContent() {
-	return mErrorContent;
-    }
+	public String getOverView() {
+		return mOverView;
+	}
 
-    @Override
-    public String toString() {
-	return mCityName + "\n" + mDate + "\n" + mTemperature + "\n"
-		+ mWeatherDrawable + "\n" + mUva + "\n" + mOverView + "\n"
-		+ mUpdateTime;
-    }
+	public void setOverView(String mOverView) {
+		this.mOverView = mOverView;
+	}
+
+	public String getUpdateTime() {
+		return mUpdateTime;
+	}
+
+	public void setUpdateTime(String mUpdateTime) {
+		this.mUpdateTime = mUpdateTime;
+	}
+
+	public boolean isInit() {
+		return mIsInit;
+	}
+
+	public String getErrorContent() {
+		return mErrorContent;
+	}
+
+	@Override
+	public String toString() {
+		return mCityName + "\n" + mDate + "\n" + mTemperature + "\n" + mWeatherDrawable + "\n"
+				+ mUva + "\n" + mOverView + "\n" + mUpdateTime;
+	}
 }

@@ -9,71 +9,71 @@ import java.util.List;
  * 
  */
 public abstract class HiThread implements Runnable {
-	private volatile Thread mThread;
-	private final Object M_LOCK = new Object();
-	private List<Object> mParams;
+    private volatile Thread mThread;
+    private final Object M_LOCK = new Object();
+    private List<Object> mParams;
 
-	/**
-	 * 启动线程
-	 * 
-	 * @return
-	 */
-	public boolean start() {
-		return start(null);
-	}
+    /**
+     * 启动线程
+     * 
+     * @return
+     */
+    public boolean start() {
+	return start(null);
+    }
 
-	/**
-	 * 启动线程
-	 * 
-	 * @param params
-	 *            参数列表
-	 * @return 如果创建了新的线程执行，则返回true；如果原来的线程没执行完， 则返回false且不启动新线程
-	 */
-	public boolean start(List<Object> params) {
+    /**
+     * 启动线程
+     * 
+     * @param params
+     *            参数列表
+     * @return 如果创建了新的线程执行，则返回true；如果原来的线程没执行完， 则返回false且不启动新线程
+     */
+    public boolean start(List<Object> params) {
+	if (mThread == null) {
+	    synchronized (M_LOCK) {
 		if (mThread == null) {
-			synchronized (M_LOCK) {
-				if (mThread == null) {
-					mThread = new Thread() {
-						@Override
-						public void run() {
-							try {
-								HiThread.this.run();
-							} catch (Exception e) {
-								e.printStackTrace();
-							} finally {
-								HiThread.this.stop();
-							}
-						}
-					};
-					if (mParams != null) {
-						mParams.clear();
-						mParams = null;
-					}
-					mParams = params;
-					mThread.setDaemon(true);
-					mThread.start();
-					return true;
-				}
+		    mThread = new Thread() {
+			@Override
+			public void run() {
+			    try {
+				HiThread.this.run();
+			    } catch (Exception e) {
+				e.printStackTrace();
+			    } finally {
+				HiThread.this.stop();
+			    }
 			}
+		    };
+		    if (mParams != null) {
+			mParams.clear();
+			mParams = null;
+		    }
+		    mParams = params;
+		    mThread.setDaemon(true);
+		    mThread.start();
+		    return true;
 		}
-		return false;
+	    }
 	}
+	return false;
+    }
 
-	/**
-	 * 停止线程
-	 */
-	public void stop() {
+    /**
+     * 停止线程
+     */
+    public void stop() {
+	if (mThread != null) {
+	    synchronized (M_LOCK) {
 		if (mThread != null) {
-			synchronized (M_LOCK) {
-				if (mThread != null) {
-					mThread.interrupt();
-					mThread = null;
-				}
-			}
+		    mThread.interrupt();
+		    mThread = null;
 		}
+	    }
 	}
+    }
 
-	public List<Object> getParams() {
-		return mParams;
-	}
+    public List<Object> getParams() {
+	return mParams;
+    }
 }

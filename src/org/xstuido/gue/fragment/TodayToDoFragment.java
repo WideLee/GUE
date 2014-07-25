@@ -138,12 +138,6 @@ public class TodayToDoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
-
-	System.out.println("On Insert Event");
-	mDB.insert(new Event(1, 0, System.currentTimeMillis(), new Date()
-		.toString()));
-	mDB.insert(new Event(0, 0, System.currentTimeMillis(), new Date()
-		.toString()));
     }
 
     @SuppressLint("InflateParams")

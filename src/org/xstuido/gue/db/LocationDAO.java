@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class LocationDAO {
 
-	public LocationDAO() {
-		// TODO Auto-generated constructor stub
-	}
+    public LocationDAO() {
+	// TODO Auto-generated constructor stub
+    }
 
-	public static ArrayList<String> getCityList() {
-		ArrayList<String> city = new ArrayList<String>();
-		city.add("广州");
-		city.add("南宁");
-		city.add("淄博");
-		return city;
-	}
+    public static ArrayList<String> getCityList() {
+	ArrayList<String> city = new ArrayList<String>();
+	city.add("广州");
+	city.add("南宁");
+	city.add("淄博");
+	return city;
+    }
 }

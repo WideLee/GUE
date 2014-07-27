@@ -30,39 +30,87 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="18dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical" >
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/stroke" />
+
         <RelativeLayout
+            android:id="@+id/rl_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true" >
+            android:background="@drawable/bg_more_game"
+            android:clickable="true"
+            android:padding="8dp" >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/iv_game_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="24dp"
+                android:layout_marginLeft="8dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/game_icon" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tv_game_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="26dp"
-                android:layout_toRightOf="@+id/imageView1"
-                android:text="TextView" />
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/iv_game_logo"
+                android:text="@string/game_name"
+                android:textColor="@color/card_title_text"
+                android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_game_des"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView1"
-                android:layout_below="@+id/textView1"
-                android:text="TextView" />
+                android:layout_below="@id/tv_game_name"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/iv_game_logo"
+                android:text="@string/game_des"
+                android:textColor="@color/card_text"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/stroke" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tv_more_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/more_game"
+                android:textColor="@color/card_title_text"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/tv_more_app"
+                android:text="@string/wait_more_app"
+                android:textColor="@color/card_title_text"
+                android:textSize="20sp" />
         </RelativeLayout>
     </LinearLayout>
 

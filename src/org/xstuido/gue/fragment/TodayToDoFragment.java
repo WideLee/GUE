@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.activity.BaseApplication;
+import org.xstuido.gue.activity.MoreActivity;
 import org.xstuido.gue.activity.SignInActivity;
 import org.xstuido.gue.db.GetUpEarlyDB;
-import org.xstuido.gue.db.LocationDAO;
 import org.xstuido.gue.util.Constant;
 import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.HiThread;
@@ -25,7 +25,6 @@ import org.xstuido.gue.view.cards.views.CardUI;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,7 +47,22 @@ public class TodayToDoFragment extends Fragment {
 
 	private GetUpEarlyDB mDB;
 	private boolean isInit = false;
-
+	private OnClickListener mSignInClickListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			v.setBackgroundResource(R.drawable.bg_circle_pressed);
+			mHandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					Intent intent = new Intent(getActivity(), SignInActivity.class);
+					intent.putExtra("Action", Constant.REQUEST_CODE_SIGNIN);
+					startActivityForResult(intent, Constant.REQUEST_CODE_SIGNIN);
+					getActivity().overridePendingTransition(R.anim.in_from_right,
+							R.anim.out_to_left);
+				}
+			}, 500);
+		}
+	};
 	private HiThread mGetWeather = new HiThread() {
 		@Override
 		public void run() {
@@ -163,10 +177,7 @@ public class TodayToDoFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				ComponentName comp = new ComponentName("limk.example.game",
-						"limk.example.game.Example");
-				intent.setComponent(comp);
+				Intent intent = new Intent(getActivity(), MoreActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -180,16 +191,7 @@ public class TodayToDoFragment extends Fragment {
 			ArrayList<Event> signEvents = mDB.getEventByDate(new Date(), 1);
 			if (signEvents.size() == 0) {
 				SignInCard card = new SignInCard(false, mHandler);
-				card.setSignClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Intent intent = new Intent(getActivity(), SignInActivity.class);
-						intent.putExtra("Action", Constant.REQUEST_CODE_SIGNIN);
-						startActivityForResult(intent, Constant.REQUEST_CODE_SIGNIN);
-						getActivity().overridePendingTransition(R.anim.in_from_right,
-								R.anim.out_to_left);
-					}
-				});
+				card.setSignClickListener(mSignInClickListener);
 				mSignInStack.setTitle("ΩÒ»’«©µΩ");
 				mSignInStack.removeAllCards();
 				mSignInStack.add(card);
@@ -215,7 +217,10 @@ public class TodayToDoFragment extends Fragment {
 	private void initView() {
 
 		WeatherUtil weatherUtil = WeatherUtil.getInstance();
-		ArrayList<String> cityList = LocationDAO.getCityList();
+		ArrayList<String> cityList = mDB.getAllLocation();
+		if (cityList.size() == 0) {
+			mWeatherStack.setTitle("");
+		}
 		weatherUtil.removeAllWeather();
 		for (int i = 0; i < cityList.size(); i++) {
 			String city = cityList.get(i);
@@ -245,12 +250,16 @@ public class TodayToDoFragment extends Fragment {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		SignInCard card;
+		mSignInStack.removeAllCards();
 		if (resultCode == Activity.RESULT_OK) {
-			mSignInStack.removeAllCards();
-			SignInCard card = new SignInCard(true, mHandler);
-			mSignInStack.add(card);
-			mCardView.refresh();
+			card = new SignInCard(true, mHandler);
+		} else {
+			card = new SignInCard(false, mHandler);
 		}
+		card.setSignClickListener(mSignInClickListener);
+		mSignInStack.add(card);
+		mCardView.refresh();
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 }

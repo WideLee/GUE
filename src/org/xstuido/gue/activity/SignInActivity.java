@@ -1,30 +1,17 @@
 package org.xstuido.gue.activity;
 
-import java.text.ParseException;
-import java.util.Calendar;
-
 import org.xstuido.gue.R;
 import org.xstuido.gue.db.GetUpEarlyDB;
-import org.xstuido.gue.util.Constant;
 import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.Tool;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
-import android.app.TimePickerDialog;
-import android.app.TimePickerDialog.OnTimeSetListener;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 public class SignInActivity extends Activity {
 

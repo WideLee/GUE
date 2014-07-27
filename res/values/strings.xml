@@ -71,4 +71,8 @@
     <string name="delete_ok">删除成功</string>
     <string name="today_signin">今日签到</string>
     <string name="more_game">更多应用</string>
+    <string name="game_name">天使与魔鬼</string>
+    <string name="game_des"> Priests and Devils is a puzzle game in which you will help the Priests and Devils to cross the river within the time limit.</string>
+    <string name="wait_more_app">敬请期待</string>
+
 </resources>

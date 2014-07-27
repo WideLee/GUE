@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.xstuido.gue.R;
 import org.xstuido.gue.activity.BaseApplication;
 import org.xstuido.gue.db.GetUpEarlyDB;
@@ -16,11 +15,10 @@ import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.HiThread;
 import org.xstuido.gue.util.Tool;
 import org.xstuido.gue.view.adapter.SignHistoryAdapter;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -42,6 +40,7 @@ public class SignInHistoryFragment extends Fragment {
 	private GetUpEarlyDB mDB;
 	private ImageView mShareButton;
 
+	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -133,6 +132,7 @@ public class SignInHistoryFragment extends Fragment {
 		isInit = false;
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View main = inflater.inflate(R.layout.fragment_sign_history, null);

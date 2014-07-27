@@ -20,6 +20,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	private static final String DB_NAME = "GetUpEarly.db";
 	private static final int DB_VRESION = 1;
 	private static final String EVENT_TABLE = "event";
+	private static final String LOCATION_TABLE = "location";
 
 	private static final String COLUMN_KEY_EID = "eid";
 	private static final String COLUMN_IS_SIGN_IN = "is_sign_in";
@@ -27,12 +28,18 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	private static final String COLUMN_EVENT_TIME = "event_time";
 	private static final String COLUMN_EVENT_CONTENT = "event_content";
 
+	private static final String COLUMN_KEY_LID = "lid";
+	private static final String COLUMN_CITY_NAME = "city_name";
+
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	private static final String EVENT_SQL_CREATE = "create table " + EVENT_TABLE + " ( "
 			+ COLUMN_KEY_EID + " integer primary key autoincrement, " + COLUMN_IS_SIGN_IN
 			+ " integer, " + COLUMN_IS_DONE + " integer, " + COLUMN_EVENT_TIME + " text, "
 			+ COLUMN_EVENT_CONTENT + " text);";
+	private static final String LOCATION_SQL_CREATE = "create table " + LOCATION_TABLE + " ( "
+			+ COLUMN_KEY_LID + " integer primary key autoincrement, " + COLUMN_CITY_NAME
+			+ " text);";
 
 	public GetUpEarlyDB(Context context) {
 		super(context, DB_NAME, null, DB_VRESION);
@@ -40,14 +47,16 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		System.out.println("create database");
+		// System.out.println("create database");
 		db.execSQL(EVENT_SQL_CREATE);
+		db.execSQL(LOCATION_SQL_CREATE);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// 升级数据库
 		db.execSQL("DROP TABLE IF EXISTS event");
+		db.execSQL("DROP TABLE IF EXISTS location");
 		onCreate(db);
 	}
 
@@ -178,5 +187,73 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		db.close();
 
 		return list;
+	}
+
+	/**
+	 * 向天气管理中插入一个城市
+	 * 
+	 * @param city
+	 *            城市名称
+	 * @return 如果数据库中没有该城市返回true，否则不插入返回false
+	 */
+	public boolean insert(String city) {
+		if (hasLocation(city)) {
+			return false;
+		}
+
+		SQLiteDatabase db = getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(COLUMN_CITY_NAME, city);
+		db.insert(LOCATION_TABLE, null, values);
+		db.close();
+		return true;
+	}
+
+	/**
+	 * 删除天气城市
+	 * 
+	 * @param city
+	 *            城市名称
+	 * @return 如果本来已经没有这个城市返回false，如果正常删掉城市返回true
+	 */
+	public boolean delete(String city) {
+		if (!hasLocation(city)) {
+			return false;
+		}
+
+		SQLiteDatabase db = getWritableDatabase();
+		String whereClause = COLUMN_CITY_NAME + " = ?";
+		String[] whereArgs = { city };
+		db.delete(LOCATION_TABLE, whereClause, whereArgs);
+		db.close();
+
+		return true;
+	}
+
+	public boolean hasLocation(String city) {
+		boolean result = false;
+		SQLiteDatabase db = getReadableDatabase();
+		String selection = COLUMN_CITY_NAME + " = ?";
+		String[] selectionArgs = { city };
+		Cursor c = db.query(LOCATION_TABLE, null, selection, selectionArgs, null, null, null);
+		if (c.moveToNext()) {
+			result = true;
+		}
+		c.close();
+		db.close();
+		return result;
+	}
+
+	public ArrayList<String> getAllLocation() {
+		ArrayList<String> result = new ArrayList<String>();
+
+		SQLiteDatabase db = getReadableDatabase();
+		Cursor c = db.query(LOCATION_TABLE, null, null, null, null, null, COLUMN_CITY_NAME);
+		while (c.moveToNext()) {
+			result.add(c.getString(c.getColumnIndex(COLUMN_CITY_NAME)));
+		}
+		c.close();
+		db.close();
+		return result;
 	}
 }

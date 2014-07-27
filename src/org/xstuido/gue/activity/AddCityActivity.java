@@ -90,9 +90,8 @@ public class AddCityActivity extends Activity {
 			// System.out.println("***********AddCityActivity*********\n" +
 			// weather);
 
-			
 			// 预防WebXML的自动补全功能
-			if (weather != null && weather.isInit() && city == weather.getCityName()) {
+			if (weather != null && weather.isInit() && city.equals(weather.getCityName())) {
 				weatherUtil.addWeather(weather);
 
 				Message msg = new Message();

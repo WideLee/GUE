@@ -9,6 +9,7 @@ import org.xstuido.gue.view.cards.objects.RecyclableCard;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class WeatherCard extends RecyclableCard {
 
 	private int mIndex;
 	private Handler mHandler;
+	private OnClickListener mOverflowClickListener;
 
 	public WeatherCard(int index, Handler handler, Boolean hasOverflow) {
 		this.hasOverflow = hasOverflow;
@@ -69,6 +71,11 @@ public class WeatherCard extends RecyclableCard {
 		} else {
 			overflowImageView.setVisibility(View.GONE);
 		}
+		overflowImageView.setOnClickListener(mOverflowClickListener);
+	}
+
+	public void setOverflowClickListener(OnClickListener mOverflowClickListener) {
+		this.mOverflowClickListener = mOverflowClickListener;
 	}
 
 	@Override

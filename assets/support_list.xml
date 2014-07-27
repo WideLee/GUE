@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfString 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-    xmlns="http://WebXml.com.cn/">
+<ArrayOfString>
     <string>北京 (54511)</string>
     <string>上海 (58367)</string>
     <string>天津 (54517)</string>
@@ -359,7 +355,6 @@
     <string>曼谷 BANGKOK (48454)</string>
     <string>吉隆坡 KUALA LUMPUR (48647)</string>
     <string>河内 HA NOI (48820)</string>
-    <string>北京 BEIJING (54511)</string>
     <string>雅加达 JAKARTA (96745)</string>
     <string>汉堡 HAMBURG (10141)</string>
     <string>柏林 BERLIN (10381)</string>

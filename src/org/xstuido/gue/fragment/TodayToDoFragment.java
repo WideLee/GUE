@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.xstuido.gue.R;
+import org.xstuido.gue.activity.AllWeatherActivity;
 import org.xstuido.gue.activity.BaseApplication;
 import org.xstuido.gue.activity.MoreActivity;
 import org.xstuido.gue.activity.SignInActivity;
@@ -44,6 +45,7 @@ public class TodayToDoFragment extends Fragment {
 	private CardStack mSignInStack;
 
 	private ImageView mMoreImageView;
+	private ImageView mSettingImageView;
 
 	private GetUpEarlyDB mDB;
 	private boolean isInit = false;
@@ -63,6 +65,17 @@ public class TodayToDoFragment extends Fragment {
 			}, 500);
 		}
 	};
+
+	private OnClickListener mOnWeatherClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(getActivity(), AllWeatherActivity.class);
+			startActivityForResult(intent, Constant.REQUEST_CODE_WEATHER_LIST);
+			getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+		}
+	};
+
 	private HiThread mGetWeather = new HiThread() {
 		@Override
 		public void run() {
@@ -133,8 +146,10 @@ public class TodayToDoFragment extends Fragment {
 				// System.out.println(count);
 				if (count == 0) {
 					mWeatherStack.setTitle("");
-					mCardView.refresh();
+				} else {
+					mWeatherStack.setTitle("实时天气");
 				}
+				mCardView.refresh();
 				break;
 			case Constant.MESSAGE_SWIPE_SIGNIN_CARD:
 				mSignInStack.setTitle("");
@@ -150,7 +165,7 @@ public class TodayToDoFragment extends Fragment {
 		mDB = new GetUpEarlyDB(BaseApplication.getContext());
 		isInit = false;
 		mWeatherStack = new CardStack();
-		mWeatherStack.setTitle("今天天气");
+		mWeatherStack.setTitle("实时天气");
 		mTodoStack = new CardStack();
 		mTodoStack.setTitle("要做的事");
 		mSignInStack = new CardStack();
@@ -179,8 +194,12 @@ public class TodayToDoFragment extends Fragment {
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), MoreActivity.class);
 				startActivity(intent);
+				getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 			}
 		});
+
+		mSettingImageView = (ImageView) main.findViewById(R.id.iv_setting);
+		mSettingImageView.setOnClickListener(mOnWeatherClickListener);
 
 		if (!isInit) {
 			initView();
@@ -226,6 +245,7 @@ public class TodayToDoFragment extends Fragment {
 			String city = cityList.get(i);
 			weatherUtil.addWeather(new Weather(city));
 			WeatherCard card = new WeatherCard(i, mHandler, true);
+			card.setOverflowClickListener(mOnWeatherClickListener);
 			mWeatherStack.add(card);
 		}
 		mCardView.refresh();
@@ -250,15 +270,31 @@ public class TodayToDoFragment extends Fragment {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		SignInCard card;
-		mSignInStack.removeAllCards();
-		if (resultCode == Activity.RESULT_OK) {
-			card = new SignInCard(true, mHandler);
-		} else {
-			card = new SignInCard(false, mHandler);
+		if (requestCode == Constant.REQUEST_CODE_SIGNIN) {
+			SignInCard card;
+			mSignInStack.removeAllCards();
+			if (resultCode == Activity.RESULT_OK) {
+				card = new SignInCard(true, mHandler);
+			} else {
+				card = new SignInCard(false, mHandler);
+			}
+			card.setSignClickListener(mSignInClickListener);
+			mSignInStack.add(card);
+		} else if (requestCode == Constant.REQUEST_CODE_WEATHER_LIST) {
+			mWeatherStack.removeAllCards();
+			ArrayList<String> cityList = mDB.getAllLocation();
+			if (cityList.size() == 0) {
+				mWeatherStack.setTitle("");
+			} else {
+				mWeatherStack.setTitle("实时天气");
+			}
+			WeatherUtil weatherUtil = WeatherUtil.getInstance();
+			for (int i = 0; i < weatherUtil.getWeatherList().size(); i++) {
+				WeatherCard card = new WeatherCard(i, mHandler, true);
+				card.setOverflowClickListener(mOnWeatherClickListener);
+				mWeatherStack.add(card);
+			}
 		}
-		card.setSignClickListener(mSignInClickListener);
-		mSignInStack.add(card);
 		mCardView.refresh();
 		super.onActivityResult(requestCode, resultCode, data);
 	}

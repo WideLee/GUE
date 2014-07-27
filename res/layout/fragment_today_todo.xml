@@ -32,6 +32,17 @@
             android:contentDescription="@string/app_name"
             android:padding="10dp"
             android:src="@drawable/ic_banner_more" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_toLeftOf="@id/banner_more"
+            android:background="@drawable/bg_theme_dark_selector"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_menu_manage" />
     </RelativeLayout>
 
     <org.xstuido.gue.view.cards.views.CardUI

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.xstuido.gue.R;
 import org.xstuido.gue.activity.BaseApplication;
 import org.xstuido.gue.db.GetUpEarlyDB;
@@ -15,6 +16,7 @@ import org.xstuido.gue.util.Event;
 import org.xstuido.gue.util.HiThread;
 import org.xstuido.gue.util.Tool;
 import org.xstuido.gue.view.adapter.SignHistoryAdapter;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;

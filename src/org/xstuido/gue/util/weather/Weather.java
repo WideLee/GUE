@@ -140,4 +140,15 @@ public class Weather {
 		return mCityName + "\n" + mDate + "\n" + mTemperature + "\n" + mWeatherDrawable + "\n"
 				+ mUva + "\n" + mOverView + "\n" + mUpdateTime;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Weather) {
+			Weather other = (Weather) o;
+			return this.mCityName.equals(other.mCityName);
+		} else {
+			return false;
+		}
+
+	}
 }

@@ -47,7 +47,12 @@ public class WeatherUtil {
 	}
 
 	public void addWeather(Weather weather) {
-		this.mWeatherList.add(weather);
+		int index = mWeatherList.indexOf(weather);
+		if (index != -1) {
+			mWeatherList.set(index, weather);
+		} else {
+			mWeatherList.add(weather);
+		}
 	}
 
 	public Weather updateWeather(int index, Weather weather) {

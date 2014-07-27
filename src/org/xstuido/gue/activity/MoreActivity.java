@@ -1,10 +1,13 @@
 package org.xstuido.gue.activity;
 
 import org.xstuido.gue.R;
+import org.xstuido.gue.util.Tool;
 
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,13 +32,26 @@ public class MoreActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				// ComponentName comp = new ComponentName("limk.example.game",
-				// "limk.example.game.Example");
-				ComponentName comp = new ComponentName("limk.ble", "limk.ble.MainActivity");
-				intent.setComponent(comp);
-				startActivity(intent);
-				finish();
+
+				PackageInfo packageInfo;
+				try {
+					packageInfo = getPackageManager().getPackageInfo("com.chemy.PDgame", 0);
+				} catch (NameNotFoundException e) {
+					packageInfo = null;
+					e.printStackTrace();
+				}
+				if (packageInfo == null) {
+					Tool.showToast("没有安装该应用");
+				} else {
+					Intent intent = new Intent();
+					ComponentName comp = new ComponentName("com.chemy.PDgame",
+							"org.cocos2dx.cpp.AppActivity");
+					// ComponentName comp = new ComponentName("limk.ble",
+					// "limk.ble.MainActivity");
+					intent.setComponent(comp);
+					startActivity(intent);
+					finish();
+				}
 			}
 		});
 

@@ -51,11 +51,13 @@
     <string name="signin_done">已签到</string>
     <string name="today_not_signin">点击下面圆圈签到</string>
     <string name="today_already_signin">愉快的一天开始了 O(∩_∩)O </string>
-    <string name="ok">确认</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
     <string name="location_manager">位置管理</string>
     <string name="time_axis">时间轴</string>
     <string name="weather_detail">天气详情</string>
     <string name="weather_fail">天气获取失败</string>
+    <string name="today_weather">实时天气</string>
     <string name="sdcard_unmount">SD卡不可用</string>
     <string name="unknow_error">出现未知错误</string>
     <string name="share_text">我的时间轴~\\(^o^)/~分享自早起教练</string>
@@ -74,5 +76,8 @@
     <string name="game_name">天使与魔鬼</string>
     <string name="game_des"> Priests and Devils is a puzzle game in which you will help the Priests and Devils to cross the river within the time limit.</string>
     <string name="wait_more_app">敬请期待</string>
-
+    <string name="add_weather">添加城市</string>
+    <string name="add_weather_hint">请输入天气名称</string>
+    <string name="ensure_delete">您确认删除该城市吗？</string>
+    <string name="update_success">更新成功</string>
 </resources>

@@ -18,6 +18,18 @@
             android:contentDescription="@string/overflow"
             android:src="@drawable/ic_menu_moreoverflow_normal_holo_light" />
 
+        <ImageView
+            android:id="@+id/stripe"
+            android:layout_width="@dimen/stripe_width"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/contentLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@id/contentLayout"
+            android:background="@color/card_text"
+            android:baselineAlignBottom="true"
+            android:contentDescription="@string/color_stripe"
+            android:scaleType="centerCrop" />
+
         <LinearLayout
             android:id="@+id/contentLayout"
             android:layout_width="match_parent"
@@ -35,7 +47,6 @@
                 android:layout_marginLeft="8dip"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-thin"
-                android:text="12:00"
                 android:textColor="@color/card_title_text"
                 android:textSize="32sp" />
 
@@ -46,25 +57,12 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="24dip"
-                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dip"
+                android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-light"
-                android:text="开会"
                 android:textColor="@color/card_text"
                 android:textSize="16sp" />
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/stripe"
-            android:layout_width="@dimen/stripe_width"
-            android:layout_height="match_parent"
-            android:layout_alignBottom="@id/contentLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@id/contentLayout"
-            android:background="@color/card_text"
-            android:baselineAlignBottom="true"
-            android:contentDescription="@string/color_stripe"
-            android:scaleType="centerCrop" />
     </RelativeLayout>
 
 </LinearLayout>

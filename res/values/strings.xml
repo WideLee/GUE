@@ -2,8 +2,6 @@
 <resources>
 
     <string name="app_name">早起教练</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="today_todo">今日日程</string>
     <string name="todo_manage">日程管理</string>
     <string name="signin_history">签到记录</string>
@@ -37,15 +35,10 @@
     <string name="weekday_name">星期</string>
     <string name="colon">：</string>
     <string name="semi">；</string>
-    <string name="action_more">更多</string>
-    <string name="loading">正在加载...</string>
-    <string name="title_activity_main">CardsUI</string>
-    <string name="title">Title</string>
-    <string name="desc">Description</string>
+    <string name="loading">正在加载&#8230;</string>
     <string name="overflow">Menu Overflow</string>
     <string name="color_stripe">Color Stripe</string>
     <string name="getup_time">起床时间: </string>
-    <string name="congratulation">恭喜你</string>
     <string name="nothing_todo">没有安排任何活动 ^_^)y</string>
     <string name="signin">签到</string>
     <string name="signin_done">已签到</string>
@@ -53,13 +46,10 @@
     <string name="today_already_signin">愉快的一天开始了 O(∩_∩)O </string>
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
-    <string name="location_manager">位置管理</string>
     <string name="time_axis">时间轴</string>
-    <string name="weather_detail">天气详情</string>
     <string name="weather_fail">天气获取失败</string>
     <string name="today_weather">实时天气</string>
     <string name="sdcard_unmount">SD卡不可用</string>
-    <string name="unknow_error">出现未知错误</string>
     <string name="share_text">我的时间轴~\\(^o^)/~分享自早起教练</string>
     <string name="share_title">请选择</string>
     <string name="modify_event">修改日程</string>
@@ -80,4 +70,5 @@
     <string name="add_weather_hint">请输入天气名称</string>
     <string name="ensure_delete">您确认删除该城市吗？</string>
     <string name="update_success">更新成功</string>
+
 </resources>

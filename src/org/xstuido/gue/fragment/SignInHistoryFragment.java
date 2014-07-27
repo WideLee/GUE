@@ -44,6 +44,7 @@ public class SignInHistoryFragment extends Fragment {
 
 	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
+		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case Constant.MESSAGE_SCREEN_SHOT_DONE:

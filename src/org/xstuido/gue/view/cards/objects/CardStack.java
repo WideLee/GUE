@@ -1,13 +1,12 @@
 package org.xstuido.gue.view.cards.objects;
 
 import java.util.ArrayList;
-
 import org.xstuido.gue.R;
 import org.xstuido.gue.util.Tool;
 import org.xstuido.gue.view.cards.ui.StackAdapter;
 import org.xstuido.gue.view.cards.ui.SwipeDismissTouchListener;
 import org.xstuido.gue.view.cards.ui.SwipeDismissTouchListener.OnDismissCallback;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -18,7 +17,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.Animator.AnimatorListener;
 import com.nineoldandroids.animation.ObjectAnimator;
@@ -64,6 +62,7 @@ public class CardStack extends AbstractCard {
 		return getView(context, null, swipable);
 	}
 
+	@SuppressLint("InflateParams")
 	public View getView(Context context, View convertView, boolean swipable) {
 
 		// try to recycle views if possible

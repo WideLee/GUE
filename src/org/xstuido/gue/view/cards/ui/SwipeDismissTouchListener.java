@@ -18,12 +18,12 @@ package org.xstuido.gue.view.cards.ui;
 
 import static com.nineoldandroids.view.ViewHelper.setAlpha;
 import static com.nineoldandroids.view.ViewPropertyAnimator.animate;
+import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.Animator.AnimatorListener;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
@@ -126,6 +126,7 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
 		mCallback = callback;
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View view, MotionEvent motionEvent) {
 		// offset because the view is translated during swipe

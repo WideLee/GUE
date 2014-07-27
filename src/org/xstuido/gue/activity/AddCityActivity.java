@@ -90,7 +90,9 @@ public class AddCityActivity extends Activity {
 			// System.out.println("***********AddCityActivity*********\n" +
 			// weather);
 
-			if (weather != null && weather.isInit()) {
+			
+			// 预防WebXML的自动补全功能
+			if (weather != null && weather.isInit() && city == weather.getCityName()) {
 				weatherUtil.addWeather(weather);
 
 				Message msg = new Message();
@@ -105,7 +107,8 @@ public class AddCityActivity extends Activity {
 			} else {
 				Message msg = new Message();
 				msg.what = Constant.MESSAGE_GET_WEATHER_FAIL;
-				msg.obj = weather.getErrorContent();
+				msg.obj = weather.getErrorContent().equals("") ? "查询结果为空！" : weather
+						.getErrorContent();
 				mHandler.sendMessage(msg);
 			}
 

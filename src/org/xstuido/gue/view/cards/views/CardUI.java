@@ -92,6 +92,7 @@ public class CardUI extends FrameLayout {
 		initData(context);
 	}
 
+	@SuppressLint("InflateParams")
 	private void initData(Context context) {
 		mContext = context;
 		LayoutInflater inflater = LayoutInflater.from(context);

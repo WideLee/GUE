@@ -67,7 +67,8 @@ public class AddToDoActivity extends Activity {
 				Event event = mDB.getEventById(eventID);
 				mCalendar.setTimeInMillis(event.getTime());
 				mDatePickButton.setText(DateFormat.format("yyyy-MM-dd", mCalendar));
-				mTimePickButton.setText(DateFormat.format("HH:mm", mCalendar));
+				mTimePickButton.setText(mCalendar.get(Calendar.HOUR_OF_DAY) + ":"
+						+ mCalendar.get(Calendar.MINUTE));
 				mEditText.setText(event.getContent());
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -126,7 +127,8 @@ public class AddToDoActivity extends Activity {
 			public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 				mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
 				mCalendar.set(Calendar.MINUTE, minute);
-				mTimePickButton.setText(DateFormat.format("HH:mm", mCalendar));
+				mTimePickButton.setText(mCalendar.get(Calendar.HOUR_OF_DAY) + ":"
+						+ mCalendar.get(Calendar.MINUTE));
 			}
 		}, mCalendar.get(Calendar.HOUR_OF_DAY), mCalendar.get(Calendar.MINUTE), true);
 

@@ -21,7 +21,6 @@ public class Constant {
 	public static final int REQUEST_CODE_ADD_CITY = 13;
 	public static final int MESSAGE_GET_WEATHER_ALL_DONE = 14;
 
-	public static final String SHARE_PREFERENCES_CODE = "GUE";
 	public static final String HOST_URL = "http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName";
 
 }

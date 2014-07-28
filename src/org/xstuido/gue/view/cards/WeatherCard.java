@@ -50,7 +50,14 @@ public class WeatherCard extends RecyclableCard {
 		uvaTextView.setText(mWeather.getUva());
 
 		String drawable = mWeather.getWeatherDrawable();
-		int index = Integer.parseInt(drawable.split("\\.")[0]);
+		String str = drawable.split("\\.")[0];
+		int index = 0;
+		if (str.matches("[0-9]")) {
+			index = Integer.parseInt(str);
+		} else {
+			index = 32;
+		}
+
 		ImageView weatherIconImageView = ((ImageView) convertView
 				.findViewById(R.id.tv_weather_icon));
 		weatherIconImageView.setBackgroundResource(R.drawable.weather_00 + index);

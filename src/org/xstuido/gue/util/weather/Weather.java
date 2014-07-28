@@ -57,6 +57,10 @@ public class Weather {
 
 			mWeatherDrawable = data.get(8);
 			mOverView = data.get(6).split(" ")[1];
+			if (mOverView.contains("\"")) {
+				mOverView = mOverView.split("\\\"")[0];
+			}
+			// System.out.println(mOverView);
 			mUva = Tool.getString(R.string.uva)
 					+ data.get(10).split(Tool.getString(R.string.colon))[6];
 			mUpdateTime = data.get(4);

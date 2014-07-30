@@ -1,4 +1,4 @@
-package org.xstuido.gue.util;
+﻿package org.xstuido.gue.util;
 
 public class Constant {
 	public static final int MESSAGE_GET_WEATHER_DONE = 0;

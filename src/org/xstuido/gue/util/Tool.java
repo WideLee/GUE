@@ -1,4 +1,4 @@
-package org.xstuido.gue.util;
+ï»¿package org.xstuido.gue.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -243,21 +243,21 @@ public class Tool {
 	}
 
 	/**
-	 * Ëõ·ÅÍ¼Æ¬Îª¸ø¶¨µÄ´óĞ¡
+	 * ç¼©æ”¾å›¾ç‰‡ä¸ºç»™å®šçš„å¤§å°
 	 * 
 	 * @param src
-	 *            Ô­Ê¼³ß´çµÄÍ¼Æ¬
+	 *            åŸå§‹å°ºå¯¸çš„å›¾ç‰‡
 	 * @param width
-	 *            ĞèÒªËõ·Åµ½µÄ¿í
+	 *            éœ€è¦ç¼©æ”¾åˆ°çš„å®½
 	 * @param height
-	 *            ĞèÒªËõ·Åµ½µÄ¸ß
-	 * @return Ëõ·ÅºóµÃµ½µÄÍ¼Æ¬
+	 *            éœ€è¦ç¼©æ”¾åˆ°çš„é«˜
+	 * @return ç¼©æ”¾åå¾—åˆ°çš„å›¾ç‰‡
 	 */
 	public static Bitmap scaleBitmap(Bitmap src, int width, int height) {
 		int mWidth = src.getWidth();
 		int mHeight = src.getHeight();
 
-		// »ñÈ¡Ëõ·ÅµÄ±ÈÀı
+		// è·å–ç¼©æ”¾çš„æ¯”ä¾‹
 		float scaleWidth = ((float) width) / mWidth;
 		float scaleHeight = ((float) height) / mHeight;
 
@@ -267,7 +267,7 @@ public class Tool {
 	}
 
 	/**
-	 * ÅĞ¶ÏÁ½¸öÈÕÆÚÊÇ·ñÎªÍ¬Ò»Ìì
+	 * åˆ¤æ–­ä¸¤ä¸ªæ—¥æœŸæ˜¯å¦ä¸ºåŒä¸€å¤©
 	 * 
 	 * @param a
 	 * @param b
@@ -280,44 +280,44 @@ public class Tool {
 	}
 
 	/**
-	 * ·µ»ØÒ»¸öÉÈĞÎµÄ¼ô²ÃÇø
+	 * è¿”å›ä¸€ä¸ªæ‰‡å½¢çš„å‰ªè£åŒº
 	 * 
 	 * @param canvas
-	 *            »­±Ê
+	 *            ç”»ç¬”
 	 * @param center_X
-	 *            Ô²ĞÄX×ø±ê
+	 *            åœ†å¿ƒXåæ ‡
 	 * @param center_Y
-	 *            Ô²ĞÄY×ø±ê
+	 *            åœ†å¿ƒYåæ ‡
 	 * @param r
-	 *            °ë¾¶
+	 *            åŠå¾„
 	 * @param startAngle
-	 *            ÆğÊ¼½Ç¶È
+	 *            èµ·å§‹è§’åº¦
 	 * @param sweepAngle
-	 *            ÖÕµã½Ç¶È
+	 *            ç»ˆç‚¹è§’åº¦
 	 */
 	public static void getSectorClip(Canvas canvas, float center_X, float center_Y, float r,
 			float startAngle, float sweepAngle) {
 		Path path = new Path();
-		// ÏÂÃæÊÇ»ñµÃÒ»¸öÈı½ÇĞÎµÄ¼ô²ÃÇø
-		path.moveTo(center_X, center_Y); // Ô²ĞÄ
-		path.lineTo((float) (center_X + r * Math.cos(startAngle * Math.PI / 180)), // ÆğÊ¼µã½Ç¶ÈÔÚÔ²ÉÏ¶ÔÓ¦µÄºá×ø±ê
-				(float) (center_Y + r * Math.sin(startAngle * Math.PI / 180))); // ÆğÊ¼µã½Ç¶ÈÔÚÔ²ÉÏ¶ÔÓ¦µÄ×İ×ø±ê
-		path.lineTo((float) (center_X + r * Math.cos(sweepAngle * Math.PI / 180)), // ÖÕµã½Ç¶ÈÔÚÔ²ÉÏ¶ÔÓ¦µÄºá×ø±ê
-				(float) (center_Y + r * Math.sin(sweepAngle * Math.PI / 180))); // ÖÕµãµã½Ç¶ÈÔÚÔ²ÉÏ¶ÔÓ¦µÄ×İ×ø±ê
+		// ä¸‹é¢æ˜¯è·å¾—ä¸€ä¸ªä¸‰è§’å½¢çš„å‰ªè£åŒº
+		path.moveTo(center_X, center_Y); // åœ†å¿ƒ
+		path.lineTo((float) (center_X + r * Math.cos(startAngle * Math.PI / 180)), // èµ·å§‹ç‚¹è§’åº¦åœ¨åœ†ä¸Šå¯¹åº”çš„æ¨ªåæ ‡
+				(float) (center_Y + r * Math.sin(startAngle * Math.PI / 180))); // èµ·å§‹ç‚¹è§’åº¦åœ¨åœ†ä¸Šå¯¹åº”çš„çºµåæ ‡
+		path.lineTo((float) (center_X + r * Math.cos(sweepAngle * Math.PI / 180)), // ç»ˆç‚¹è§’åº¦åœ¨åœ†ä¸Šå¯¹åº”çš„æ¨ªåæ ‡
+				(float) (center_Y + r * Math.sin(sweepAngle * Math.PI / 180))); // ç»ˆç‚¹ç‚¹è§’åº¦åœ¨åœ†ä¸Šå¯¹åº”çš„çºµåæ ‡
 		path.close();
-		// ÉèÖÃÒ»¸öÕı·½ĞÎ,ÄÚÇĞÔ²
+		// è®¾ç½®ä¸€ä¸ªæ­£æ–¹å½¢,å†…åˆ‡åœ†
 		RectF rectF = new RectF(center_X - r, center_Y - r, center_X + r, center_Y + r);
-		// ÏÂÃæÊÇ»ñµÃ»¡ĞÎ¼ô²ÃÇøµÄ·½·¨
+		// ä¸‹é¢æ˜¯è·å¾—å¼§å½¢å‰ªè£åŒºçš„æ–¹æ³•
 		path.addArc(rectF, startAngle, sweepAngle - startAngle);
 		canvas.clipPath(path);
 	}
 
 	/**
-	 * ×ª»»ÈÕÆÚÎª×Ö·û´®£¬×ª»»½á¹ûÎª "xxÔÂxxÈÕ"
+	 * è½¬æ¢æ—¥æœŸä¸ºå­—ç¬¦ä¸²ï¼Œè½¬æ¢ç»“æœä¸º "xxæœˆxxæ—¥"
 	 * 
 	 * @param c
-	 *            ĞèÒª×ª»»µÄÈÕÆÚ
-	 * @return ×ª»»µÄ½á¹û×Ö·û´®
+	 *            éœ€è¦è½¬æ¢çš„æ—¥æœŸ
+	 * @return è½¬æ¢çš„ç»“æœå­—ç¬¦ä¸²
 	 */
 	public static String getMonthDate(Calendar c) {
 		int cm = c.get(Calendar.MONTH);
@@ -326,11 +326,11 @@ public class Tool {
 	}
 
 	/**
-	 * ×ª»»ÈÕÆÚ¸ñÊ½Îª×Ö·û´®£¬½á¹ûÈç "Ò»ÔÂ2014"
+	 * è½¬æ¢æ—¥æœŸæ ¼å¼ä¸ºå­—ç¬¦ä¸²ï¼Œç»“æœå¦‚ "ä¸€æœˆ2014"
 	 * 
 	 * @param c
-	 *            ĞèÒª×ª»»µÄÈÕÆÚ
-	 * @return ×ª»»½á¹ûµÄ×Ö·û´®
+	 *            éœ€è¦è½¬æ¢çš„æ—¥æœŸ
+	 * @return è½¬æ¢ç»“æœçš„å­—ç¬¦ä¸²
 	 */
 	public static String getYearMonth(Calendar c) {
 		int cy = c.get(Calendar.YEAR);
@@ -379,11 +379,11 @@ public class Tool {
 	}
 
 	/**
-	 * »ñÈ¡Ò»¸öÔÂµÄµÚÒ»Ìì£¬Ö¸µÄÊÇÕâ¸öÔÂµÄµÚÒ»ÖÜµÄÖÜÈÕ£¬¿ÉÄÜÊÇÉÏ¸öÔÂµÄÔÂÄ©
+	 * è·å–ä¸€ä¸ªæœˆçš„ç¬¬ä¸€å¤©ï¼ŒæŒ‡çš„æ˜¯è¿™ä¸ªæœˆçš„ç¬¬ä¸€å‘¨çš„å‘¨æ—¥ï¼Œå¯èƒ½æ˜¯ä¸Šä¸ªæœˆçš„æœˆæœ«
 	 * 
 	 * @param calendar
-	 *            Ò»¸öÔÂµÄÄ³Ò»Ìì
-	 * @return Õâ¸öÔÂµÄµÚÒ»Ìì
+	 *            ä¸€ä¸ªæœˆçš„æŸä¸€å¤©
+	 * @return è¿™ä¸ªæœˆçš„ç¬¬ä¸€å¤©
 	 */
 	public static Calendar getFirstDayOfMonth(Calendar calendar) {
 		Calendar firstDay = Calendar.getInstance();
@@ -397,13 +397,13 @@ public class Tool {
 	}
 
 	/**
-	 * »ñÈ¡Á½¸öÈÕÆÚÏà²îµÄÔÂ·İ
+	 * è·å–ä¸¤ä¸ªæ—¥æœŸç›¸å·®çš„æœˆä»½
 	 * 
 	 * @param start
-	 *            ¿ªÊ¼µÄÈÕÆÚ
+	 *            å¼€å§‹çš„æ—¥æœŸ
 	 * @param end
-	 *            ½áÊøµÄÈÕÆÚ
-	 * @return ¿ªÊ¼Ê±¼äÓë½áÊøÊ±¼äÏà²îµÄÔÂ·İ
+	 *            ç»“æŸçš„æ—¥æœŸ
+	 * @return å¼€å§‹æ—¶é—´ä¸ç»“æŸæ—¶é—´ç›¸å·®çš„æœˆä»½
 	 */
 	public static int getDiffMonth(Calendar start, Calendar end) {
 		return (end.get(Calendar.YEAR) - start.get(Calendar.YEAR)) * 12 + end.get(Calendar.MONTH)
@@ -423,9 +423,9 @@ public class Tool {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÆÚ
+	 * è·å–å½“å‰æ—¥æœŸ
 	 * 
-	 * @return µ±Ç°ÈÕÆÚCalendarµÄÊµÀı
+	 * @return å½“å‰æ—¥æœŸCalendarçš„å®ä¾‹
 	 */
 	public static Calendar getCurCalendar() {
 		return Calendar.getInstance();

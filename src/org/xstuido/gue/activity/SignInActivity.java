@@ -1,4 +1,4 @@
-package org.xstuido.gue.activity;
+﻿package org.xstuido.gue.activity;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.db.GetUpEarlyDB;

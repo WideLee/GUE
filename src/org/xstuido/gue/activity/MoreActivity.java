@@ -1,4 +1,4 @@
-package org.xstuido.gue.activity;
+﻿package org.xstuido.gue.activity;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.util.Tool;
@@ -41,7 +41,7 @@ public class MoreActivity extends Activity {
 					e.printStackTrace();
 				}
 				if (packageInfo == null) {
-					Tool.showToast("û�а�װ��Ӧ��");
+					Tool.showToast("没有安装该应用");
 				} else {
 					Intent intent = new Intent();
 					ComponentName comp = new ComponentName("com.chemy.PDgame",

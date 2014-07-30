@@ -1,4 +1,4 @@
-package org.xstuido.gue.activity;
+﻿package org.xstuido.gue.activity;
 
 import java.text.ParseException;
 import java.util.Calendar;

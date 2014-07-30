@@ -1,4 +1,4 @@
-package org.xstuido.gue.db;
+ï»¿package org.xstuido.gue.db;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,7 +54,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// Éı¼¶Êı¾İ¿â
+		// å‡çº§æ•°æ®åº“
 		db.execSQL("DROP TABLE IF EXISTS event");
 		db.execSQL("DROP TABLE IF EXISTS location");
 		onCreate(db);
@@ -74,7 +74,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return rid;
 	}
 
-	// É¾³ıÊı¾İ²Ù×÷
+	// åˆ é™¤æ•°æ®æ“ä½œ
 	public int deleteEventById(Long id) {
 		SQLiteDatabase db = getWritableDatabase();
 		String whereClause = COLUMN_KEY_EID + " = ?";
@@ -84,7 +84,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return row;
 	}
 
-	// ¸üĞÂÊı¾İ²Ù×÷
+	// æ›´æ–°æ•°æ®æ“ä½œ
 	public int updateEventById(Event entity) {
 		SQLiteDatabase db = getWritableDatabase();
 		String whereClause = COLUMN_KEY_EID + " = ?";
@@ -101,7 +101,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return rows;
 	}
 
-	// ²éÑ¯Êı¾İ²Ù×÷
+	// æŸ¥è¯¢æ•°æ®æ“ä½œ
 	public Event getEventById(Long id) throws ParseException {
 		Event event = null;
 		SQLiteDatabase db = getReadableDatabase();
@@ -123,9 +123,9 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	/**
 	 * 
 	 * @param date
-	 *            ĞèÒª²éÕÒµÄÈÕÆÚ
+	 *            éœ€è¦æŸ¥æ‰¾çš„æ—¥æœŸ
 	 * @param choose
-	 *            Èç¹ûÎª1 ÄÇÃ´Ñ¡³öµÄÊÇµ±ÌìËùÓĞÇ©µ½¼ÇÂ¼£¬Èç¹ûÊÇ0Ñ¡³öµÄÊÇµ±ÌìÈÕ³Ì¼ÇÂ¼£¬ÆäËû·µ»Øµ±ÌìËùÓĞµÄÊÂ¼ş
+	 *            å¦‚æœä¸º1 é‚£ä¹ˆé€‰å‡ºçš„æ˜¯å½“å¤©æ‰€æœ‰ç­¾åˆ°è®°å½•ï¼Œå¦‚æœæ˜¯0é€‰å‡ºçš„æ˜¯å½“å¤©æ—¥ç¨‹è®°å½•ï¼Œå…¶ä»–è¿”å›å½“å¤©æ‰€æœ‰çš„äº‹ä»¶
 	 * @return
 	 * @throws ParseException
 	 */
@@ -162,7 +162,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	/**
 	 * 
 	 * @param choose
-	 *            Èç¹ûÎª1 ÄÇÃ´Ñ¡³öµÄÊÇÇ©µ½¼ÇÂ¼£¬Èç¹ûÊÇ0Ñ¡³öµÄÊÇÈÕ³Ì¼ÇÂ¼£¬ÆäËû·µ»ØËùÓĞµÄEvent
+	 *            å¦‚æœä¸º1 é‚£ä¹ˆé€‰å‡ºçš„æ˜¯ç­¾åˆ°è®°å½•ï¼Œå¦‚æœæ˜¯0é€‰å‡ºçš„æ˜¯æ—¥ç¨‹è®°å½•ï¼Œå…¶ä»–è¿”å›æ‰€æœ‰çš„Event
 	 * @return
 	 * @throws ParseException
 	 */
@@ -190,11 +190,11 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * ÏòÌìÆø¹ÜÀíÖĞ²åÈëÒ»¸ö³ÇÊĞ
+	 * å‘å¤©æ°”ç®¡ç†ä¸­æ’å…¥ä¸€ä¸ªåŸå¸‚
 	 * 
 	 * @param city
-	 *            ³ÇÊĞÃû³Æ
-	 * @return Èç¹ûÊı¾İ¿âÖĞÃ»ÓĞ¸Ã³ÇÊĞ·µ»Øtrue£¬·ñÔò²»²åÈë·µ»Øfalse
+	 *            åŸå¸‚åç§°
+	 * @return å¦‚æœæ•°æ®åº“ä¸­æ²¡æœ‰è¯¥åŸå¸‚è¿”å›trueï¼Œå¦åˆ™ä¸æ’å…¥è¿”å›false
 	 */
 	public boolean insert(String city) {
 		if (hasLocation(city)) {
@@ -210,11 +210,11 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * É¾³ıÌìÆø³ÇÊĞ
+	 * åˆ é™¤å¤©æ°”åŸå¸‚
 	 * 
 	 * @param city
-	 *            ³ÇÊĞÃû³Æ
-	 * @return Èç¹û±¾À´ÒÑ¾­Ã»ÓĞÕâ¸ö³ÇÊĞ·µ»Øfalse£¬Èç¹ûÕı³£É¾µô³ÇÊĞ·µ»Øtrue
+	 *            åŸå¸‚åç§°
+	 * @return å¦‚æœæœ¬æ¥å·²ç»æ²¡æœ‰è¿™ä¸ªåŸå¸‚è¿”å›falseï¼Œå¦‚æœæ­£å¸¸åˆ æ‰åŸå¸‚è¿”å›true
 	 */
 	public boolean delete(String city) {
 		if (!hasLocation(city)) {

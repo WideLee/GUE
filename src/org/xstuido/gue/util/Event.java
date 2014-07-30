@@ -1,4 +1,4 @@
-package org.xstuido.gue.util;
+﻿package org.xstuido.gue.util;
 
 public class Event {
 	public static final int NOT_IMPLEMENT = -1;

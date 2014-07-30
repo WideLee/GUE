@@ -1,4 +1,4 @@
-package org.xstuido.gue.view.adapter;
+﻿package org.xstuido.gue.view.adapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;

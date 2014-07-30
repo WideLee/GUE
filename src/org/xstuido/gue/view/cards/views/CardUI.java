@@ -1,4 +1,4 @@
-package org.xstuido.gue.view.cards.views;
+﻿package org.xstuido.gue.view.cards.views;
 
 import java.util.ArrayList;
 

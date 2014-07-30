@@ -1,9 +1,9 @@
-package org.xstuido.gue.util;
+ï»¿package org.xstuido.gue.util;
 
 import java.util.List;
 
 /**
- * ±£Ö¤ÁËÒ»¸öHiThread¶ÔÏóÍ¬Ò»Ê±¿ÌÖ»»áÓĞÒ»¸öThread¶ÔÏóÔÚÖ´ĞĞrun()·½·¨
+ * ä¿è¯äº†ä¸€ä¸ªHiThreadå¯¹è±¡åŒä¸€æ—¶åˆ»åªä¼šæœ‰ä¸€ä¸ªThreadå¯¹è±¡åœ¨æ‰§è¡Œrun()æ–¹æ³•
  * 
  * @author Tiga
  * 
@@ -14,7 +14,7 @@ public abstract class HiThread implements Runnable {
 	private List<Object> mParams;
 
 	/**
-	 * Æô¶¯Ïß³Ì
+	 * å¯åŠ¨çº¿ç¨‹
 	 * 
 	 * @return
 	 */
@@ -23,11 +23,11 @@ public abstract class HiThread implements Runnable {
 	}
 
 	/**
-	 * Æô¶¯Ïß³Ì
+	 * å¯åŠ¨çº¿ç¨‹
 	 * 
 	 * @param params
-	 *            ²ÎÊıÁĞ±í
-	 * @return Èç¹û´´½¨ÁËĞÂµÄÏß³ÌÖ´ĞĞ£¬Ôò·µ»Øtrue£»Èç¹ûÔ­À´µÄÏß³ÌÃ»Ö´ĞĞÍê£¬ Ôò·µ»ØfalseÇÒ²»Æô¶¯ĞÂÏß³Ì
+	 *            å‚æ•°åˆ—è¡¨
+	 * @return å¦‚æœåˆ›å»ºäº†æ–°çš„çº¿ç¨‹æ‰§è¡Œï¼Œåˆ™è¿”å›trueï¼›å¦‚æœåŸæ¥çš„çº¿ç¨‹æ²¡æ‰§è¡Œå®Œï¼Œ åˆ™è¿”å›falseä¸”ä¸å¯åŠ¨æ–°çº¿ç¨‹
 	 */
 	public boolean start(List<Object> params) {
 		if (mThread == null) {
@@ -60,7 +60,7 @@ public abstract class HiThread implements Runnable {
 	}
 
 	/**
-	 * Í£Ö¹Ïß³Ì
+	 * åœæ­¢çº¿ç¨‹
 	 */
 	public void stop() {
 		if (mThread != null) {

@@ -1,4 +1,4 @@
-package org.xstuido.gue.fragment;
+锘縫ackage org.xstuido.gue.fragment;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -147,7 +147,7 @@ public class TodayToDoFragment extends Fragment {
 				if (count == 0) {
 					mWeatherStack.setTitle("");
 				} else {
-					mWeatherStack.setTitle("实时天气");
+					mWeatherStack.setTitle("瀹炴椂澶╂皵");
 				}
 				mCardView.refresh();
 				break;
@@ -165,9 +165,9 @@ public class TodayToDoFragment extends Fragment {
 		mDB = new GetUpEarlyDB(BaseApplication.getContext());
 		isInit = false;
 		mWeatherStack = new CardStack();
-		mWeatherStack.setTitle("实时天气");
+		mWeatherStack.setTitle("瀹炴椂澶╂皵");
 		mTodoStack = new CardStack();
-		mTodoStack.setTitle("要做的事");
+		mTodoStack.setTitle("瑕佸仛鐨勪簨");
 		mSignInStack = new CardStack();
 	}
 
@@ -211,7 +211,7 @@ public class TodayToDoFragment extends Fragment {
 			if (signEvents.size() == 0) {
 				SignInCard card = new SignInCard(false, mHandler);
 				card.setSignClickListener(mSignInClickListener);
-				mSignInStack.setTitle("今日签到");
+				mSignInStack.setTitle("浠婃棩绛惧埌");
 				mSignInStack.removeAllCards();
 				mSignInStack.add(card);
 				mCardView.refresh();
@@ -286,7 +286,7 @@ public class TodayToDoFragment extends Fragment {
 			if (cityList.size() == 0) {
 				mWeatherStack.setTitle("");
 			} else {
-				mWeatherStack.setTitle("实时天气");
+				mWeatherStack.setTitle("瀹炴椂澶╂皵");
 			}
 			WeatherUtil weatherUtil = WeatherUtil.getInstance();
 			for (int i = 0; i < weatherUtil.getWeatherList().size(); i++) {

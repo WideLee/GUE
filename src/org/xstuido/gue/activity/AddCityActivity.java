@@ -1,4 +1,4 @@
-package org.xstuido.gue.activity;
+ï»¿package org.xstuido.gue.activity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -90,7 +90,7 @@ public class AddCityActivity extends Activity {
 			// System.out.println("***********AddCityActivity*********\n" +
 			// weather);
 
-			// Ô¤·ÀWebXMLµÄ×Ô¶¯²¹È«¹¦ÄÜ
+			// é¢„é˜²WebXMLçš„è‡ªåŠ¨è¡¥å…¨åŠŸèƒ½
 			if (weather != null && weather.isInit() && city.equals(weather.getCityName())) {
 				weatherUtil.addWeather(weather);
 
@@ -106,7 +106,7 @@ public class AddCityActivity extends Activity {
 			} else {
 				Message msg = new Message();
 				msg.what = Constant.MESSAGE_GET_WEATHER_FAIL;
-				msg.obj = weather.getErrorContent().equals("") ? "²éÑ¯½á¹ûÎª¿Õ£¡" : weather
+				msg.obj = weather.getErrorContent().equals("") ? "æŸ¥è¯¢ç»“æœä¸ºç©ºï¼" : weather
 						.getErrorContent();
 				mHandler.sendMessage(msg);
 			}

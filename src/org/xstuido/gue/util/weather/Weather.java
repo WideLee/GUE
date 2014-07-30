@@ -1,4 +1,4 @@
-package org.xstuido.gue.util.weather;
+ï»¿package org.xstuido.gue.util.weather;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,7 +53,7 @@ public class Weather {
 		mCityName = data.get(1);
 		if (!mCityName.equals("")) {
 			mTemperature = data.get(10).split(Tool.getString(R.string.colon))[2].split(Tool
-					.getString(R.string.semi))[0].replaceAll("\\D", "") + "¡ã";
+					.getString(R.string.semi))[0].replaceAll("\\D", "") + "Â°";
 
 			mWeatherDrawable = data.get(8);
 			mOverView = data.get(6).split(" ")[1];

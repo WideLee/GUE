@@ -1,4 +1,4 @@
-package org.xstuido.gue.view.dialog;
+ï»¿package org.xstuido.gue.view.dialog;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.util.Tool;
@@ -9,11 +9,11 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 
 /**
- * ·â×°ThreadºÍHandler£¬ÓÃ»§¿ÉÒÔ·½±ãµÄµ÷ÓÃ½ø¶È¶Ô»°¿ò£¬<b>²¢Òì²½Ö´ĞĞ´úÂë</b>£¬ÔÚ´úÂëÖ´ĞĞÍê³Éºó£¬½øĞĞÖ÷Ïß³ÌUIµÄ¸üĞÂ¡£ ¸ÃÀàĞèÅäºÏ
- * {@link LoadingDialogExecute}´úÀíÀàÊ¹ÓÃ¡£
+ * å°è£…Threadå’ŒHandlerï¼Œç”¨æˆ·å¯ä»¥æ–¹ä¾¿çš„è°ƒç”¨è¿›åº¦å¯¹è¯æ¡†ï¼Œ<b>å¹¶å¼‚æ­¥æ‰§è¡Œä»£ç </b>ï¼Œåœ¨ä»£ç æ‰§è¡Œå®Œæˆåï¼Œè¿›è¡Œä¸»çº¿ç¨‹UIçš„æ›´æ–°ã€‚ è¯¥ç±»éœ€é…åˆ
+ * {@link LoadingDialogExecute}ä»£ç†ç±»ä½¿ç”¨ã€‚
  * 
  * @see LoadingDialogExecute
- * @author ÓÅ»¯Éè¼Æ
+ * @author ä¼˜åŒ–è®¾è®¡
  * @version 0.2
  */
 public class LoadingDialog {
@@ -25,7 +25,7 @@ public class LoadingDialog {
 	private OnCancelListener mOnCancelListener;
 
 	/**
-	 * ½ø¶È¶Ô»°¿ò¹¹Ôìº¯Êı
+	 * è¿›åº¦å¯¹è¯æ¡†æ„é€ å‡½æ•°
 	 * 
 	 * @param context
 	 *            Context
@@ -57,7 +57,7 @@ public class LoadingDialog {
 	}
 
 	/**
-	 * ÉèÖÃÊÇ·ñÏÔÊ¾½ø¶È¶Ô»°¿ò£¬ÎªfalseÊ±£¬½ø¶È¶Ô»°¿ò²»ÏÔÊ¾£¬µ«Òì²½´úÂëÒÀÈ»Õı³£Ö´ĞĞ
+	 * è®¾ç½®æ˜¯å¦æ˜¾ç¤ºè¿›åº¦å¯¹è¯æ¡†ï¼Œä¸ºfalseæ—¶ï¼Œè¿›åº¦å¯¹è¯æ¡†ä¸æ˜¾ç¤ºï¼Œä½†å¼‚æ­¥ä»£ç ä¾ç„¶æ­£å¸¸æ‰§è¡Œ
 	 * 
 	 * @param isShowDialog
 	 */
@@ -67,16 +67,16 @@ public class LoadingDialog {
 	}
 
 	/**
-	 * »ñÈ¡½ø¶È¶Ô»°¿ò
+	 * è·å–è¿›åº¦å¯¹è¯æ¡†
 	 * 
-	 * @return ½ø¶È¶Ô»°¿ò
+	 * @return è¿›åº¦å¯¹è¯æ¡†
 	 */
 	public ProgressDialog getProgressDialog() {
 		return mProgressDialog;
 	}
 
 	/**
-	 * »ñÈ¡Context
+	 * è·å–Context
 	 * 
 	 * @return Context
 	 */
@@ -85,7 +85,7 @@ public class LoadingDialog {
 	}
 
 	/**
-	 * ÉèÖÃContext
+	 * è®¾ç½®Context
 	 * 
 	 * @param _c
 	 */

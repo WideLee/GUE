@@ -1,4 +1,4 @@
-package org.xstuido.gue.fragment;
+锘縫ackage org.xstuido.gue.fragment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -77,7 +77,7 @@ public class SignInHistoryFragment extends Fragment {
 				Bitmap bitmap = (Bitmap) param.get(0);
 
 				int stautsHeight = (Integer) param.get(1);
-				// Log.d("mClip", "状态栏的高度为:" + stautsHeight);
+				// Log.d("mClip", "鐘舵�佹爮鐨勯珮搴︿负:" + stautsHeight);
 
 				Point point = new Point();
 				getActivity().getWindowManager().getDefaultDisplay().getSize(point);

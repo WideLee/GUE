@@ -1,11 +1,6 @@
 ﻿package org.xstuido.gue.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.activity.BaseApplication;
@@ -25,6 +20,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+/**
+ * 工具类包含了所有常用的函数
+ * 
+ * @author 11331173 李明宽 <sysu_limingkuan@163.com>
+ * 
+ */
+
 public class Tool {
 	public static final int NETWORK_NOT_CONNECTED = -1;
 	public static final int NETWORK_TYPE_2G = 0;
@@ -34,6 +36,11 @@ public class Tool {
 	protected Tool() {
 	}
 
+	/**
+	 * 获取当前联网的网络类型，可能是3G，2G，WiFi或者未连接
+	 * 
+	 * @return 网络类型代码
+	 */
 	public static int getNetworkType() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) BaseApplication
 				.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -71,11 +78,25 @@ public class Tool {
 		return networkType;
 	}
 
+	/**
+	 * dip屏幕密度与px像素转换
+	 * 
+	 * @param dip
+	 *            要转换的屏幕密度
+	 * @return 对应的像素值
+	 */
 	public static int dip2px(float dip) {
 		final float scale = BaseApplication.getContext().getResources().getDisplayMetrics().density;
 		return (int) (dip * scale + 0.5f);
 	}
 
+	/**
+	 * dip屏幕密度与px像素转换
+	 * 
+	 * @param dip
+	 *            要转换的像素值
+	 * @return 对应的屏幕密度
+	 */
 	public static float px2dip(float px) {
 		final float scale = BaseApplication.getContext().getResources().getDisplayMetrics().density;
 		return px / scale + 0.5f;
@@ -83,6 +104,11 @@ public class Tool {
 
 	private static int screenW = -1, screenH = -1;
 
+	/**
+	 * 获取当前屏幕的宽度
+	 * 
+	 * @return 屏幕宽度
+	 */
 	public static int getScreenW() {
 		if (screenW < 0) {
 			initScreenDisplayParams();
@@ -90,6 +116,11 @@ public class Tool {
 		return screenW;
 	}
 
+	/**
+	 * 获取当前屏幕的高度
+	 * 
+	 * @return 屏幕高度
+	 */
 	public static int getScreenH() {
 		if (screenH < 0) {
 			initScreenDisplayParams();
@@ -97,72 +128,66 @@ public class Tool {
 		return screenH;
 	}
 
+	/**
+	 * 初始化屏幕显示参数
+	 */
 	private static void initScreenDisplayParams() {
 		DisplayMetrics dm = BaseApplication.getContext().getResources().getDisplayMetrics();
 		screenW = dm.widthPixels;
 		screenH = dm.heightPixels;
 	}
 
+	/**
+	 * 弹出正常时间的Toast通知
+	 * 
+	 * @param toast
+	 *            需要显示通知的内容
+	 */
 	public static void showToast(String toast) {
 		if (!TextUtils.isEmpty(toast)) {
 			Toast.makeText(BaseApplication.getContext(), toast, Toast.LENGTH_SHORT).show();
 		}
 	}
 
+	/**
+	 * 弹出长时间的Toast通知
+	 * 
+	 * @param toast
+	 *            需要显示通知的内容
+	 */
 	public static void showLongToast(String toast) {
 		if (!TextUtils.isEmpty(toast)) {
 			Toast.makeText(BaseApplication.getContext(), toast, Toast.LENGTH_LONG).show();
 		}
 	}
 
-	public static String md5(String plainText) {
-		try {
-			java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-			byte[] array = md.digest(plainText.getBytes());
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < array.length; ++i) {
-				sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
-			}
-			return sb.toString();
-		} catch (java.security.NoSuchAlgorithmException e) {
-		}
-		return null;
-	}
-
-	public static boolean validEmail(String email) {
-		Pattern pattern = Pattern.compile(
-				"^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$",
-				Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
-	}
-
-	public static int bool2int(boolean flag) {
-		if (flag) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
-
-	public static boolean int2bool(int flag) {
-		if (flag == 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
+	/**
+	 * 获取字符资源中的字符串常量
+	 * 
+	 * @param resId
+	 *            字符串常量的ID
+	 * @return 字符串常量的值
+	 */
 	public static String getString(int resId) {
 		return BaseApplication.getContext().getString(resId);
 	}
 
+	/**
+	 * 弹出输入法键盘
+	 * 
+	 * @param view
+	 */
 	public static void showKeyBoard(View view) {
 		InputMethodManager imm = (InputMethodManager) BaseApplication.getContext()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
 	}
 
+	/**
+	 * 隐藏输入法键盘
+	 * 
+	 * @param view
+	 */
 	public static void hideKeyBoard(View view) {
 		InputMethodManager imm = (InputMethodManager) BaseApplication.getContext()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -173,73 +198,6 @@ public class Tool {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(y, m, d);
 		return calendar.getTimeInMillis() / 1000;
-	}
-
-	public static Calendar calendar(long seconds) {
-		seconds *= 1000;
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(seconds);
-		return calendar;
-	}
-
-	public static String minutes2clock(int m) {
-		int h = m / 60;
-		String hs = h < 10 ? "0" + h : "" + h;
-		m = m % 60;
-		String ms = m < 10 ? "0" + m : "" + m;
-
-		return hs + ":" + ms;
-	}
-
-	public static String timeFmt(long seconds) {
-		// Date t = new Date(System.currentTimeMillis());
-		// int ty = t.getYear() + 1900;
-		// int tm = t.getMonth();
-		// int td = t.getDate();
-		Calendar t = Calendar.getInstance();
-		int ty = t.get(Calendar.YEAR);
-		int tm = t.get(Calendar.MONTH);
-		int td = t.get(Calendar.DATE);
-		Calendar c = calendar(seconds);
-		int cy = c.get(Calendar.YEAR);
-		int cm = c.get(Calendar.MONTH);
-		int cd = c.get(Calendar.DATE);
-		int ch = c.get(Calendar.HOUR_OF_DAY);
-		int cmin = c.get(Calendar.MINUTE);
-		String chs = ch < 10 ? "0" + ch : "" + ch;
-		String cmins = cmin < 10 ? "0" + cmin : "" + cmin;
-		if (ty != cy) {
-			return String.format(getString(R.string.year_fmt), cy, cm + 1);
-		} else if (tm != cm || td != cd) {
-			return String.format(getString(R.string.date_fmt), cm + 1, cd);
-		} else {
-			return String.format(getString(R.string.time_fmt), chs, cmins);
-		}
-	}
-
-	public static String getMonthAndDay(long seconds, boolean same) {
-		Calendar t = Calendar.getInstance();
-		int ty = t.get(Calendar.YEAR);
-		int tm = t.get(Calendar.MONTH);
-		int td = t.get(Calendar.DATE);
-
-		Calendar c = calendar(seconds);
-		int cy = c.get(Calendar.YEAR);
-		int cm = c.get(Calendar.MONTH);
-		int cd = c.get(Calendar.DATE);
-
-		if (!same) {
-			if (ty == cy && tm == cm) {
-				if (td == cd) {
-					return getString(R.string.today);
-				} else if (td == cd + 1) {
-					return getString(R.string.yesterday);
-				}
-			}
-		}
-
-		return String.format(getString(R.string.date_fmt), cm + 1, cd);
-
 	}
 
 	/**
@@ -431,15 +389,13 @@ public class Tool {
 		return Calendar.getInstance();
 	}
 
-	public static String inputStream2String(InputStream is) throws IOException {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		int i = -1;
-		while ((i = is.read()) != -1) {
-			baos.write(i);
-		}
-		return baos.toString();
-	}
-
+	/**
+	 * 根据每周的第几天获取到中文的星期几
+	 * 
+	 * @param index
+	 *            要获取的第几天
+	 * @return 这一天的中文符号
+	 */
 	public static String getWeekDayName(int index) {
 		String weekdayName = new String();
 		switch (index) {

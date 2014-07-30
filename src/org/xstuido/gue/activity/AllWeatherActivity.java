@@ -27,6 +27,12 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * 管理所有位置天气的界面
+ * 
+ * @author 11331031 陈熙迪 <375900030@qq.com>
+ * 
+ */
 public class AllWeatherActivity extends Activity {
 	private TextView mBackTextView;
 	private ImageView mRefreshImageView;
@@ -36,7 +42,7 @@ public class AllWeatherActivity extends Activity {
 	private LoadingDialog mLoadingDialog;
 	private GetUpEarlyDB mDB;
 
-	private HiThread mGetWeather = new HiThread() {
+	private HiThread mGetWeatherThread = new HiThread() {
 		@Override
 		public void run() {
 			WeatherUtil weatherUtil = WeatherUtil.getInstance();
@@ -45,13 +51,7 @@ public class AllWeatherActivity extends Activity {
 			for (int i = 0; i < cityList.size(); i++) {
 				String city = cityList.get(i).getCityName();
 
-				// System.out.println("***********AllWeatherActivyty*********\n"
-				// + weatherUtil.getWeatherList());
-
 				Weather weather = weatherUtil.requestWeather(city);
-
-				// System.out.println("***********AllWeatherActivyty*********\n"
-				// + weather);
 
 				if (weather != null && weather.isInit()) {
 					weatherUtil.updateWeather(i, weather);
@@ -71,7 +71,6 @@ public class AllWeatherActivity extends Activity {
 					msg.obj = weather.getErrorContent();
 					mHandler.sendMessage(msg);
 				}
-
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -171,7 +170,7 @@ public class AllWeatherActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				mLoadingDialog.show();
-				mGetWeather.start();
+				mGetWeatherThread.start();
 			}
 		});
 
@@ -188,6 +187,9 @@ public class AllWeatherActivity extends Activity {
 		updateWeatherList();
 	}
 
+	/**
+	 * 更新天气列表
+	 */
 	private void updateWeatherList() {
 		ArrayList<String> citys = new ArrayList<String>();
 		citys = mDB.getAllLocation();

@@ -13,6 +13,12 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * 填写签到信息的界面
+ * 
+ * @author 11331031 陈熙迪 <375900030@qq.com>
+ * 
+ */
 public class SignInActivity extends Activity {
 
 	private EditText mEditText;

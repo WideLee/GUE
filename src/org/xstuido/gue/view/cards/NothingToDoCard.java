@@ -5,6 +5,11 @@ import org.xstuido.gue.view.cards.objects.RecyclableCard;
 
 import android.view.View;
 
+/**
+ * 今天没有安排任务的卡片
+ * 
+ * @author 11331068 冯亚臣 <1967558085@qq.com>
+ */
 public class NothingToDoCard extends RecyclableCard {
 
 	public NothingToDoCard() {

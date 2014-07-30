@@ -1,5 +1,11 @@
 ﻿package org.xstuido.gue.util;
 
+/**
+ * 事件的基本类型
+ * 
+ * @author 11331068 冯亚臣 <1967558085@qq.com>
+ * 
+ */
 public class Event {
 	public static final int NOT_IMPLEMENT = -1;
 

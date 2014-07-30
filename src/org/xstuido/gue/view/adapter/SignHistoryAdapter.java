@@ -14,6 +14,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+/**
+ * 签到历史记录的适配器
+ * 
+ * @author 11331068 冯亚臣 <1967558085@qq.com>
+ * 
+ */
 public class SignHistoryAdapter extends BaseAdapter {
 
 	private List<Event> data;

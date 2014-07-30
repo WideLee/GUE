@@ -11,6 +11,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
+/**
+ * 程序启动后主界面
+ * 
+ * @author 11331173 李明宽 <sysu_limingkuan@163.com>
+ * 
+ */
 public class MainActivity extends FragmentActivity {
 
 	private RadioGroup mNavigatorGroup;
@@ -40,8 +46,6 @@ public class MainActivity extends FragmentActivity {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-				// ft.setCustomAnimations(android.R.anim.fade_in,
-				// android.R.anim.fade_out);
 				switch (checkedId) {
 				case R.id.rb_today_todo:
 					ft.replace(R.id.content, mTodayToDoFragment);

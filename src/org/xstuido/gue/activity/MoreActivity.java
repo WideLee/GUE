@@ -15,6 +15,12 @@ import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+/**
+ * 跳转到更多应用的扩展界面
+ * 
+ * @author 11331209 刘柯汕 <1946222543@qq.com>
+ * 
+ */
 public class MoreActivity extends Activity {
 
 	private RelativeLayout mRelativeLayout;
@@ -46,8 +52,6 @@ public class MoreActivity extends Activity {
 					Intent intent = new Intent();
 					ComponentName comp = new ComponentName("com.chemy.PDgame",
 							"org.cocos2dx.cpp.AppActivity");
-					// ComponentName comp = new ComponentName("limk.ble",
-					// "limk.ble.MainActivity");
 					intent.setComponent(comp);
 					startActivity(intent);
 					finish();

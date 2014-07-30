@@ -3,9 +3,10 @@
 import java.util.List;
 
 /**
- * 保证了一个HiThread对象同一时刻只会有一个Thread对象在执行run()方法
+ * 保证了一个HiThread对象同一时刻只会有一个Thread对象在执行run()方法， 并且为线程的启动可以添加参数
  * 
  * @author Tiga
+ * @author 11331173 李明宽 <sysu_limingkuan@163.com>
  * 
  */
 public abstract class HiThread implements Runnable {

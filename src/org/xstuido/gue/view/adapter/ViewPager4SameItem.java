@@ -14,6 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+/**
+ * 优化完善了View缓存的ViewPager基类
+ * 
+ * @author Tiga
+ * @author 11331173 李明宽 <sysu_limingkuan@163.com>
+ * 
+ */
 public abstract class ViewPager4SameItem extends RelativeLayout {
 	private static final float DEFAULT_SWITCH_BTN_SIZE = 25;
 

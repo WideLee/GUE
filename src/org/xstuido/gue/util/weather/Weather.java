@@ -6,6 +6,12 @@ import java.util.Calendar;
 import org.xstuido.gue.R;
 import org.xstuido.gue.util.Tool;
 
+/**
+ * 天气的基本类型
+ * 
+ * @author 11331173 李明宽 <sysu_limingkuan@163.com>
+ * 
+ */
 public class Weather {
 	private String mCityName;
 	private String mDate;
@@ -60,7 +66,6 @@ public class Weather {
 			if (mOverView.contains("\"")) {
 				mOverView = mOverView.split("\\\"")[0];
 			}
-			// System.out.println(mOverView);
 			mUva = Tool.getString(R.string.uva)
 					+ data.get(10).split(Tool.getString(R.string.colon))[6];
 			mUpdateTime = data.get(4);

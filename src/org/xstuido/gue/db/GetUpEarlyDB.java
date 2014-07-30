@@ -14,7 +14,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-@SuppressLint("SimpleDateFormat")
+/**
+ * GetUpEarly的SQLite数据库接口，包括事件以及城市两个表的增删改查信息
+ * 
+ * @author 11331173 李明宽 <sysu_limingkuan@163.com>
+ * 
+ */
 public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	private static final String DB_NAME = "GetUpEarly.db";
@@ -31,6 +36,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	private static final String COLUMN_KEY_LID = "lid";
 	private static final String COLUMN_CITY_NAME = "city_name";
 
+	@SuppressLint("SimpleDateFormat")
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	private static final String EVENT_SQL_CREATE = "create table " + EVENT_TABLE + " ( "
@@ -47,19 +53,24 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// System.out.println("create database");
 		db.execSQL(EVENT_SQL_CREATE);
 		db.execSQL(LOCATION_SQL_CREATE);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// 升级数据库
 		db.execSQL("DROP TABLE IF EXISTS event");
 		db.execSQL("DROP TABLE IF EXISTS location");
 		onCreate(db);
 	}
 
+	/**
+	 * 插入一个日程事件
+	 * 
+	 * @param entity
+	 *            日程事件
+	 * @return 这个事件在数据库中对应的id
+	 */
 	public long insert(Event entity) {
 		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -74,7 +85,13 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return rid;
 	}
 
-	// 删除数据操作
+	/**
+	 * 根据事件的ID删除一个事件
+	 * 
+	 * @param id
+	 *            要删除的事件的ID
+	 * @return 返回总共删除的记录条数
+	 */
 	public int deleteEventById(Long id) {
 		SQLiteDatabase db = getWritableDatabase();
 		String whereClause = COLUMN_KEY_EID + " = ?";
@@ -84,7 +101,13 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return row;
 	}
 
-	// 更新数据操作
+	/**
+	 * 根据ID更新一条事件记录
+	 * 
+	 * @param entity
+	 *            新的日程事件
+	 * @return 更新的记录条数
+	 */
 	public int updateEventById(Event entity) {
 		SQLiteDatabase db = getWritableDatabase();
 		String whereClause = COLUMN_KEY_EID + " = ?";
@@ -101,7 +124,15 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return rows;
 	}
 
-	// 查询数据操作
+	/**
+	 * 根据日程事件的ID来查询相应的事件
+	 * 
+	 * @param id
+	 *            事件的ID
+	 * @return 查询到的事件，若为空表示没查询到该ID的事件
+	 * @throws ParseException
+	 *             当日期不符合规范的时候抛出异常
+	 */
 	public Event getEventById(Long id) throws ParseException {
 		Event event = null;
 		SQLiteDatabase db = getReadableDatabase();
@@ -121,6 +152,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	}
 
 	/**
+	 * 选出特定一天的日程事件记录
 	 * 
 	 * @param date
 	 *            需要查找的日期
@@ -129,6 +161,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	 * @return
 	 * @throws ParseException
 	 */
+	@SuppressLint("SimpleDateFormat")
 	public ArrayList<Event> getEventByDate(Date date, int choose) throws ParseException {
 		ArrayList<Event> list = new ArrayList<Event>();
 		SQLiteDatabase db = getReadableDatabase();
@@ -160,6 +193,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 	}
 
 	/**
+	 * 选出所有的日程事件记录
 	 * 
 	 * @param choose
 	 *            如果为1 那么选出的是签到记录，如果是0选出的是日程记录，其他返回所有的Event
@@ -230,6 +264,13 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return true;
 	}
 
+	/**
+	 * 查询数据库是否已经存在给定的城市
+	 * 
+	 * @param city
+	 *            城市的名字
+	 * @return 如果已经存在返回true，如果不存在返回false
+	 */
 	public boolean hasLocation(String city) {
 		boolean result = false;
 		SQLiteDatabase db = getReadableDatabase();
@@ -244,6 +285,11 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		return result;
 	}
 
+	/**
+	 * 获取所有的位置城市信息
+	 * 
+	 * @return 所有的城市列表
+	 */
 	public ArrayList<String> getAllLocation() {
 		ArrayList<String> result = new ArrayList<String>();
 

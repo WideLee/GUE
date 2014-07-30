@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-@SuppressLint("SimpleDateFormat")
+/**
+ * 日历视图中的日程卡片
+ * 
+ * @author 11331068 冯亚臣 <1967558085@qq.com>
+ */
 public class ToDoItemCard extends RecyclableCard {
 
 	private Event mEvent;
@@ -28,6 +32,7 @@ public class ToDoItemCard extends RecyclableCard {
 		return R.layout.card_todo_item;
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected void applyTo(View convertView) {
 		TextView timeTextView = (TextView) convertView.findViewById(R.id.tv_time);

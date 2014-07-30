@@ -36,17 +36,20 @@ public class WeatherCard extends RecyclableCard {
 		Weather mWeather = WeatherUtil.getInstance().getWeatherList().get(mIndex);
 
 		TextView cityNameTextView = ((TextView) convertView.findViewById(R.id.tv_city_name));
-		cityNameTextView.setText(mWeather.getCityName());
 		TextView temperatureTextView = ((TextView) convertView.findViewById(R.id.tv_temperature));
-		temperatureTextView.setText(mWeather.getTemperature());
-
 		TextView dateTextView = ((TextView) convertView.findViewById(R.id.tv_date));
-		dateTextView.setText(mWeather.getUpdateTime());
-
 		TextView overviewTextView = ((TextView) convertView.findViewById(R.id.tv_overview));
-		overviewTextView.setText(mWeather.getOverView());
-
 		TextView uvaTextView = ((TextView) convertView.findViewById(R.id.tv_uva));
+		ImageView weatherIconImageView = ((ImageView) convertView
+				.findViewById(R.id.tv_weather_icon));
+		TextView loadingTextView = (TextView) convertView.findViewById(R.id.tv_loading);
+		RelativeLayout weatherLayout = (RelativeLayout) convertView.findViewById(R.id.rl_weather);
+		ImageView overflowImageView = ((ImageView) convertView.findViewById(R.id.overflow));
+
+		cityNameTextView.setText(mWeather.getCityName());
+		temperatureTextView.setText(mWeather.getTemperature());
+		dateTextView.setText(mWeather.getUpdateTime());
+		overviewTextView.setText(mWeather.getOverView());
 		uvaTextView.setText(mWeather.getUva());
 
 		String drawable = mWeather.getWeatherDrawable();
@@ -58,12 +61,7 @@ public class WeatherCard extends RecyclableCard {
 			index = 32;
 		}
 
-		ImageView weatherIconImageView = ((ImageView) convertView
-				.findViewById(R.id.tv_weather_icon));
 		weatherIconImageView.setBackgroundResource(R.drawable.weather_00 + index);
-
-		TextView loadingTextView = (TextView) convertView.findViewById(R.id.tv_loading);
-		RelativeLayout weatherLayout = (RelativeLayout) convertView.findViewById(R.id.rl_weather);
 		if (mWeather.isInit()) {
 			weatherLayout.setVisibility(View.VISIBLE);
 			loadingTextView.setVisibility(View.GONE);
@@ -71,8 +69,6 @@ public class WeatherCard extends RecyclableCard {
 			weatherLayout.setVisibility(View.GONE);
 			loadingTextView.setVisibility(View.VISIBLE);
 		}
-
-		ImageView overflowImageView = ((ImageView) convertView.findViewById(R.id.overflow));
 		if (hasOverflow == true) {
 			overflowImageView.setVisibility(View.VISIBLE);
 		} else {

@@ -34,6 +34,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * 添加天气管理城市的界面
+ * 
+ * @author 11331031 陈熙迪 <375900030@qq.com>
+ * 
+ */
 public class AddCityActivity extends Activity {
 
 	private TextView mBackTextView;
@@ -46,8 +52,8 @@ public class AddCityActivity extends Activity {
 	private LoadingDialog mLoadingDialog;
 	private GetUpEarlyDB mDB;
 
+	// 监视EditText的文本变化并修改自动补全列表
 	private TextWatcher mTextWatcher = new TextWatcher() {
-
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			boolean result = false;
@@ -75,20 +81,14 @@ public class AddCityActivity extends Activity {
 		}
 	};
 
-	private HiThread mGetWeather = new HiThread() {
+	private HiThread mGetWeatherThread = new HiThread() {
 
 		@Override
 		public void run() {
 			WeatherUtil weatherUtil = WeatherUtil.getInstance();
 
-			// System.out.println("***********AddCityActivity*********\n"
-			// + weatherUtil.getWeatherList());
-
 			String city = getParams().get(0).toString();
 			Weather weather = weatherUtil.requestWeather(city);
-
-			// System.out.println("***********AddCityActivity*********\n" +
-			// weather);
 
 			// 预防WebXML的自动补全功能
 			if (weather != null && weather.isInit() && city.equals(weather.getCityName())) {
@@ -176,12 +176,15 @@ public class AddCityActivity extends Activity {
 				String city = mData.get(position);
 				List<Object> params = new ArrayList<Object>();
 				params.add(city);
-				mGetWeather.start(params);
+				mGetWeatherThread.start(params);
 				mLoadingDialog.show();
 			}
 		});
 	}
 
+	/**
+	 * 解析asset/suuport_list.xml的WebXML天气服务支持的城市作为最原始的补全列表
+	 */
 	private void getHintList() {
 		mHintList = new ArrayList<String>();
 		String item = new String();

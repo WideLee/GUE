@@ -40,7 +40,6 @@ public class QuickReturnListView extends ListView {
 			}
 			scrollIsComputed = true;
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

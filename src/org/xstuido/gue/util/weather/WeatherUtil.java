@@ -17,8 +17,17 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xstuido.gue.util.Constant;
 
+/**
+ * 单例模式\n 与天气有关的一些工具例如从WebService获取并解析天气
+ * 
+ * @author 11331173 李明宽 <sysu_limingkuan@163.com>
+ * 
+ */
 public class WeatherUtil {
 
+	/**
+	 * 全局公共的一个天气的列表
+	 */
 	private ArrayList<Weather> mWeatherList;
 
 	private static WeatherUtil instance;
@@ -63,6 +72,13 @@ public class WeatherUtil {
 		mWeatherList.clear();
 	}
 
+	/**
+	 * 向服务器请求某个城市的天气数据，注意这个函数涉及网络操作耗时不能卸载主线程中
+	 * 
+	 * @param city
+	 *            需要获取天气的城市
+	 * @return
+	 */
 	public Weather requestWeather(String city) {
 		HttpResponse mHttpResponse;
 		HttpClient mHttpClient;
@@ -79,7 +95,6 @@ public class WeatherUtil {
 				data = analyzeXML(resultData);
 				if (data.size() >= 1) {
 					weather = new Weather();
-					// Log.d("WeatherUtil", data.toString());
 					weather.initWeather(data);
 				}
 			}
@@ -90,10 +105,16 @@ public class WeatherUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return weather;
 	}
 
+	/**
+	 * 解析从网页上加载出来的XML文件提取天气数据
+	 * 
+	 * @param resultData
+	 *            从Service下载下来的源XML文件
+	 * @return 解析出来的字符项列表
+	 */
 	public ArrayList<String> analyzeXML(String resultData) {
 		ArrayList<String> result = new ArrayList<String>();
 		String item = new String();

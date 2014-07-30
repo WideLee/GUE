@@ -35,6 +35,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * 日历以及所有的日程事件列表
+ * 
+ * @author 11331075 高蓝光 <glglzb@qq.com>
+ * 
+ */
 public class ToDoListFragment extends Fragment {
 
 	private Button mPreButton;
@@ -46,7 +52,6 @@ public class ToDoListFragment extends Fragment {
 	private OnPageSelectedListener mOnPageSelectedListener;
 	private GetUpEarlyDB mDB;
 	private CardUI mCardView;
-
 	private ImageView mAddImageView;
 
 	private boolean isInit = false;
@@ -131,6 +136,9 @@ public class ToDoListFragment extends Fragment {
 		return main;
 	}
 
+	/**
+	 * 初始化界面
+	 */
 	private void initView() {
 		mPreButton.setVisibility(View.VISIBLE);
 		mNextButton.setVisibility(View.VISIBLE);
@@ -195,6 +203,12 @@ public class ToDoListFragment extends Fragment {
 		});
 	}
 
+	/**
+	 * 根据选中的日期更新事件列表
+	 * 
+	 * @param cal
+	 *            选中的日期实例
+	 */
 	private void updateToDoList(Calendar cal) {
 		mCardView.clearCards();
 		try {

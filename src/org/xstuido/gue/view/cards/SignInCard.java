@@ -11,6 +11,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+/**
+ * 签到卡片
+ * 
+ * @author 11331068 冯亚臣 <1967558085@qq.com>
+ */
 public class SignInCard extends RecyclableCard {
 
 	private boolean mIsSignIn;

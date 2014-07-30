@@ -9,12 +9,9 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 
 /**
- * 封装Thread和Handler，用户可以方便的调用进度对话框，<b>并异步执行代码</b>，在代码执行完成后，进行主线程UI的更新。 该类需配合
- * {@link LoadingDialogExecute}代理类使用。
+ * 封装的进度对话框
  * 
- * @see LoadingDialogExecute
- * @author 优化设计
- * @version 0.2
+ * @author 11331068 冯亚臣 <1967558085@qq.com>
  */
 public class LoadingDialog {
 
@@ -87,7 +84,7 @@ public class LoadingDialog {
 	/**
 	 * 设置Context
 	 * 
-	 * @param _c
+	 * @param context
 	 */
 	public void setContext(Context context) {
 		this.mContext = context;

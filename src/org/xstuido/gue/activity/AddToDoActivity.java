@@ -26,6 +26,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+/**
+ * 添加日程提醒事件的界面
+ * 
+ * @author 11331209 刘柯汕 <1946222543@qq.com>
+ * 
+ */
 public class AddToDoActivity extends Activity {
 
 	private DatePickerDialog mDatePicker;
@@ -38,9 +44,9 @@ public class AddToDoActivity extends Activity {
 	private TextView mOKTextView;
 
 	private boolean mIsPickDate;
-	private int requestCode;
-	private long eventID;
-	Intent intent;
+	private int mRequestCode;
+	private long mEventID;
+	private Intent mIntent;
 
 	private GetUpEarlyDB mDB;
 
@@ -58,13 +64,14 @@ public class AddToDoActivity extends Activity {
 		mEditText = (EditText) findViewById(R.id.et_todo);
 		mBackTextView = (TextView) findViewById(R.id.tv_back);
 		mOKTextView = (TextView) findViewById(R.id.banner_ok);
-		intent = getIntent();
-		requestCode = intent.getIntExtra("Action", 0);
-		if (requestCode == Constant.REQUEST_CODE_UPDATE_EVENT) {
-			eventID = intent.getLongExtra("Value", -1);
+
+		mIntent = getIntent();
+		mRequestCode = mIntent.getIntExtra("Action", 0);
+		if (mRequestCode == Constant.REQUEST_CODE_UPDATE_EVENT) {
+			mEventID = mIntent.getLongExtra("Value", -1);
 			mIsPickDate = true;
 			try {
-				Event event = mDB.getEventById(eventID);
+				Event event = mDB.getEventById(mEventID);
 				mCalendar.setTimeInMillis(event.getTime());
 				mDatePickButton.setText(DateFormat.format("yyyy-MM-dd", mCalendar));
 				mTimePickButton.setText(mCalendar.get(Calendar.HOUR_OF_DAY) + ":"
@@ -74,6 +81,7 @@ public class AddToDoActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
+
 		mOKTextView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -82,13 +90,13 @@ public class AddToDoActivity extends Activity {
 				} else if (mEditText.getText().toString().equals("")) {
 					Tool.showToast(Tool.getString(R.string.say_something));
 				} else {
-					if (requestCode == Constant.REQUEST_CODE_ADD_EVENT) {
+					if (mRequestCode == Constant.REQUEST_CODE_ADD_EVENT) {
 						mDB.insert(new Event(0, 0, mCalendar.getTimeInMillis(), mEditText.getText()
 								.toString()));
-					} else if (requestCode == Constant.REQUEST_CODE_UPDATE_EVENT) {
+					} else if (mRequestCode == Constant.REQUEST_CODE_UPDATE_EVENT) {
 						Event event = new Event(0, 0, mCalendar.getTimeInMillis(), mEditText
 								.getText().toString());
-						event.setId(eventID);
+						event.setId(mEventID);
 						mDB.updateEventById(event);
 					}
 					Tool.showToast(Tool.getString(R.string.add_ok));

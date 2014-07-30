@@ -36,6 +36,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+/**
+ * 签到记录界面，包含分享功能
+ * 
+ * @author 11331075 高蓝光 <glglzb@qq.com>
+ * 
+ */
 public class SignInHistoryFragment extends Fragment {
 
 	private ListView mHistoryListView;
@@ -75,22 +81,17 @@ public class SignInHistoryFragment extends Fragment {
 			if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 
 				Bitmap bitmap = (Bitmap) param.get(0);
-
 				int stautsHeight = (Integer) param.get(1);
-				// Log.d("mClip", "状态栏的高度为:" + stautsHeight);
-
 				Point point = new Point();
 				getActivity().getWindowManager().getDefaultDisplay().getSize(point);
-				// create the bitmap what is needed
+
 				bitmap = Bitmap.createBitmap(bitmap, 0, stautsHeight, point.x, point.y
 						- stautsHeight);
 
-				// ouput the bitmap to sdcard
 				String path = Environment.getExternalStorageDirectory().getAbsolutePath()
 						+ "/gue/images/";
 				String name = Long.toString(System.currentTimeMillis()) + ".bmp";
 				Uri imageUri = Uri.EMPTY;
-
 				try {
 					File pathDir = new File(path);
 					if (!pathDir.exists()) {
@@ -165,9 +166,7 @@ public class SignInHistoryFragment extends Fragment {
 				view.buildDrawingCache();
 				Bitmap bitmap = view.getDrawingCache();
 
-				// get Height of Status bar
 				Rect frame = new Rect();
-				// get size of screen
 				view.getWindowVisibleDisplayFrame(frame);
 				int stautsHeight = frame.top;
 

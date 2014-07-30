@@ -7,6 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+/**
+ * 启动应用的logo闪屏
+ * 
+ * @author 11331209 刘柯汕 <1946222543@qq.com>
+ * 
+ */
 public class RouterActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

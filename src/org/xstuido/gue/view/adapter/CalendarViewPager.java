@@ -16,6 +16,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * 基于ViewPager的日历视图的适配器
+ * 
+ * @author 11331068 冯亚臣 <1967558085@qq.com>
+ * 
+ */
 public class CalendarViewPager extends ViewPager4SameItem {
 
 	public static final int DAY_NUM_OF_WEEK = 7;

@@ -37,6 +37,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+/**
+ * 今日日程以及天气等界面
+ * 
+ * @author 11331075 高蓝光 <glglzb@qq.com>
+ * 
+ */
 public class TodayToDoFragment extends Fragment {
 
 	private CardUI mCardView;
@@ -49,6 +55,7 @@ public class TodayToDoFragment extends Fragment {
 
 	private GetUpEarlyDB mDB;
 	private boolean isInit = false;
+
 	private OnClickListener mSignInClickListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -85,7 +92,6 @@ public class TodayToDoFragment extends Fragment {
 			for (int i = 0; i < cityList.size(); i++) {
 				String city = cityList.get(i).getCityName();
 				Weather weather = weatherUtil.requestWeather(city);
-				// System.out.println(weather);
 				if (weather != null && weather.isInit()) {
 					weatherUtil.updateWeather(i, weather);
 
@@ -143,7 +149,6 @@ public class TodayToDoFragment extends Fragment {
 			case Constant.MESSAGE_SWIPE_WEATHER_CARD:
 
 				int count = mWeatherStack.getCount();
-				// System.out.println(count);
 				if (count == 0) {
 					mWeatherStack.setTitle("");
 				} else {
@@ -233,8 +238,10 @@ public class TodayToDoFragment extends Fragment {
 		return main;
 	}
 
+	/**
+	 * 初始化界面
+	 */
 	private void initView() {
-
 		WeatherUtil weatherUtil = WeatherUtil.getInstance();
 		ArrayList<String> cityList = mDB.getAllLocation();
 		if (cityList.size() == 0) {
@@ -257,6 +264,13 @@ public class TodayToDoFragment extends Fragment {
 		super.onResume();
 	}
 
+	/**
+	 * 获取当天所有未完成的日程记录
+	 * 
+	 * @return 日程事件的列表
+	 * @throws ParseException
+	 *             日期格式错误的时候抛出异常
+	 */
 	private ArrayList<Event> getToDoEvent() throws ParseException {
 		ArrayList<Event> result = new ArrayList<Event>();
 		List<Event> events = mDB.getEventByDate(new Date(), 0);

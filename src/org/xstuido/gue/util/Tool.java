@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.util;
+package org.xstuido.gue.util;
 
 import java.util.Calendar;
 

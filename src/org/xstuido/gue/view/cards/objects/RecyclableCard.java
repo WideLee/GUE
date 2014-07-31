@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.view.cards.objects;
+package org.xstuido.gue.view.cards.objects;
 
 import android.content.Context;
 import android.view.LayoutInflater;

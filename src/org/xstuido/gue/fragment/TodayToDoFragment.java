@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.fragment;
+package org.xstuido.gue.fragment;
 
 import java.text.ParseException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.util;
+package org.xstuido.gue.util;
 
 /**
  * 事件的基本类型

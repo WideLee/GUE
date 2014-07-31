@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.view.dialog;
+package org.xstuido.gue.view.dialog;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.util.Tool;

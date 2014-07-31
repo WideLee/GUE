@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.db;
+package org.xstuido.gue.db;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

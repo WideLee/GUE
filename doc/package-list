@@ -1,0 +1,12 @@
+org.xstuido.gue
+org.xstuido.gue.activity
+org.xstuido.gue.db
+org.xstuido.gue.fragment
+org.xstuido.gue.util
+org.xstuido.gue.util.weather
+org.xstuido.gue.view.adapter
+org.xstuido.gue.view.cards
+org.xstuido.gue.view.cards.objects
+org.xstuido.gue.view.cards.ui
+org.xstuido.gue.view.cards.views
+org.xstuido.gue.view.dialog

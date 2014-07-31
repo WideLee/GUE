@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.activity;
+package org.xstuido.gue.activity;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.view.cards;
+package org.xstuido.gue.view.cards;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

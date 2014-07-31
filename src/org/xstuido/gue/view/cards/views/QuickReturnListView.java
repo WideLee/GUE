@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.view.cards.views;
+package org.xstuido.gue.view.cards.views;
 
 import android.content.Context;
 import android.util.AttributeSet;

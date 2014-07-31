@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.view.cards.objects;
+package org.xstuido.gue.view.cards.objects;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.util.Tool;

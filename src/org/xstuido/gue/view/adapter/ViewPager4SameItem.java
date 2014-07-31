@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.view.adapter;
+package org.xstuido.gue.view.adapter;
 
 import java.lang.ref.SoftReference;
 

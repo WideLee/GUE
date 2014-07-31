@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.util.weather;
+package org.xstuido.gue.util.weather;
 
 import java.io.IOException;
 import java.io.StringReader;

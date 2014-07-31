@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.view.cards;
+package org.xstuido.gue.view.cards;
 
 import org.xstuido.gue.R;
 import org.xstuido.gue.view.cards.objects.RecyclableCard;

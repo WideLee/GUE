@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.util.weather;
+package org.xstuido.gue.util.weather;
 
 import java.util.ArrayList;
 import java.util.Calendar;

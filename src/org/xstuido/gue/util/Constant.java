@@ -1,4 +1,4 @@
-﻿package org.xstuido.gue.util;
+package org.xstuido.gue.util;
 
 /**
  * 在项目代码中用到的全局静态常量，用于区分消息传递

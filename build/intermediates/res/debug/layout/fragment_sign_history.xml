@@ -78,13 +78,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:text="@string/time_line_nothing"
         android:fontFamily="sans-serif-light"
         android:textColor="@color/card_title_text"
         android:id="@+id/tv_time_line_nothing"
         android:layout_alignBottom="@+id/iv_time_line_nothing"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp" />
+        android:layout_marginBottom="64dp" />
 
 </RelativeLayout><!-- From: file:/C:/Users/limkuan/AndroidStudioProjects/GUE_opt/res/layout/fragment_sign_history.xml -->

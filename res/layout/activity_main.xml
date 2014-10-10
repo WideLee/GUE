@@ -4,15 +4,15 @@
 
     <RadioGroup
         android:id="@+id/rg_navigate"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/actionbar_bg_dark"
-        android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:weightSum="3.6">
+        android:weightSum="3.6"
+        android:layout_width="match_parent"
+        android:gravity="center">
 
         <RadioButton
             android:id="@+id/rb_today_todo"
@@ -38,6 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rg_navigate"
-        android:layout_alignParentTop="true"></FrameLayout>
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

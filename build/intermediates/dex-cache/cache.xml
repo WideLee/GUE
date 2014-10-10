@@ -2,23 +2,11 @@
 <pre-dex-items>
 
     <item
-        dex="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\build\intermediates\pre-dexed\debug\android-support-v7-appcompat-bfef968db1fd0b09f60206b06441d6049829c080.jar"
-        jar="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\libs\android-support-v7-appcompat.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="aaa3ec7d7bfb3446a9190c5b1f601f1eb94745e7"/>
-    <item
         dex="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\build\intermediates\pre-dexed\debug\library-13ca56da087835e4a9144b15bc8754ac63000d63.jar"
         jar="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\libs\library.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="1a141561378254c678f6c25e5a18d37b8102b66f"/>
-    <item
-        dex="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\build\intermediates\pre-dexed\debug\o2omobi_sdk_v3.1.2-eab6a6795ff90fdf269534630f8af219d7984aaa.jar"
-        jar="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\libs\o2omobi_sdk_v3.1.2.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="b763ad47a55f2bd0c87f53d8d85e8ca03a6d1b66"/>
     <item
         dex="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\build\intermediates\pre-dexed\debug\httpmime-4.1.2-03b0274a2d251684a188f0895f0061acb631efe6.jar"
         jar="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\libs\httpmime-4.1.2.jar"
@@ -31,5 +19,17 @@
         jumboMode="false"
         revision="19.1.0"
         sha1="ded9acc6a9792b8f1afc470f0c9cd36d178914cd"/>
+    <item
+        dex="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\build\intermediates\pre-dexed\debug\android-support-v7-appcompat-bfef968db1fd0b09f60206b06441d6049829c080.jar"
+        jar="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\libs\android-support-v7-appcompat.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="aaa3ec7d7bfb3446a9190c5b1f601f1eb94745e7"/>
+    <item
+        dex="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\build\intermediates\pre-dexed\debug\o2omobi_sdk_v3.1.2-eab6a6795ff90fdf269534630f8af219d7984aaa.jar"
+        jar="C:\Users\limkuan\AndroidStudioProjects\GUE_opt\libs\o2omobi_sdk_v3.1.2.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="b763ad47a55f2bd0c87f53d8d85e8ca03a6d1b66"/>
 
 </pre-dex-items>

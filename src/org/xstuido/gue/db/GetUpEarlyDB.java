@@ -1,12 +1,5 @@
 package org.xstuido.gue.db;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import org.xstuido.gue.util.Event;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,11 +7,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import org.xstuido.gue.util.Event;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * GetUpEarly的SQLite数据库接口，包括事件以及城市两个表的增删改查信息
- * 
+ *
  * @author 11331173 李明宽 <sysu_limingkuan@163.com>
- * 
+ *
  */
 public class GetUpEarlyDB extends SQLiteOpenHelper {
 
@@ -66,7 +66,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 插入一个日程事件
-	 * 
+	 *
 	 * @param entity
 	 *            日程事件
 	 * @return 这个事件在数据库中对应的id
@@ -87,7 +87,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 根据事件的ID删除一个事件
-	 * 
+	 *
 	 * @param id
 	 *            要删除的事件的ID
 	 * @return 返回总共删除的记录条数
@@ -103,7 +103,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 根据ID更新一条事件记录
-	 * 
+	 *
 	 * @param entity
 	 *            新的日程事件
 	 * @return 更新的记录条数
@@ -126,7 +126,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 根据日程事件的ID来查询相应的事件
-	 * 
+	 *
 	 * @param id
 	 *            事件的ID
 	 * @return 查询到的事件，若为空表示没查询到该ID的事件
@@ -153,7 +153,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 选出特定一天的日程事件记录
-	 * 
+	 *
 	 * @param date
 	 *            需要查找的日期
 	 * @param choose
@@ -171,7 +171,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 		String dateEnd = format_end.format(date);
 		String SEARCH_EVENT = "select * from " + EVENT_TABLE + " where  ( datetime("
 				+ COLUMN_EVENT_TIME + ") < \"" + dateEnd + "\" and " + "datetime("
-				+ COLUMN_EVENT_TIME + ") > \"" + dateBegin + "\" );";
+				+ COLUMN_EVENT_TIME + ") > \"" + dateBegin + "\" ) order by " + COLUMN_EVENT_TIME + " ;";
 
 		Cursor c = db.rawQuery(SEARCH_EVENT, null);
 
@@ -194,7 +194,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 选出所有的日程事件记录
-	 * 
+	 *
 	 * @param choose
 	 *            如果为1 那么选出的是签到记录，如果是0选出的是日程记录，其他返回所有的Event
 	 * @return
@@ -225,7 +225,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 向天气管理中插入一个城市
-	 * 
+	 *
 	 * @param city
 	 *            城市名称
 	 * @return 如果数据库中没有该城市返回true，否则不插入返回false
@@ -245,7 +245,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 删除天气城市
-	 * 
+	 *
 	 * @param city
 	 *            城市名称
 	 * @return 如果本来已经没有这个城市返回false，如果正常删掉城市返回true
@@ -266,7 +266,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 查询数据库是否已经存在给定的城市
-	 * 
+	 *
 	 * @param city
 	 *            城市的名字
 	 * @return 如果已经存在返回true，如果不存在返回false
@@ -287,7 +287,7 @@ public class GetUpEarlyDB extends SQLiteOpenHelper {
 
 	/**
 	 * 获取所有的位置城市信息
-	 * 
+	 *
 	 * @return 所有的城市列表
 	 */
 	public ArrayList<String> getAllLocation() {

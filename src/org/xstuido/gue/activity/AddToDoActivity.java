@@ -1,14 +1,5 @@
 package org.xstuido.gue.activity;
 
-import java.text.ParseException;
-import java.util.Calendar;
-
-import org.xstuido.gue.R;
-import org.xstuido.gue.db.GetUpEarlyDB;
-import org.xstuido.gue.util.Constant;
-import org.xstuido.gue.util.Event;
-import org.xstuido.gue.util.Tool;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -25,6 +16,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import org.xstuido.gue.R;
+import org.xstuido.gue.db.GetUpEarlyDB;
+import org.xstuido.gue.util.Constant;
+import org.xstuido.gue.util.Event;
+import org.xstuido.gue.util.Tool;
+
+import java.text.ParseException;
+import java.util.Calendar;
 
 /**
  * 添加日程提醒事件的界面
@@ -86,9 +86,9 @@ public class AddToDoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (!mIsPickDate) {
-					Tool.showToast(Tool.getString(R.string.select_date_hint));
+					Tool.showToast(AddToDoActivity.this, Tool.getString(R.string.select_date_hint));
 				} else if (mEditText.getText().toString().equals("")) {
-					Tool.showToast(Tool.getString(R.string.say_something));
+					Tool.showToast(AddToDoActivity.this, Tool.getString(R.string.say_something));
 				} else {
 					if (mRequestCode == Constant.REQUEST_CODE_ADD_EVENT) {
 						mDB.insert(new Event(0, 0, mCalendar.getTimeInMillis(), mEditText.getText()
@@ -99,7 +99,7 @@ public class AddToDoActivity extends Activity {
 						event.setId(mEventID);
 						mDB.updateEventById(event);
 					}
-					Tool.showToast(Tool.getString(R.string.add_ok));
+					Tool.showToast(AddToDoActivity.this, Tool.getString(R.string.add_ok));
 					setResult(RESULT_OK);
 					finish();
 					overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);

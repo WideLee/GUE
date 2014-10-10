@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/banner_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/actionbar_bg_dark">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/ic_banner_logo"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/actionbar_text_color"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/banner_more"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_theme_dark_selector"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_banner_more" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_toLeftOf="@id/banner_more"
+            android:background="@drawable/bg_theme_dark_selector"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_weather" />
+    </RelativeLayout>
+
+    <org.xstuido.gue.view.cards.views.CardUI
+        android:id="@+id/lv_cards"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_banner"></org.xstuido.gue.view.cards.views.CardUI>
+
+</RelativeLayout><!-- From: file:/C:/Users/limkuan/AndroidStudioProjects/GUE_opt/res/layout/fragment_today_todo.xml -->

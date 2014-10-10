@@ -7,6 +7,7 @@
         <item name="android:button">@null</item>
         <item name="android:layout_weight">1.0</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:layout_centerVertical">true</item>
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 

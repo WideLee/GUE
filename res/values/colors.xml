@@ -11,5 +11,5 @@
     <color name="actionbar_bg_dark_pressed">#222222</color>
     <color name="actionbar_text_color">#FFFFFF</color>
     <color name="card_list_bg">#F5F5F5</color>
-
+    <color name="button_background">#db555555</color>
 </resources>

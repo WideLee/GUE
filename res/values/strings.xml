@@ -70,5 +70,15 @@
     <string name="add_weather_hint">请输入天气名称</string>
     <string name="ensure_delete">您确认删除该城市吗？</string>
     <string name="update_success">更新成功</string>
+    <string name="time_line_nothing">还没有任何签到记录\n快快制定自己的早起计划吧 ^_^)y</string>
 
+    <string name="help_banner_weather">天气管理</string>
+    <string name="help_banner_more_app">更多应用</string>
+    <string name="help_banner_update_weather">刷新天气</string>
+    <string name="help_banner_add_weather">添加城市</string>
+    <string name="help_banner_add_todo">添加日程</string>
+    <string name="help_banner_share">分享时间轴</string>
+
+    <string name="more_app">正在推荐更多应用&#8230;</string>
+    <string name="hint_add_todo">请输入日程说明</string>
 </resources>

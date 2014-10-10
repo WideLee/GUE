@@ -1,22 +1,5 @@
 package org.xstuido.gue.activity;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-import org.xstuido.gue.R;
-import org.xstuido.gue.db.GetUpEarlyDB;
-import org.xstuido.gue.util.Constant;
-import org.xstuido.gue.util.HiThread;
-import org.xstuido.gue.util.Tool;
-import org.xstuido.gue.util.weather.Weather;
-import org.xstuido.gue.util.weather.WeatherUtil;
-import org.xstuido.gue.view.dialog.LoadingDialog;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -33,6 +16,23 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+import org.xstuido.gue.R;
+import org.xstuido.gue.db.GetUpEarlyDB;
+import org.xstuido.gue.util.Constant;
+import org.xstuido.gue.util.HiThread;
+import org.xstuido.gue.util.Tool;
+import org.xstuido.gue.util.weather.Weather;
+import org.xstuido.gue.util.weather.WeatherUtil;
+import org.xstuido.gue.view.dialog.LoadingDialog;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 添加天气管理城市的界面
@@ -130,10 +130,10 @@ public class AddCityActivity extends Activity {
 				setResult(RESULT_OK);
 				finish();
 				overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
-				Tool.showToast(Tool.getString(R.string.add_ok));
+				Tool.showToast(AddCityActivity.this, Tool.getString(R.string.add_ok));
 				break;
 			case Constant.MESSAGE_GET_WEATHER_FAIL:
-				Tool.showToast(msg.obj.toString());
+				Tool.showToast(AddCityActivity.this, msg.obj.toString());
 				mCityEditText.setText("");
 				break;
 			default:

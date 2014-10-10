@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/banner_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/actionbar_bg_dark">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/ic_banner_logo"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/actionbar_text_color"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/btn_share"
+            android:layout_width="@dimen/banner_height"
+            android:layout_height="@dimen/banner_height"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_theme_dark_selector"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_menu_share" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_banner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/time_axis"
+        android:textColor="@color/card_title_text"
+        android:textSize="24sp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/iv_logo"
+        android:layout_marginTop="10dp"
+        android:background="@color/stroke" />
+
+    <ListView
+        android:id="@+id/lv_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/divider"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:divider="@null" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_time_line_nothing"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/time_line_nothing"
+        android:layout_alignTop="@+id/lv_history" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="@string/time_line_nothing"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/card_title_text"
+        android:id="@+id/tv_time_line_nothing"
+        android:layout_alignBottom="@+id/iv_time_line_nothing"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp" />
+
+</RelativeLayout><!-- From: file:/C:/Users/limkuan/AndroidStudioProjects/GUE_opt/res/layout/fragment_sign_history.xml -->

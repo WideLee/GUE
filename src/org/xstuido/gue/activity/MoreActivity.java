@@ -1,8 +1,5 @@
 package org.xstuido.gue.activity;
 
-import org.xstuido.gue.R;
-import org.xstuido.gue.util.Tool;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -14,6 +11,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import org.xstuido.gue.R;
+import org.xstuido.gue.util.Tool;
 
 /**
  * 跳转到更多应用的扩展界面
@@ -47,7 +47,7 @@ public class MoreActivity extends Activity {
 					e.printStackTrace();
 				}
 				if (packageInfo == null) {
-					Tool.showToast("没有安装该应用");
+					Tool.showToast(MoreActivity.this, "没有安装该应用");
 				} else {
 					Intent intent = new Intent();
 					ComponentName comp = new ComponentName("com.chemy.PDgame",

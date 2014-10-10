@@ -1,18 +1,5 @@
 package org.xstuido.gue.activity;
 
-import java.util.ArrayList;
-
-import org.xstuido.gue.R;
-import org.xstuido.gue.db.GetUpEarlyDB;
-import org.xstuido.gue.util.Constant;
-import org.xstuido.gue.util.HiThread;
-import org.xstuido.gue.util.Tool;
-import org.xstuido.gue.util.weather.Weather;
-import org.xstuido.gue.util.weather.WeatherUtil;
-import org.xstuido.gue.view.cards.WeatherCard;
-import org.xstuido.gue.view.cards.views.CardUI;
-import org.xstuido.gue.view.dialog.LoadingDialog;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +13,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.xstuido.gue.R;
+import org.xstuido.gue.db.GetUpEarlyDB;
+import org.xstuido.gue.util.Constant;
+import org.xstuido.gue.util.HiThread;
+import org.xstuido.gue.util.Tool;
+import org.xstuido.gue.util.weather.Weather;
+import org.xstuido.gue.util.weather.WeatherUtil;
+import org.xstuido.gue.view.cards.WeatherCard;
+import org.xstuido.gue.view.cards.views.CardUI;
+import org.xstuido.gue.view.dialog.LoadingDialog;
+
+import java.util.ArrayList;
 
 /**
  * 管理所有位置天气的界面
@@ -91,13 +91,13 @@ public class AllWeatherActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case Constant.MESSAGE_GET_WEATHER_ALL_DONE:
-				Tool.showToast(Tool.getString(R.string.update_success));
+				Tool.showToast(AllWeatherActivity.this, Tool.getString(R.string.update_success));
 				break;
 			case Constant.MESSAGE_GET_WEATHER_DONE:
 				mCardView.refresh();
 				break;
 			case Constant.MESSAGE_GET_WEATHER_FAIL:
-				Tool.showToast(msg.obj.toString());
+				Tool.showToast(AllWeatherActivity.this, msg.obj.toString());
 				break;
 			case Constant.MESSAGE_SWIPE_WEATHER_CARD:
 				final int index = (Integer) msg.obj;
@@ -111,7 +111,7 @@ public class AllWeatherActivity extends Activity {
 							util.getWeatherList().remove(index);
 							updateWeatherList();
 						}
-						Tool.showToast(Tool.getString(R.string.delete_ok));
+						Tool.showToast(AllWeatherActivity.this, Tool.getString(R.string.delete_ok));
 					}
 				};
 				DialogInterface.OnClickListener mNegativeClickListener = new DialogInterface.OnClickListener() {
@@ -173,6 +173,13 @@ public class AllWeatherActivity extends Activity {
 				mGetWeatherThread.start();
 			}
 		});
+        mRefreshImageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Tool.showBannerToast(AllWeatherActivity.this, getString(R.string.help_banner_update_weather));
+                return true;
+            }
+        });
 
 		mAddImageView.setOnClickListener(new OnClickListener() {
 			@Override
@@ -182,6 +189,13 @@ public class AllWeatherActivity extends Activity {
 				overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 			}
 		});
+        mAddImageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Tool.showBannerToast(AllWeatherActivity.this, getString(R.string.help_banner_add_weather));
+                return true;
+            }
+        });
 
 		mCardView.setSwipeable(true);
 		updateWeatherList();

@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rl_banner"
@@ -8,7 +8,7 @@
         android:layout_height="@dimen/banner_height"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/actionbar_bg_dark" >
+        android:background="@color/actionbar_bg_dark">
 
         <TextView
             android:id="@+id/tv_name"
@@ -62,7 +62,29 @@
         android:layout_below="@id/divider"
         android:layout_centerVertical="true"
         android:layout_marginBottom="10dp"
-        android:divider="@null" >
-    </ListView>
+        android:divider="@null" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_time_line_nothing"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/time_line_nothing"
+        android:layout_alignTop="@+id/lv_history" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="@string/time_line_nothing"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/card_title_text"
+        android:id="@+id/tv_time_line_nothing"
+        android:layout_alignBottom="@+id/iv_time_line_nothing"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp" />
 
 </RelativeLayout>

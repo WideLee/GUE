@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="o2omobi_sdk_v3.1.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/o2omobi_sdk_v3.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

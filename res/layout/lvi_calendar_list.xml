@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="12dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rl_header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17:30"
+            android:textColor="@color/card_text"
+            android:textSize="18sp"
+            android:id="@+id/tv_time"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="12dp"
+            android:layout_alignParentLeft="true" />
+
+        <View
+            android:id="@+id/dot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/black_dot"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_time" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="哈好"
+        android:id="@+id/tv_content"
+        android:textColor="@color/card_text"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="12dp"
+        android:layout_toRightOf="@+id/rl_header" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        android:id="@+id/divider"
+        android:layout_below="@+id/tv_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp" />
+</RelativeLayout>

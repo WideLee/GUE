@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rl_banner"
@@ -8,7 +8,7 @@
         android:layout_height="@dimen/banner_height"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/actionbar_bg_dark" >
+        android:background="@color/actionbar_bg_dark">
 
         <TextView
             android:id="@+id/tv_name"
@@ -42,14 +42,13 @@
             android:clickable="true"
             android:contentDescription="@string/app_name"
             android:padding="10dp"
-            android:src="@android:drawable/ic_menu_manage" />
+            android:src="@drawable/ic_weather" />
     </RelativeLayout>
 
     <org.xstuido.gue.view.cards.views.CardUI
         android:id="@+id/lv_cards"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_banner" >
-    </org.xstuido.gue.view.cards.views.CardUI>
+        android:layout_below="@+id/rl_banner"></org.xstuido.gue.view.cards.views.CardUI>
 
 </RelativeLayout>

@@ -19,6 +19,8 @@ public class Constant {
 	public static final int MESSAGE_LOADING_DONE = 7;
 	public static final int MESSAGE_LOADING_FAIL = 8;
 
+    public static final int MESSAGE_AD_SHOW_DONE = 15;
+
 	public static final int REQUEST_CODE_ADD_EVENT = 9;
 	public static final int REQUEST_CODE_UPDATE_EVENT = 10;
 	public static final int REQUEST_CODE_SIGNIN = 11;
@@ -30,5 +32,6 @@ public class Constant {
 	 * 天气服务WebService的URL地址
 	 */
 	public static final String HOST_URL = "http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName";
+	public static final String APP_KEY = "10bac302962111e38d4300163e0029e5";
 
 }

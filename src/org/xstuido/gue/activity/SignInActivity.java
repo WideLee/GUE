@@ -1,10 +1,5 @@
 package org.xstuido.gue.activity;
 
-import org.xstuido.gue.R;
-import org.xstuido.gue.db.GetUpEarlyDB;
-import org.xstuido.gue.util.Event;
-import org.xstuido.gue.util.Tool;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,6 +7,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.xstuido.gue.R;
+import org.xstuido.gue.db.GetUpEarlyDB;
+import org.xstuido.gue.util.Event;
+import org.xstuido.gue.util.Tool;
 
 /**
  * 填写签到信息的界面
@@ -42,7 +42,7 @@ public class SignInActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (mEditText.getText().toString().equals("")) {
-					Tool.showToast(Tool.getString(R.string.say_something));
+					Tool.showToast(SignInActivity.this, Tool.getString(R.string.say_something));
 				} else {
 					mDB.insert(new Event(1, 1, System.currentTimeMillis(), mEditText.getText()
 							.toString()));

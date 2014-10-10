@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_popup_toast"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/card_list_bg"
+        android:textSize="14sp"
+        android:background="@drawable/toast_background"
+        android:layout_height="@dimen/undo_bar_height"
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingLeft="@dimen/undo_bar_padding"
+        android:paddingRight="@dimen/undo_bar_padding"
+        android:text="更多应用" />
+</LinearLayout>

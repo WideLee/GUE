@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/limkuan/AndroidStudioProjects/GUE_opt/res/values/colors.xml -->
+    <eat-comment />
+
+    <color name="actionbar_bg_dark">#333333</color>
+    <color name="actionbar_bg_dark_pressed">#222222</color>
+    <color name="actionbar_text_color">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="button_background">#db555555</color>
+    <color name="card_light_text">#ffb5b5b5</color>
+    <color name="card_list_bg">#F5F5F5</color>
+    <color name="card_text">#ff8d8d8d</color>
+    <color name="card_title_text">#ff707070</color>
+    <color name="stroke">#dddddd</color>
+    <color name="white">#FFFFFF</color>
+    <!-- From: file:/C:/Users/limkuan/AndroidStudioProjects/GUE_opt/res/values/dimens.xml -->
+    <eat-comment />
+
+    <dimen name="banner_height">48dp</dimen>
+    <dimen name="button_corner_radius">24dp</dimen>
+    <dimen name="button_drawable_padding">12dp</dimen>
+    <dimen name="card_large_text">25.0sp</dimen>
+    <dimen name="card_small_text">14.0sp</dimen>
+    <dimen name="divider_margin">8dp</dimen>
+    <dimen name="sticky_height">120dp</dimen>
+    <dimen name="stripe_width">12.0dip</dimen>
+    <dimen name="undo_bar_height">48dp</dimen>
+    <dimen name="undo_bar_max_width">500dp</dimen>
+    <dimen name="undo_bar_outer_margin">16dp</dimen>
+    <dimen name="undo_bar_padding">16dp</dimen>
+    <!-- From: file:/C:/Users/limkuan/AndroidStudioProjects/GUE_opt/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="_friday">五</string>
+    <string name="_monday">一</string>
+    <string name="_saturday">六</string>
+    <string name="_sunday">日</string>
+    <string name="_thursday">四</string>
+    <string name="_tuesday">二</string>
+    <string name="_wednesday">三</string>
+    <string name="add_event">添加日程</string>
+    <string name="add_ok">添加成功</string>
+    <string name="add_weather">添加城市</string>
+    <string name="add_weather_hint">请输入天气名称</string>
+    <string name="app_name">早起教练</string>
+    <string name="cancel">取消</string>
+    <string name="colon">：</string>
+    <string name="color_stripe">Color Stripe</string>
+    <string name="date_fmt">%1$d月%2$d日</string>
+    <string name="delete_event">删除日程</string>
+    <string name="delete_ok">删除成功</string>
+    <string name="eight">八</string>
+    <string name="eleven">十一</string>
+    <string name="ensure_delete">您确认删除该城市吗？</string>
+    <string name="five">五</string>
+    <string name="four">四</string>
+    <string name="game_des"> Priests and Devils is a puzzle game in which you will help the Priests and Devils to cross the river within the time limit.</string>
+    <string name="game_name">天使与魔鬼</string>
+    <string name="getup_time">起床时间: </string>
+    <string name="help_banner_add_todo">添加日程</string>
+    <string name="help_banner_add_weather">添加城市</string>
+    <string name="help_banner_more_app">更多应用</string>
+    <string name="help_banner_share">分享时间轴</string>
+    <string name="help_banner_update_weather">刷新天气</string>
+    <string name="help_banner_weather">天气管理</string>
+    <string name="hint_add_todo">请输入日程说明</string>
+    <string name="loading">正在加载…</string>
+    <string name="modify_event">修改日程</string>
+    <string name="month">月</string>
+    <string name="more_app">正在推荐更多应用…</string>
+    <string name="more_game">更多应用</string>
+    <string name="nine">九</string>
+    <string name="nothing">\?</string>
+    <string name="nothing_todo">没有安排任何活动 ^_^)y</string>
+    <string name="ok">确定</string>
+    <string name="one">一</string>
+    <string name="overflow">Menu Overflow</string>
+    <string name="say_something">说点什么吧</string>
+    <string name="sdcard_unmount">SD卡不可用</string>
+    <string name="select_date">选择日期</string>
+    <string name="select_date_hint">请选择日期</string>
+    <string name="select_time">选择时间</string>
+    <string name="semi">；</string>
+    <string name="seven">七</string>
+    <string name="share_text">我的时间轴~\\(^o^)/~分享自早起教练</string>
+    <string name="share_title">请选择</string>
+    <string name="signin">签到</string>
+    <string name="signin_done">已签到</string>
+    <string name="signin_history">签到记录</string>
+    <string name="six">六</string>
+    <string name="ten">十</string>
+    <string name="three">三</string>
+    <string name="time_axis">时间轴</string>
+    <string name="time_fmt">%1$s:%2$s</string>
+    <string name="time_line_nothing">还没有任何签到记录\n快快制定自己的早起计划吧 ^_^)y</string>
+    <string name="today">今天</string>
+    <string name="today_already_signin">愉快的一天开始了 O(∩_∩)O </string>
+    <string name="today_not_signin">点击下面圆圈签到</string>
+    <string name="today_signin">今日签到</string>
+    <string name="today_todo">今日日程</string>
+    <string name="today_weather">实时天气</string>
+    <string name="todo_manage">日程管理</string>
+    <string name="twelve">十二</string>
+    <string name="two">二</string>
+    <string name="update_success">更新成功</string>
+    <string name="uva">紫外线</string>
+    <string name="wait_more_app">敬请期待</string>
+    <string name="weather_fail">天气获取失败</string>
+    <string name="weekday_name">星期</string>
+    <string name="year_fmt">%1$d年%2$d月</string>
+    <string name="yesterday">昨天</string>
+    <!-- From: file:/C:/Users/limkuan/AndroidStudioProjects/GUE_opt/res/values/styles.xml -->
+    <eat-comment />
+
+    <style name="CardLightText" parent="@style/CardText">
+        <item name="android:textColor">@color/card_light_text</item>
+    </style>
+
+    <style name="CardText">
+        <item name="android:textSize">@dimen/card_small_text</item>
+        <item name="android:textColor">@color/card_text</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="CardTitle" parent="@style/CardText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/card_large_text</item>
+        <item name="android:textColor">@color/card_title_text</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="CardTitleBold" parent="@style/CardText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/card_large_text</item>
+        <item name="android:textColor">@color/card_title_text</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="DialogTheme" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">300dp</item>
+    </style>
+
+    <style name="Item.Sticky">
+        <item name="android:background">#eeeeee</item>
+        <item name="android:layout_height">@dimen/sticky_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="Item.Top">
+        <item name="android:background">#eeeeee</item>
+    </style>
+
+    <style name="StackTitle" parent="@style/CardText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/card_title_text</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="navigation_bottom_radio">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/actionbar_text_color</item>
+    </style>
+
+</resources>
